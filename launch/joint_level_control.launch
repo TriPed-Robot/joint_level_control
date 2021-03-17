@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load controller definitions. -->  
+  <rosparam file="$(find joint_level_control)/config/controller_list.yaml" command="load" />
+ 
+  <!-- Start hardware interfaces and assigned controller. -->
+ 
+    <!-- Start joint connector_1_2_0. -->
+    <arg name="joint_0" default="connector_1_2_0" doc="Name of joint which is controlled."/>
+    <node name="joint_interface" pkg="joint_level_control" type="joint_interface" output="screen" ns="$(arg joint_0)">
+      <param name="~joint" value="$(arg joint_0)" />
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg joint_0)"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="$(arg joint_0)" />
+    
+    <!-- Start joint connector_leg_0. -->
+    <arg name="joint_1" default="connector_leg_0" doc="Name of joint which is controlled."/>
+    <node name="joint_interface" pkg="joint_level_control" type="joint_interface" output="screen" ns="$(arg joint_1)">
+      <param name="~joint" value="$(arg joint_1)" />
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg joint_1)"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="$(arg joint_1)" />
+    
+    <!-- Start joint connector_1_2_1. -->
+    <arg name="joint_2" default="connector_1_2_1" doc="Name of joint which is controlled."/>
+    <node name="joint_interface" pkg="joint_level_control" type="joint_interface" output="screen" ns="$(arg joint_2)">
+      <param name="~joint" value="$(arg joint_2)" />
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg joint_2)"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="$(arg joint_2)" />
+    
+    <!-- Start joint connector_leg_1. -->
+    <arg name="joint_3" default="connector_leg_1" doc="Name of joint which is controlled."/>
+    <node name="joint_interface" pkg="joint_level_control" type="joint_interface" output="screen" ns="$(arg joint_3)">
+      <param name="~joint" value="$(arg joint_3)" />
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg joint_3)"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="$(arg joint_3)" />
+    
+    <!-- Start joint connector_1_2_2. -->
+    <arg name="joint_4" default="connector_1_2_2" doc="Name of joint which is controlled."/>
+    <node name="joint_interface" pkg="joint_level_control" type="joint_interface" output="screen" ns="$(arg joint_4)">
+      <param name="~joint" value="$(arg joint_4)" />
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg joint_4)"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="$(arg joint_4)" />
+    
+    <!-- Start joint connector_leg_2. -->
+    <arg name="joint_5" default="connector_leg_2" doc="Name of joint which is controlled."/>
+    <node name="joint_interface" pkg="joint_level_control" type="joint_interface" output="screen" ns="$(arg joint_5)">
+      <param name="~joint" value="$(arg joint_5)" />
+    </node>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg joint_5)"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="$(arg joint_5)" />
+          
+</launch>

@@ -1,0 +1,62 @@
+# Define controller for leg 0.
+connector_1_2_0:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: connector_1_2_0
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+connector_leg_0:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: connector_leg_0
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+        
+# Define controller for leg 1.
+connector_1_2_1:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: connector_1_2_1
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+connector_leg_1:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: connector_leg_1
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+# Define controller for leg 2.
+connector_1_2_2:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: connector_1_2_2
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+connector_leg_2:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: connector_leg_2
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}

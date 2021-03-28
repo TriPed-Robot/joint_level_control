@@ -3,7 +3,7 @@
 
 #include "controller_manager/controller_manager.h"
 
-#include "joint_level_control/joint.h"
+#include "joint_level_control/joint/joint.h"
 
 // Message definitions:
 #include "std_msgs/Float64.h"

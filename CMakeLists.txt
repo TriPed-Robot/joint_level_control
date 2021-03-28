@@ -105,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES joint motor
+  LIBRARIES hall_sensor joint motor rotary_encoder
   CATKIN_DEPENDS controller_manager roscpp roslib std_msgs
 #  DEPENDS system_lib
 )
@@ -122,11 +122,13 @@ include_directories(
 )
 
 ## Declare a C++ library
+add_library(hall_sensor
+  src/hall_sensor/hall_sensor.cpp
+)
 add_library(joint
+  src/joint/extend_joint.cpp
   src/joint/swing_joint.cpp
 )
-
-## Declare a C++ library
 add_library(motor
   src/motor/current_control.cpp
   src/motor/message_builder.cpp
@@ -136,31 +138,54 @@ add_library(motor
   src/motor/ping_message.cpp
   src/motor/scan_message.cpp
 )
+add_library(rotary_encoder
+  src/rotary_encoder/rotary_encoder.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(joint hall_sensor motor rotary_encoder ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+add_executable(extend_joint_node src/extend_joint_node.cpp)
+add_executable(motor_node src/motor_node.cpp)
 add_executable(swing_joint_node src/swing_joint_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
 ## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
+set_target_properties(extend_joint_node PROPERTIES OUTPUT_NAME extend_joint PREFIX "")
+set_target_properties(motor_node PROPERTIES OUTPUT_NAME motor PREFIX "")
 set_target_properties(swing_joint_node PROPERTIES OUTPUT_NAME swing_joint PREFIX "")
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(swing_joint_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(extend_joint_node joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(motor_node motor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(swing_joint_node joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
+target_link_libraries(joint
+  hall_sensor
+  motor
+  rotary_encoder
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(extend_joint_node
+  joint
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(motor_node
+  motor
+  ${catkin_LIBRARIES}
+)
 target_link_libraries(swing_joint_node
   joint
-  motor
   ${catkin_LIBRARIES}
 )
 
@@ -180,13 +205,13 @@ target_link_libraries(swing_joint_node
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS swing_joint_node
+install(TARGETS extend_joint_node motor_node swing_joint_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-install(TARGETS joint motor
+install(TARGETS hall_sensor joint motor rotary_encoder
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}

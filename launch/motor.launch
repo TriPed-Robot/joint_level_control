@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load joint definitions. -->  
+  <rosparam file="$(find joint_level_control)/config/joints.yaml" command="load" />
+ 
+  <!-- Start motor. -->
+  <!-- Address motor via joint namespace, uncommend for choosing namespace. -->
+  <!-- Namespace have to match the joints defined in joints.yaml. -->
+  
+  <node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="swing_joint_left" />
+  <!--node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="swing_joint_right" /-->
+  <!--node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="extend_joint" /-->
+   
+</launch>

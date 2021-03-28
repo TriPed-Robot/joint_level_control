@@ -4,6 +4,14 @@
   <rosparam file="$(find joint_level_control)/config/joints.yaml" command="load" />
  
   <!-- Start hardware interfaces and assigned controller. -->
+  <!-- Address joint via namespace. -->
+  <!-- Namespace have to match the joints defined in joints.yaml. -->
+
+    <!-- Start swing joint left. -->
+    <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing_joint_left" />
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing_joint_left"
+          args="joint_state_controller position_controller" />         
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_left" />
  
     <!-- Start swing joint right. -->
     <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing_joint_right" />
@@ -11,16 +19,10 @@
           args="joint_state_controller position_controller" />         
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_right" />
     
-    <!-- Start swing joint left. -->
-    <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing_joint_left" />
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing_joint_left"
-          args="joint_state_controller position_controller" />         
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_left" />
-    
     <!-- Start extend joint. -->
-    <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing_joint_left" />
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing_joint_left"
+    <node name="extend_joint" pkg="joint_level_control" type="extend_joint" output="screen" ns="extend_joint" />
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="extend_joint"
           args="joint_state_controller position_controller" />         
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_left" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="extend_joint" />
    
 </launch>

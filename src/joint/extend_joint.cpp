@@ -1,8 +1,8 @@
-#include "joint_level_control/joint/swing_joint.h"
+#include "joint_level_control/joint/extend_joint.h"
 
 
-SwingJoint::SwingJoint(const std::string& joint_name, const std::string& can_name, uint8_t can_id)
-    : position_(0.0), velocity_(0.0), effort_(0.0), command_position_(0.0), motor_(can_name, can_id), hall_sensor_()
+ExtendJoint::ExtendJoint(const std::string& joint_name, const std::string& can_name, uint8_t can_id)
+    : position_(0.0), velocity_(0.0), effort_(0.0), command_position_(0.0), motor_(can_name, can_id), rotary_encoder_()
 {
     // Setup hardware interface:
     hardware_interface::JointStateHandle state_handle(joint_name, &position_, &velocity_, &effort_);
@@ -15,19 +15,19 @@ SwingJoint::SwingJoint(const std::string& joint_name, const std::string& can_nam
 }
 
 
-SwingJoint::~SwingJoint()
+ExtendJoint::~ExtendJoint()
 {
 }
 
   
-void SwingJoint::read()
+void ExtendJoint::read()
 {
-    double position = hall_sensor_.getValue();
+    double position = rotary_encoder_.getValue();
     position_ = command_position_; // TODO: read sensor data. Assigning the last command positions leads to 0 error in control loop.
 }
 
 
-void SwingJoint::write()
+void ExtendJoint::write()
 {
     motor_.setCurrent(command_position_);
 }

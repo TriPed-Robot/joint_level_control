@@ -1,5 +1,5 @@
-#ifndef SWING_JOINT_H
-#define SWING_JOINT_H
+#ifndef EXTEND_JOINT_H
+#define EXTEND_JOINT_H
 
 
 #include <string>
@@ -8,15 +8,15 @@
 #include <hardware_interface/joint_state_interface.h>
 #include <hardware_interface/robot_hw.h>
 
-#include "joint_level_control/hall_sensor/hall_sensor.h"
 #include "joint_level_control/motor/motor.h"
+#include "joint_level_control/rotary_encoder/rotary_encoder.h"
 
 
-class SwingJoint : public hardware_interface::RobotHW
+class ExtendJoint : public hardware_interface::RobotHW
 {
 public:
-    SwingJoint(const std::string& joint_name, const std::string& can_name, uint8_t can_id);
-    ~SwingJoint();
+    ExtendJoint(const std::string& joint_name, const std::string& can_name, uint8_t can_id);
+    ~ExtendJoint();
 
     void read();
     void write();
@@ -31,7 +31,7 @@ private:
     double command_position_;
     
     Motor motor_;
-    HallSensor hall_sensor_;
+    RotaryEncoder rotary_encoder_;
 };
 
 

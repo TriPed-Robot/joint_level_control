@@ -1,58 +1,39 @@
 #include "ros/package.h"
 #include "ros/ros.h"
 
-#include "controller_manager/controller_manager.h"
-
-#include "joint_level_control/joint/joint.h"
+#include "joint_level_control/motor/motor.h"
 
 // Message definitions:
 #include "std_msgs/Float64.h"
 
 
-static void _set_disturbance(Joint& joint, const std_msgs::Float64& disturbance)
+static void setCurrent(Motor& motor, const std_msgs::Float64& current)
 {
-    joint.set_disturbance(disturbance.data);
+    motor.setCurrent(current.data);
 }
 
 
 int main(int argc, char** argv)
 {    
-    ros::init(argc, argv, "joint_interface");
+    ros::init(argc, argv, "motor");
     ros::NodeHandle node;
     
-    // Create own node handle to access the private parameters.
-    ros::NodeHandle node_private_parameters("~");
-    std::string joint_name;
-    node_private_parameters.getParam("joint", joint_name);
+    std::string can_name;
+    node.getParam("can_name", can_name);
+    int can_id_integer;
+    node.getParam("can_id", can_id_integer);
+    uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     
-    Joint joint(joint_name);
-    controller_manager::ControllerManager controller_manager(&joint);
+    Motor motor(can_name, can_id_integer);
     
-    // Currying the _set_disturbance function with help of closures.
-    auto set_disturbance_wrapper = [&joint](const std_msgs::Float64::ConstPtr& p_disturbance)
+    // Currying the setCurrent function with help of closures.
+    auto setCurrentWrapper = [&motor](const std_msgs::Float64::ConstPtr& p_current)
     {
-        _set_disturbance(joint, *p_disturbance);
+        setCurrent(motor, *p_current);
     };
-    ros::Subscriber disturbance_subscriber = node.subscribe<std_msgs::Float64>("disturbance", 1, set_disturbance_wrapper);
+    ros::Subscriber current_subscriber = node.subscribe<std_msgs::Float64>("current", 1, setCurrentWrapper);
     
-    ros::AsyncSpinner spinner(1);
-    spinner.start();
-    
-    ros::Time previous_time = ros::Time::now();
-    
-    ros::Rate rate(10); // [Hz]
-    while(ros::ok())
-    {
-        ros::Time time = ros::Time::now();
-        ros::Duration period = time - previous_time;
-        previous_time = time;
-        
-        joint.read();       
-        controller_manager.update(time, period);
-        joint.write();
-        
-        rate.sleep();
-    }
+    ros::spin();
     
     return EXIT_SUCCESS;
 }

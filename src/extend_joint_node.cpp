@@ -3,12 +3,12 @@
 
 #include "controller_manager/controller_manager.h"
 
-#include "joint_level_control/joint/swing_joint.h"
+#include "joint_level_control/joint/extend_joint.h"
 
 
 int main(int argc, char** argv)
 {    
-    ros::init(argc, argv, "swing_joint");
+    ros::init(argc, argv, "extend_joint");
     ros::NodeHandle node;
     
     std::string joint_name;    
@@ -19,9 +19,9 @@ int main(int argc, char** argv)
     node.getParam("can_id", can_id_integer);
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     
-    SwingJoint swing_joint(joint_name, can_name, can_id);
+    ExtendJoint extend_joint(joint_name, can_name, can_id);
     
-    controller_manager::ControllerManager controller_manager(&swing_joint);  
+    controller_manager::ControllerManager controller_manager(&extend_joint);  
     
     ros::AsyncSpinner spinner(1);
     spinner.start();
@@ -35,9 +35,9 @@ int main(int argc, char** argv)
         ros::Duration period = time - previous_time;
         previous_time = time;
         
-        swing_joint.read();       
+        extend_joint.read();       
         controller_manager.update(time, period);
-        swing_joint.write();
+        extend_joint.write();
         
         rate.sleep();
     }

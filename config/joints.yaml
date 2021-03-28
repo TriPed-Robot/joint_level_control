@@ -1,5 +1,21 @@
+swing_joint_left:
+    joint_name: swing_joint_left
+
+    motor:
+        can_name: can2
+        can_id: 0x2
+        
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10
+           
+    position_controller:
+        type: effort_controllers/JointPositionController
+        joint: swing_joint_left
+        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
 swing_joint_right:
-    joint: swing_joint_right
+    joint_name: swing_joint_right
 
     motor:
         can_name: can1
@@ -14,24 +30,8 @@ swing_joint_right:
         joint: swing_joint_right
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
         
-swing_joint_left:
-    joint: swing_joint_left
-
-    motor:
-        can_name: can2
-        can_id: 0x2
-        
-    joint_state_controller:
-        type: joint_state_controller/JointStateController
-        publish_rate: 10
-           
-    position_controller:
-        type: effort_controllers/JointPositionController
-        joint: swing_joint_left
-        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
-        
 extend_joint:
-    joint: extend_joint
+    joint_name: extend_joint
 
     motor:
         can_name: can3

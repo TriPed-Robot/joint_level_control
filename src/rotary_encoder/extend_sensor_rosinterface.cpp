@@ -45,9 +45,9 @@ double readExtendAngle(int sensorID)
 		.tx_buf = (unsigned long)tx,
 		.rx_buf = (unsigned long)rx,
 		.len = ARRAY_SIZE(tx),
-		.delay_usecs = delay,
 		.speed_hz = speed,
-		.bits_per_word = bits,
+		.delay_usecs = delay,
+		.bits_per_word = bits
 	};
 
     ioctl(fd, SPI_IOC_MESSAGE(1), &tr); // transmit data over SPI to 

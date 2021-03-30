@@ -13,6 +13,15 @@ int main(int argc, char** argv)
     
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
+
+    std::string device;
+    node.getParam("device",device);
+    int mode, bits, speed, delay;
+    node.getParam("mode",mode);
+    node.getParam("bits",bits);
+    node.getParam("speed",speed);
+    node.getParam("delay",delay);
+
     std::string can_name;
     node.getParam("can_name", can_name);
     int can_id_integer;

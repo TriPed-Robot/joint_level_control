@@ -1,6 +1,14 @@
 swing_joint_left:
     joint_name: swing_joint_left
 
+    hall_sensor:
+        # spi parameters for hall sensor
+        device: /dev/spidev1.0
+        mode: 0x01 # SPI_CPHA
+        bits: 16 # 16 bits per word
+        speed: 500000 # 500kHz frequency
+        delay: 0 # delay between transfers
+
     motor:
         can_name: can2
         can_id: 0x2
@@ -17,6 +25,14 @@ swing_joint_left:
 swing_joint_right:
     joint_name: swing_joint_right
 
+    hall_sensor:
+        # spi parameters for hall sensor
+        device: /dev/spidev1.0
+        mode: 0x01 # SPI_CPHA
+        bits: 16 # 16 bits per word
+        speed: 500000 # 500kHz frequency
+        delay: 0 # delay between transfers
+
     motor:
         can_name: can1
         can_id: 0x1
@@ -32,6 +48,14 @@ swing_joint_right:
         
 extend_joint:
     joint_name: extend_joint
+
+    rotary_encoder:
+        #spi parameters for the arduino rotary encoder
+        device: /dev/spidev1.0
+        mode: 0 # standard spi mode
+        bits: 8 # 8 bits per word
+        speed: 200000 # 200kHz frequency
+        delay: 0 # delay between transfers
 
     motor:
         can_name: can3

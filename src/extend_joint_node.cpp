@@ -14,9 +14,11 @@ int main(int argc, char** argv)
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
 
+    //spi params
     std::string device;
     node.getParam("device",device);
-    int mode, bits, speed, delay;
+    int cs_id, mode, bits, speed, delay;
+    node.getParam("cs_id",cs_id);
     node.getParam("mode",mode);
     node.getParam("bits",bits);
     node.getParam("speed",speed);

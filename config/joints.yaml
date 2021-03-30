@@ -3,11 +3,12 @@ swing_joint_left:
 
     hall_sensor:
         # spi parameters for hall sensor
-        device: /dev/spidev1.0
-        mode: 0x01 # SPI_CPHA
-        bits: 16 # 16 bits per word
-        speed: 500000 # 500kHz frequency
-        delay: 0 # delay between transfers
+        spi_cs_id: 1 # chip select address (over multiplexer)
+        spi_device: /dev/spidev1.0
+        spi_mode: 0x01 # SPI_CPHA
+        spi_bits: 16 # 16 bits per word
+        spi_speed: 500000 # 500kHz frequency
+        spi_delay: 0 # usec, delay after last bit transfer, before device deselect
 
     motor:
         can_name: can2
@@ -27,11 +28,12 @@ swing_joint_right:
 
     hall_sensor:
         # spi parameters for hall sensor
-        device: /dev/spidev1.0
-        mode: 0x01 # SPI_CPHA
-        bits: 16 # 16 bits per word
-        speed: 500000 # 500kHz frequency
-        delay: 0 # delay between transfers
+        spi_cs_id: 2 # chip select address (over multiplexer)
+        spi_device: /dev/spidev1.0
+        spi_mode: 0x01 # SPI_CPHA
+        spi_bits: 16 # 16 bits per word
+        spi_speed: 500000 # 500kHz frequency
+        spi_delay: 0 # usec, delay after last bit transfer, before device deselect
 
     motor:
         can_name: can1
@@ -51,11 +53,12 @@ extend_joint:
 
     rotary_encoder:
         #spi parameters for the arduino rotary encoder
-        device: /dev/spidev1.0
-        mode: 0 # standard spi mode
-        bits: 8 # 8 bits per word
-        speed: 200000 # 200kHz frequency
-        delay: 0 # delay between transfers
+        spi_cs_id: 3 # chip select address (over multiplexer)
+        spi_device: /dev/spidev1.0
+        spi_mode: 0 # standard spi mode
+        spi_bits: 8 # 8 bits per word
+        spi_speed: 200000 # 200kHz frequency
+        spi_delay: 0 # usec, delay after last bit transfer, before device deselect
 
     motor:
         can_name: can3

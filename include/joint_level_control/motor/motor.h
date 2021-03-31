@@ -14,6 +14,7 @@ public:
     Motor(const std::string& can_name, uint8_t can_id);
     ~Motor();
     void setCurrent(int32_t current);
+    int writeCAN(can_frame* frame);
 
 private:
     void startAcknowldegeTask();

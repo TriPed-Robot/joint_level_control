@@ -55,7 +55,15 @@ void Motor::setCurrent(int32_t current)
 { 
     current_control_.setCurrent(current); // 10 is equal to 1A! 0.1 A resolution!
     can_frame* p_message = current_control_.getMessage();
-    write(can_socket_, p_message, sizeof(struct can_frame));
+    writeCAN(p_message);
+}
+
+int Motor::writeCAN(can_frame* frame) 
+{
+    if(write(can_socket_, frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
+        return 1;
+    }
+    return 0;
 }
 
 
@@ -65,6 +73,7 @@ void Motor::startAcknowldegeTask()
     {
         while(true)
         {
+            usleep(200000);
             struct can_frame message;
             if(sizeof(struct can_frame) != read(can_socket, &message, sizeof(struct can_frame)))
             {

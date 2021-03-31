@@ -156,6 +156,7 @@ add_dependencies(joint hall_sensor motor rotary_encoder ${${PROJECT_NAME}_EXPORT
 add_executable(extend_joint_node src/extend_joint_node.cpp)
 add_executable(motor_node src/motor_node.cpp)
 add_executable(swing_joint_node src/swing_joint_node.cpp)
+add_executable(hall_sensor_node src/hall_sensor_node.cpp) ## testing of hall sensor only
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -164,12 +165,14 @@ add_executable(swing_joint_node src/swing_joint_node.cpp)
 set_target_properties(extend_joint_node PROPERTIES OUTPUT_NAME extend_joint PREFIX "")
 set_target_properties(motor_node PROPERTIES OUTPUT_NAME motor PREFIX "")
 set_target_properties(swing_joint_node PROPERTIES OUTPUT_NAME swing_joint PREFIX "")
+## set_target_properties(hall_sensor_node PROPERTIES OUTPUT_NAME hall_sensor PREFIX "") ## testing of hall sensor only
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(extend_joint_node joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(motor_node motor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(swing_joint_node joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(hall_sensor_node hall_sensor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}) ## testing of hall sensor only
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(joint
@@ -192,6 +195,11 @@ target_link_libraries(swing_joint_node
   ${catkin_LIBRARIES}
 )
 
+target_link_libraries(hall_sensor_node
+  hall_sensor
+  ${catkin_LIBRARIES}
+) ## testing of hall sensor only
+
 #############
 ## Install ##
 #############
@@ -208,7 +216,7 @@ target_link_libraries(swing_joint_node
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS extend_joint_node motor_node swing_joint_node
+install(TARGETS extend_joint_node motor_node swing_joint_node hall_sensor_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

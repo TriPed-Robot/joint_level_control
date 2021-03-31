@@ -15,14 +15,14 @@ int main(int argc, char** argv)
     node.getParam("joint_name", joint_name);
 
     //spi params
-    std::string device;
-    node.getParam("device",device);
-    int cs_id, mode, bits, speed, delay;
-    node.getParam("cs_id",cs_id);
-    node.getParam("mode",mode);
-    node.getParam("bits",bits);
-    node.getParam("speed",speed);
-    node.getParam("delay",delay);
+    std::string spi_device;
+    node.getParam("spi_device",spi_device);
+    int spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay;
+    node.getParam("spi_cs_id",spi_cs_id);
+    node.getParam("spi_mode",spi_mode);
+    node.getParam("spi_bits",spi_bits);
+    node.getParam("spi_speed",spi_speed);
+    node.getParam("spi_delay",spi_delay);
 
     std::string can_name;
     node.getParam("can_name", can_name);
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     node.getParam("can_id", can_id_integer);
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     
-    ExtendJoint extend_joint(joint_name, can_name, can_id);
+    ExtendJoint extend_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id);
     
     controller_manager::ControllerManager controller_manager(&extend_joint);  
     

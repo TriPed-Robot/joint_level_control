@@ -129,6 +129,7 @@ include_directories(
 ## Declare a C++ library
 add_library(hall_sensor
   src/hall_sensor/hall_sensor.cpp
+  src/hall_sensor/swing_sensor_rosinterface.cpp
 )
 add_library(joint
   src/joint/extend_joint.cpp
@@ -145,6 +146,7 @@ add_library(motor
 )
 add_library(rotary_encoder
   src/rotary_encoder/rotary_encoder.cpp
+  src/rotary_encoder/extend_sensor_rosinterface.cpp
 )
 
 ## Add cmake target dependencies of the library

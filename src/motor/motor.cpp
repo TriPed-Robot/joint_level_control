@@ -65,6 +65,7 @@ void Motor::startAcknowldegeTask()
     {
         while(true)
         {
+	    usleep(200000);
             struct can_frame message;
             if(sizeof(struct can_frame) != read(can_socket, &message, sizeof(struct can_frame)))
             {

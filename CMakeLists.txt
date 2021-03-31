@@ -113,6 +113,11 @@ catkin_package(
 ###########
 ## Build ##
 ###########
+###
+## PROFILING
+add_compile_options(-pg)
+set(catkin_LIBRARIES ${catkin_LIBRARIES} -pg)
+###
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations

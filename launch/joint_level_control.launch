@@ -13,16 +13,20 @@
           args="joint_state_controller position_controller" />         
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_left" />
  
-    <!-- Start swing joint right. -->
+	    <!-- Start swing joint right. -->
+    <!--
     <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing_joint_right" />
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing_joint_right"
           args="joint_state_controller position_controller" />         
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_right" />
+	    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing_joint_right" />
+    -->
     
-    <!-- Start extend joint. -->
+		    <!-- Start extend joint. -->
+	    <!--
     <node name="extend_joint" pkg="joint_level_control" type="extend_joint" output="screen" ns="extend_joint" />
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="extend_joint"
           args="joint_state_controller position_controller" />         
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="extend_joint" />
+		    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="extend_joint" />
+	    -->
    
 </launch>

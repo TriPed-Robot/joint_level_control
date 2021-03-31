@@ -17,6 +17,7 @@ public:
 
 private:
     void startAcknowldegeTask();
+    int m_error;
 
 private:
     int can_socket_;

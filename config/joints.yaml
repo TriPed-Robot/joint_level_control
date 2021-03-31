@@ -18,7 +18,7 @@ swing_joint_right:
     joint_name: swing_joint_right
 
     motor:
-        can_name: can2
+        can_name: can1
         can_id: 0x1
         
     joint_state_controller:
@@ -34,7 +34,7 @@ extend_joint:
     joint_name: extend_joint
 
     motor:
-        can_name: can3
+        can_name: can1
         can_id: 0x3
         
     joint_state_controller:

@@ -19,9 +19,11 @@ int main(int argc, char** argv)
     ros::NodeHandle node;
     
     std::string can_name;
-    node.getParam("can_name", can_name);
+    //node.getParam("can_name", can_name);
+    can_name = "can1";
     int can_id_integer;
-    node.getParam("can_id", can_id_integer);
+    //node.getParam("can_id", can_id_integer);
+    can_id_integer = 0xdf;
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
 
     Motor motor(can_name, can_id_integer);
@@ -33,7 +35,7 @@ int main(int argc, char** argv)
     ros::Subscriber current_subscriber = node.subscribe<std_msgs::Float64>("current", 1, setCurrentWrapper);
 
     
-    ros::Rate rate(0.1);
+    ros::Rate rate(100);
     while(ros::ok())
     {
         ros::spinOnce();

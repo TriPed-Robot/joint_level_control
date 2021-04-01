@@ -43,11 +43,11 @@ Motor::Motor(const std::string& can_name, uint8_t can_id)
     
     startAcknowldegeTask();
 
-   //auto scan_msg = ScanMessage();
-   //auto frame = scan_msg.getMessage();
-   //write(can_socket_, frame, sizeof(struct can_frame));
-   //auto ping_msg = PingMessage(0xDF); //Todo: replace with real address
-   //write(can_socket_, ping_msg.getMessage(), sizeof(struct can_frame));
+   auto scan_msg = ScanMessage();
+   auto frame = scan_msg.getMessage();
+   write(can_socket_, frame, sizeof(struct can_frame));
+   auto ping_msg = PingMessage(0xDF); //Todo: replace with real address
+   write(can_socket_, ping_msg.getMessage(), sizeof(struct can_frame));
 }
 
 
@@ -59,7 +59,7 @@ Motor::~Motor()
 
 void Motor::setCurrent(int32_t current)
 { 
-    current_control_.setCurrent(current); // 10 is equal to 1A! 0.1 A resolution!
+    current_control_.setCurrent(current*10); // 10 is equal to 1A! 0.1 A resolution!
     can_frame* p_message = current_control_.getMessage();
     writeCAN(p_message);
 }

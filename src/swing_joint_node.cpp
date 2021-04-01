@@ -14,9 +14,9 @@ int main(int argc, char** argv)
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
     std::string can_name;
-    node.getParam("can_name", can_name);
+    node.getParam("motor/can_name", can_name);
     int can_id_integer;
-    node.getParam("can_id", can_id_integer);
+    node.getParam("motor/can_id", can_id_integer);
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     
     SwingJoint swing_joint(joint_name, can_name, can_id);

@@ -16,18 +16,18 @@ int main(int argc, char** argv)
 
     //spi params
     std::string spi_device;
-    node.getParam("spi_device",spi_device);
+    node.getParam("hall_sensor/spi_device",spi_device);
     int spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay;
-    node.getParam("spi_cs_id",spi_cs_id);
-    node.getParam("spi_mode",spi_mode);
-    node.getParam("spi_bits",spi_bits);
-    node.getParam("spi_speed",spi_speed);
-    node.getParam("spi_delay",spi_delay);
+    node.getParam("hall_sensor/spi_cs_id",spi_cs_id);
+    node.getParam("hall_sensor/spi_mode",spi_mode);
+    node.getParam("hall_sensor/spi_bits",spi_bits);
+    node.getParam("hall_sensor/spi_speed",spi_speed);
+    node.getParam("hall_sensor/spi_delay",spi_delay);
 
     std::string can_name;
-    node.getParam("can_name", can_name);
+    node.getParam("motor/can_name", can_name);
     int can_id_integer;
-    node.getParam("can_id", can_id_integer);
+    node.getParam("motor/can_id", can_id_integer);
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     
     SwingJoint swing_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id);

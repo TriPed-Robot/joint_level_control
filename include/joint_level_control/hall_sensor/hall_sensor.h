@@ -6,7 +6,7 @@
 class HallSensor
 {
 public:
-    HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint8_t spi_speed, uint8_t spi_delay);
+    HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay);
     ~HallSensor();
     double getValue();
 
@@ -15,8 +15,8 @@ private:
     uint8_t spi_cs_id__;
     uint8_t spi_mode__; 
     uint8_t spi_bits__; 
-    uint8_t spi_speed__; 
-    uint8_t spi_delay__;
+    uint32_t spi_speed__; 
+    uint16_t spi_delay__;
 
 };
 

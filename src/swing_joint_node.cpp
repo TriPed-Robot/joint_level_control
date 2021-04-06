@@ -15,14 +15,22 @@ int main(int argc, char** argv)
     node.getParam("joint_name", joint_name);
 
     //spi params
-    std::string spi_device;
-    node.getParam("hall_sensor/spi_device",spi_device);
-    int spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay;
-    node.getParam("hall_sensor/spi_cs_id",spi_cs_id);
-    node.getParam("hall_sensor/spi_mode",spi_mode);
-    node.getParam("hall_sensor/spi_bits",spi_bits);
-    node.getParam("hall_sensor/spi_speed",spi_speed);
-    node.getParam("hall_sensor/spi_delay",spi_delay);
+    std::string spi_device; 
+    int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int;
+    
+    node.getParam("hall_sensor/spi_device", spi_device);
+    node.getParam("hall_sensor/spi_cs_id", spi_cs_id_int);
+    node.getParam("hall_sensor/spi_mode", spi_mode_int);
+    node.getParam("hall_sensor/spi_bits", spi_bits_int);
+    node.getParam("hall_sensor/spi_speed", spi_speed_int);
+    node.getParam("hall_sensor/spi_delay", spi_delay_int);
+
+
+    uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);
+    uint8_t spi_mode = static_cast<uint8_t>(spi_mode_int);
+    uint8_t spi_bits = static_cast<uint8_t>(spi_bits_int);
+    uint32_t spi_speed = static_cast<uint32_t>(spi_speed_int);
+    uint16_t spi_delay = static_cast<uint16_t>(spi_delay_int);
 
     std::string can_name;
     node.getParam("motor/can_name", can_name);

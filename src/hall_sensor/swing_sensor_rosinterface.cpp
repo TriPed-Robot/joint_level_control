@@ -30,34 +30,12 @@
 
 
 // returns the angle the swing sensor with sensorID is measuring. Angle is in RADIANS!
-double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint8_t spi_speed, uint8_t spi_delay)
+double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay)
 {
 	//TODO: do sth with the ID --> set fitting chip select pins
 
 	ROS_DEBUG("debug: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device.c_str(), spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
 	
-	/* TESTING PARAMS TODO REMOVE*/
-	const char *device = "/dev/spidev1.0";
-	uint8_t mode = SPI_CPHA;
-	uint8_t bits = 16;
-	uint32_t speed = 500000;
-	uint16_t delay = 0;
-	
-	int fd; // file descriptor
-	fd = open(device, O_RDWR); //opens SPI device, maybe put this in a once called init
- 
-	uint8_t tx[] = {0xFF,0xFF}; // send buffer [not used for Swing Sensor, since MOSI pin is connected to VDD anyways]
-	uint8_t rx[ARRAY_SIZE(tx)] = {0, }; // recieve buffer
-	struct spi_ioc_transfer tr = {
-		.tx_buf = (unsigned long)tx,
-		.rx_buf = (unsigned long)rx,
-		.len = ARRAY_SIZE(tx),
-		.speed_hz = speed,
-		.delay_usecs = delay,
-		.bits_per_word = bits
-	};
-
-	/*
     int fd; // file descriptor
 	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init
  
@@ -71,7 +49,6 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 		.delay_usecs = spi_delay,
 		.bits_per_word = spi_bits
 	};
-	*/
 
 	/* maybe this is useful: ...
 	et = ioctl(fd, SPI_IOC_WR_MODE32, &mode);

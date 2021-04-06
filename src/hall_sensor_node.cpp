@@ -18,12 +18,12 @@ int main(int argc, char** argv)
     std::string spi_device; 
     int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int;
     
-    node.getParam("spi_device", spi_device);
-    node.getParam("spi_cs_id", spi_cs_id_int);
-    node.getParam("spi_mode", spi_mode_int);
-    node.getParam("spi_bits", spi_bits_int);
-    node.getParam("spi_speed", spi_speed_int);
-    node.getParam("spi_delay", spi_delay_int);
+    node.getParam("hall_sensor/spi_device", spi_device);
+    node.getParam("hall_sensor/spi_cs_id", spi_cs_id_int);
+    node.getParam("hall_sensor/spi_mode", spi_mode_int);
+    node.getParam("hall_sensor/spi_bits", spi_bits_int);
+    node.getParam("hall_sensor/spi_speed", spi_speed_int);
+    node.getParam("hall_sensor/spi_delay", spi_delay_int);
 
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);

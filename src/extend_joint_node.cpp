@@ -16,13 +16,13 @@ int main(int argc, char** argv)
 
     //spi params
     std::string spi_device;
-    node.getParam("spi_device",spi_device);
     int spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay;
-    node.getParam("spi_cs_id",spi_cs_id);
-    node.getParam("spi_mode",spi_mode);
-    node.getParam("spi_bits",spi_bits);
-    node.getParam("spi_speed",spi_speed);
-    node.getParam("spi_delay",spi_delay);
+    node.getParam("rotary_encoder/spi_device",spi_device);
+    node.getParam("rotary_encoder/spi_cs_id",spi_cs_id);
+    node.getParam("rotary_encoder/spi_mode",spi_mode);
+    node.getParam("rotary_encoder/spi_bits",spi_bits);
+    node.getParam("rotary_encoder/spi_speed",spi_speed);
+    node.getParam("rotary_encoder/spi_delay",spi_delay);
 
     std::string can_name;
     node.getParam("can_name", can_name);

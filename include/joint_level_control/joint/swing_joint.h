@@ -15,7 +15,7 @@
 class SwingJoint : public hardware_interface::RobotHW
 {
 public:
-    SwingJoint(const std::string& joint_name, const std::string& can_name, uint8_t can_id);
+    SwingJoint(const std::string& joint_name, const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string& can_name, uint8_t can_id);
     ~SwingJoint();
 
     void read();

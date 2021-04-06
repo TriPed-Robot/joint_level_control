@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+<!-- This file is for testing the hall sensor-->
+  <!-- Load joint definitions. -->  
+  <rosparam file="$(find joint_level_control)/config/joints.yaml" command="load" />
+ 
+  
+  
+  <node name="hall_sensor" pkg="joint_level_control" type="hall_sensor_node" output="screen" ns="swing_joint_left" />
+   
+</launch>

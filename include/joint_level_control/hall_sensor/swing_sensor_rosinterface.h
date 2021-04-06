@@ -1,10 +1,9 @@
 #ifndef SWING_SENSOR_ROS
 #define SWING_SENSOR_ROS
 
-#define LEFT_SWING_SENSOR_ID 1
-#define RIGHT_SWING_SENSOR_ID 2
+#include <string>
 
 // reads angle from a swing sensor, with given ID
-double readSwingAngle(int sensorID);
+double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay);
 
 #endif

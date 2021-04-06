@@ -1,6 +1,15 @@
 swing_joint_left:
     joint_name: swing_joint_left
 
+    hall_sensor:
+        # spi parameters for hall sensor
+        spi_cs_id: 1 # chip select address (over multiplexer)
+        spi_device: /dev/spidev1.0
+        spi_mode: 0x01 # SPI_CPHA
+        spi_bits: 16 # 16 bits per word
+        spi_speed: 500000 # 500kHz frequency
+        spi_delay: 0 # usec, delay after last bit transfer, before device deselect
+
     motor:
         can_name: can1
         can_id: 0xdf
@@ -12,10 +21,19 @@ swing_joint_left:
     position_controller:
         type: effort_controllers/JointPositionController
         joint: swing_joint_left
-        pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+        pid: {p: 1.0, i: 0.0, d: 0.0, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
 
 swing_joint_right:
     joint_name: swing_joint_right
+
+    hall_sensor:
+        # spi parameters for hall sensor
+        spi_cs_id: 2 # chip select address (over multiplexer)
+        spi_device: /dev/spidev1.0
+        spi_mode: 0x01 # SPI_CPHA
+        spi_bits: 16 # 16 bits per word
+        spi_speed: 500000 # 500kHz frequency
+        spi_delay: 0 # usec, delay after last bit transfer, before device deselect
 
     motor:
         can_name: can1
@@ -32,6 +50,15 @@ swing_joint_right:
         
 extend_joint:
     joint_name: extend_joint
+
+    rotary_encoder:
+        #spi parameters for the arduino rotary encoder
+        spi_cs_id: 3 # chip select address (over multiplexer)
+        spi_device: /dev/spidev1.0
+        spi_mode: 0 # standard spi mode
+        spi_bits: 8 # 8 bits per word
+        spi_speed: 200000 # 200kHz frequency
+        spi_delay: 0 # usec, delay after last bit transfer, before device deselect
 
     motor:
         can_name: can1

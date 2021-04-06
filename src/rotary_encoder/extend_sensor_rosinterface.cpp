@@ -27,17 +27,11 @@
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
 
-static const char *device = "/dev/spidev1.0";
-static uint8_t mode = 0;
-static uint8_t bits = 8;
-static uint32_t speed = 200000;
-static uint16_t delay;
-
-double readExtendAngle(int sensorID)
+double readExtendAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay)
 {
 	//TODO: do sth with the sensor ID --> set chip select pins at multiplexer
     int fd;
-	fd = open(device, O_RDWR); //opens SPI device, maybe put this in a once called init
+	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init
  
 	uint8_t tx[] = {0x01,0x00,0x00,0x00,0x00}; // send buffer init 1 + 4 bytes
 	uint8_t rx[ARRAY_SIZE(tx)] = {0, }; // recieve buffer
@@ -45,9 +39,9 @@ double readExtendAngle(int sensorID)
 		.tx_buf = (unsigned long)tx,
 		.rx_buf = (unsigned long)rx,
 		.len = ARRAY_SIZE(tx),
-		.speed_hz = speed,
-		.delay_usecs = delay,
-		.bits_per_word = bits
+		.speed_hz = spi_speed,
+		.delay_usecs = spi_delay,
+		.bits_per_word = spi_bits
 	};
 
     ioctl(fd, SPI_IOC_MESSAGE(1), &tr); // transmit data over SPI to 

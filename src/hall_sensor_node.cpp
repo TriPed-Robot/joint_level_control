@@ -2,6 +2,7 @@
 #include "ros/ros.h"
 
 #include <string>
+#include <ros/console.h> // debug
 
 // IMPORTANT: This node is for testing the hall sensor only, it should not be used for joint control
 
@@ -15,6 +16,15 @@ int main(int argc, char** argv)
 {    
     ros::init(argc, argv, "hall_sensor");
     ros::NodeHandle node;
+
+    // set debug level in ROS ------
+    // TODO: remove this later!
+  
+    if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Debug) ) {
+        ros::console::notifyLoggerLevelsChanged();
+    }
+    // ------
+
     std::string spi_device; 
     int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int;
     
@@ -31,6 +41,8 @@ int main(int argc, char** argv)
     uint8_t spi_bits = static_cast<uint8_t>(spi_bits_int);
     uint8_t spi_speed = static_cast<uint8_t>(spi_speed_int);
     uint8_t spi_delay = static_cast<uint8_t>(spi_delay_int);
+
+    ROS_DEBUG("Node: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
 
     HallSensor hall_sensor(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
     

@@ -24,15 +24,19 @@
 
 #include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h"
 
+#include <ros/console.h> // debug console
+
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
 
-// returns the angle the swing sensor with sensorID is measuring. Angle is in DEGREE!
+// returns the angle the swing sensor with sensorID is measuring. Angle is in RADIANS!
 double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint8_t spi_speed, uint8_t spi_delay)
 {
 	//TODO: do sth with the ID --> set fitting chip select pins
 
-    int fd;
+	ROS_DEBUG_NAMED("debug_console", "debug: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
+
+    int fd; // file descriptor
 	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init
  
 	uint8_t tx[] = {0xFF,0xFF}; // send buffer [not used for Swing Sensor, since MOSI pin is connected to VDD anyways]
@@ -59,6 +63,6 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
     ioctl(fd, SPI_IOC_MESSAGE(1), &tr); // transmit data over SPI to 
     close(fd); //
 	uint16_t angle = ((uint16_t) (rx[1]& 0x3F)) << 8 | rx[0];
-	double resultAngle =  (((double)angle)/16384.*360.); //TODO: check if degree or radians --> convert to radians
+	double resultAngle =  (((double)angle)/16384.*2*3.1415926535); // converts counts to radians
     return resultAngle;
 }

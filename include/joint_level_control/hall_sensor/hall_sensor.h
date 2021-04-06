@@ -11,12 +11,12 @@ public:
     double getValue();
 
 private:
-    std::string spi_device__;
-    uint8_t spi_cs_id__;
-    uint8_t spi_mode__; 
-    uint8_t spi_bits__; 
-    uint32_t spi_speed__; 
-    uint16_t spi_delay__;
+    std::string spi_device_;
+    uint8_t spi_cs_id_;
+    uint8_t spi_mode_; 
+    uint8_t spi_bits_; 
+    uint32_t spi_speed_; 
+    uint16_t spi_delay_;
 
 };
 

@@ -22,8 +22,9 @@ public:
     ~Motor();
     /**
      * Sets the current of this class instance.
+     * Contrary to the Can function it accepts a double, meaning its sets the true current
      **/
-    void setCurrent(int32_t current);
+    void setCurrent(double current);
     int writeCAN(can_frame* frame);
 
 private:

@@ -46,7 +46,7 @@ Motor::Motor(const std::string& can_name, uint8_t can_id)
    auto scan_msg = ScanMessage();
    auto frame = scan_msg.getMessage();
    write(can_socket_, frame, sizeof(struct can_frame));
-   auto ping_msg = PingMessage(can_adress); //Todo: replace with real address
+   auto ping_msg = PingMessage(can_adress); 
    write(can_socket_, ping_msg.getMessage(), sizeof(struct can_frame));
 }
 
@@ -57,7 +57,7 @@ Motor::~Motor()
 }
 
 
-void Motor::setCurrent(int32_t current)
+void Motor::setCurrent(double current)
 { 
     current_control_.setCurrent(current*10); // 10 is equal to 1A! 0.1 A resolution!
     can_frame* p_message = current_control_.getMessage();

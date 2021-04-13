@@ -8,7 +8,7 @@
   <!-- Namespace have to match the joints defined in joints.yaml. -->
   
   <env name="GMON_OUT_PREFIX" value="motor"/>
-  <node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="swing_joint_left" />
+  <node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="swing/left/joint" />
   <!--node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="swing_joint_right" /-->
   <!--node name="motor" pkg="joint_level_control" type="motor" output="screen" ns="extend_joint" /-->
    

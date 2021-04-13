@@ -8,7 +8,7 @@
 
 int main(int argc, char** argv)
 {    
-    ros::init(argc, argv, "swing_joint");
+    ros::init(argc, argv, "swing/joint");
     ros::NodeHandle node;
     
     std::string joint_name;    

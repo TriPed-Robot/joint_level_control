@@ -1,0 +1,13 @@
+/*! \mainpage Joint Level Control
+ *
+ * \section Introduction
+ *
+ * This is the documentation for the TriPed Projects joint level controller.
+ * It implements the Hardware Interfaces required by  <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and trajectory controllers with the sensors and actuators.
+ * The Motors and Sensors for each joint are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> along with the required <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
+ * \section install_sec Installation
+ *
+ * \subsection step1 Step 1: Opening the box
+ *
+ * etc...
+ */

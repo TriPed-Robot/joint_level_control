@@ -1,5 +1,5 @@
-swing_joint_left:
-    joint_name: swing_joint_left
+swing/left/joint:
+    joint_name: swing/left/joint
 
     hall_sensor:
         # spi parameters for hall sensor
@@ -20,11 +20,11 @@ swing_joint_left:
            
     position_controller:
         type: effort_controllers/JointPositionController
-        joint: swing_joint_left
+        joint: swing/left/joint
         pid: {p: 2.0, i: 0.2, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0, antiwindup: true}
 
-swing_joint_right:
-    joint_name: swing_joint_right
+swing/right/joint:
+    joint_name: swing/right/joint
 
     hall_sensor:
         # spi parameters for hall sensor
@@ -45,11 +45,11 @@ swing_joint_right:
            
     position_controller:
         type: effort_controllers/JointPositionController
-        joint: swing_joint_right
+        joint: swing/right/joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
         
-extend_joint:
-    joint_name: extend_joint
+extend/joint:
+    joint_name: extend/joint
 
     rotary_encoder:
         #spi parameters for the arduino rotary encoder
@@ -70,6 +70,6 @@ extend_joint:
            
     position_controller:
         type: effort_controllers/JointPositionController
-        joint: extend_joint
+        joint: extend/joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
 

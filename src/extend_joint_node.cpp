@@ -8,7 +8,7 @@
 
 int main(int argc, char** argv)
 {    
-    ros::init(argc, argv, "extend_joint");
+    ros::init(argc, argv, "extend/joint");
     ros::NodeHandle node;
     
     std::string joint_name;    

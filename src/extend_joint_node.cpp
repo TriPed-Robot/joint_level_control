@@ -47,7 +47,7 @@ int main(int argc, char** argv)
     
     ros::Time previous_time = ros::Time::now();
     
-    ros::Rate rate(10); // [Hz]
+    ros::Rate rate(100); // [Hz]
     while(ros::ok())
     {
         ros::Time time = ros::Time::now();

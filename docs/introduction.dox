@@ -4,10 +4,12 @@
  *
  * This is the documentation for the TriPed Projects joint level controller.
  * It implements the Hardware Interfaces required by  <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and trajectory controllers with the sensors and actuators.
- * The Motors and Sensors for each joint are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> along with the required <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
- * \section install_sec Installation
+ * The Motors and Sensors for each joint are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> along with their naming conventions.
  *
- * \subsection step1 Step 1: Opening the box
+ * \section Setting Up the Beaglebone
+ * In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup"> beaglebone setup guide</a>
+ * Afterwards the sensors and actuators have to be connected according to the  <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
+ * 
  *
- * etc...
+ * 
  */

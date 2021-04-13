@@ -7,7 +7,7 @@
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="simon.otto@stud.uni-heidelberg.de">user</maintainer>
+  <maintainer email="ub428@stud.uni-heidelberg.de">user</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -27,6 +27,7 @@
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
   <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <author email="ub428@stud.uni-heidelberg.de">Jan BaumgÃrtner</author>
   <author email="simon.otto@stud.uni-heidelberg.de">Simon B. Otto</author>
 
 

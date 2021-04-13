@@ -62,3 +62,5 @@ class CurrentControl : public MessageBuilder {
          **/
         void setCurrent(int32_t current);
 };
+
+#endif

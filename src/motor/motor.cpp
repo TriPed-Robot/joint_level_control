@@ -46,7 +46,7 @@ Motor::Motor(const std::string& can_name, uint8_t can_id)
    auto scan_msg = ScanMessage();
    auto frame = scan_msg.getMessage();
    write(can_socket_, frame, sizeof(struct can_frame));
-   auto ping_msg = PingMessage(can_adress); 
+   auto ping_msg = PingMessage(can_id); 
    write(can_socket_, ping_msg.getMessage(), sizeof(struct can_frame));
 }
 

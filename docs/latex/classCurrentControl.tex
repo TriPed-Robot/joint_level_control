@@ -1,0 +1,76 @@
+\hypertarget{classCurrentControl}{}\section{Current\+Control Class Reference}
+\label{classCurrentControl}\index{Current\+Control@{Current\+Control}}
+
+
+This subclass generates Current-\/\+Control Messages which allow to control the motor via a current limit.  
+
+
+
+
+{\ttfamily \#include $<$message\+\_\+builder.\+h$>$}
+
+
+
+Inheritance diagram for Current\+Control\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classCurrentControl__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Current\+Control\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classCurrentControl__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCurrentControl_a3e56845d95613d4c55d7b8dde7cc8300}{Current\+Control} (uint8\+\_\+t address)
+\item 
+void \hyperlink{classCurrentControl_a5096783dd03da0895cd352fc9977736d}{set\+Current} (int32\+\_\+t current)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+This subclass generates Current-\/\+Control Messages which allow to control the motor via a current limit. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCurrentControl_a3e56845d95613d4c55d7b8dde7cc8300}\label{classCurrentControl_a3e56845d95613d4c55d7b8dde7cc8300}} 
+\index{Current\+Control@{Current\+Control}!Current\+Control@{Current\+Control}}
+\index{Current\+Control@{Current\+Control}!Current\+Control@{Current\+Control}}
+\subsubsection{\texorpdfstring{Current\+Control()}{CurrentControl()}}
+{\footnotesize\ttfamily Current\+Control\+::\+Current\+Control (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+Constructor of the \hyperlink{classCurrentControl}{Current\+Control} Class 
+\begin{DoxyParams}{Parameters}
+{\em address} & C\+A\+N-\/\+ID of the B\+L\+DC which is controlled by this class instance. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCurrentControl_a5096783dd03da0895cd352fc9977736d}\label{classCurrentControl_a5096783dd03da0895cd352fc9977736d}} 
+\index{Current\+Control@{Current\+Control}!set\+Current@{set\+Current}}
+\index{set\+Current@{set\+Current}!Current\+Control@{Current\+Control}}
+\subsubsection{\texorpdfstring{set\+Current()}{setCurrent()}}
+{\footnotesize\ttfamily void Current\+Control\+::set\+Current (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{current }\end{DoxyParamCaption})}
+
+Sets the current of this class instance. 
+\begin{DoxyParams}{Parameters}
+{\em current} & The current which should be set. N\+O\+TE\+: Current is set in 0.\+1A increments. set\+Current(1) will set the B\+L\+DC to 0.\+1 A \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/include/joint\+\_\+level\+\_\+control/motor/message\+\_\+builder.\+h\item 
+/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/src/motor/current\+\_\+control.\+cpp\end{DoxyCompactItemize}

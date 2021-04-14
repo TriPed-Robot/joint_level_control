@@ -23,6 +23,6 @@ double HallSensor::getValue()
     {
 	    angle = angle - 2*3.1415926535;
     }
-    return angle
+    return angle;
 }
 

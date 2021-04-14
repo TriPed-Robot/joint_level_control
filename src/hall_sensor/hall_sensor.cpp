@@ -17,7 +17,12 @@ HallSensor::~HallSensor()
 
 double HallSensor::getValue()
 {
-    uint16_t angle = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
-    return (((double)angle)/16384.*2*3.1415926535);
+    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
+    double angle    = (((double)counts)/16384.*2*3.1415926535);
+    if (angle > 3.1415926535)
+    {
+	    angle = angle - 2*3.1415926535;
+    }
+    return angle
 }
 

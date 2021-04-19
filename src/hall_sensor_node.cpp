@@ -27,6 +27,7 @@ int main(int argc, char** argv)
 
     std::string spi_device; 
     int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int;
+    double zero_point;
     
     node.getParam("hall_sensor/spi_device", spi_device);
     node.getParam("hall_sensor/spi_cs_id", spi_cs_id_int);
@@ -34,6 +35,7 @@ int main(int argc, char** argv)
     node.getParam("hall_sensor/spi_bits", spi_bits_int);
     node.getParam("hall_sensor/spi_speed", spi_speed_int);
     node.getParam("hall_sensor/spi_delay", spi_delay_int);
+    node.getParam("hall_sensor/zero_point", zero_point);
 
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);
@@ -44,7 +46,7 @@ int main(int argc, char** argv)
 
     ROS_DEBUG("Node: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
 
-    HallSensor hall_sensor(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
+    HallSensor hall_sensor(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay,zero_point);
     
     //ros::Subscriber current_subscriber = node.subscribe<std_msgs::Float64>("current", 1, setCurrentWrapper);
     ros::Publisher hall_sensor_publisher = node.advertise<std_msgs::Float64>("hall_sensor_angle",1000);

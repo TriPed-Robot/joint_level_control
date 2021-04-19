@@ -18,7 +18,7 @@ private:
     uint8_t spi_bits_; 
     uint32_t spi_speed_; 
     uint16_t spi_delay_;
-    uint16_t zero_point_ =16384/2;
+    double zero_point_ ;
 
 };
 

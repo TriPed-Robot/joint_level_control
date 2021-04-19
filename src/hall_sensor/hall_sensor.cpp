@@ -37,6 +37,6 @@ double HallSensor::getValue()
     {
        angle = angle - range;
     }	 
-    return angle;
+    return angle-zero_point_;
 }
 

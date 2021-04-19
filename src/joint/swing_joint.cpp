@@ -34,5 +34,5 @@ void SwingJoint::write()
 
 void SwingJoint::calibrate()
 {
-	hall_sensor_.setZeroPosition();
+	hall_sensor_.setZeroPoint();
 }

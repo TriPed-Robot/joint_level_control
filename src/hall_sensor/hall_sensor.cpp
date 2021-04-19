@@ -15,11 +15,18 @@ HallSensor::~HallSensor()
 }
 
 
+void HallSensor::setZeroPoint()
+{
+    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
+    double range    = 2*3.1415926535;
+    zero_point_     = (((double)counts)/16384*range); 
+
+}
+
 double HallSensor::getValue()
 {
     uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
 
-    uint16_t  zero_point_=0;
     double range = 2*3.1415926535;
     double angle    = (((double)counts)/16384*range); 
     if (angle<= zero_point_-range/2)

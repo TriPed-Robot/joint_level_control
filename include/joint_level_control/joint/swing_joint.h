@@ -20,6 +20,7 @@ public:
 
     void read();
     void write();
+    void calibrate();
     
 private:
     hardware_interface::JointStateInterface joint_state_interface_;

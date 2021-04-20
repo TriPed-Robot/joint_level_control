@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setcurrent',['setCurrent',['../classCurrentControl.html#a5096783dd03da0895cd352fc9977736d',1,'CurrentControl']]]
+  ['pingmessage',['PingMessage',['../classPingMessage.html#a67d49a8189b481cf1d39460a90ab5be7',1,'PingMessage']]]
 ];

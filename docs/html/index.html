@@ -13,6 +13,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +24,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Joint Level Control
    </div>
-   <div id="projectbrief">Implements the feedback controll of the TriPeds Legs</div>
   </td>
  </tr>
  </tbody>
@@ -63,12 +63,45 @@ $(function() {
 <div class="title">Joint Level Control </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
+<div class="textblock"><h1><a class="anchor" id="intro"></a>
 Introduction</h1>
-<p>This is the documentation for the TriPed Projects joint level controller. It implements the Hardware Interfaces required by <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and trajectory controllers with the sensors and actuators. The Motors and Sensors for each joint are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> along with their naming conventions.</p>
-<h1><a class="anchor" id="Setting"></a>
-Up the Beaglebone</h1>
-<p>In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup">beaglebone setup guide</a> Afterwards the sensors and actuators have to be connected according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram">wiring diagram</a>. </p>
+<p>This is the documentation for the TriPed Projects joint level controller. It implements the Hardware Interfaces required by <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and joint space trajectory controllers with the sensors and actuators. The Naming conventions for each joint, motor and sensor are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a>. </p>
+<h1><a class="anchor" id="content"></a>
+Structure of the Project</h1>
+<p>The Project is designed as <a href="http://wiki.ros.org/Packages">ROS package</a> and is distributed into the following directories:</p>
+<ul>
+<li>config</li>
+<li>docs</li>
+<li>include</li>
+<li>launch</li>
+<li>src </li>
+</ul>
+<h2><a class="anchor" id="config_dir"></a>
+config</h2>
+<p>The project is designed to be flexible in regards to different configurations, for this reason, hardware adresses and other device specific parameters are always read in from config files. This folder contains all necessairy config files for the joint controllers. On startup of the joint controllers, these config files are first set as <a href="http://wiki.ros.org/Parameter%20Server">ROS parameters</a> and then subsequently read out by the approprate <a href="http://wiki.ros.org/Nodes">ROS nodes</a>. </p>
+<h2><a class="anchor" id="docs_dir"></a>
+docs</h2>
+<p>The docs folder houses the doxygen documentation from which this page is generated. It is not neccessairy for the proper functioning of this package. </p>
+<h2><a class="anchor" id="include_dir"></a>
+include</h2>
+<p>The include directory contains the c++ header files of the package. This special directory is necessairy for the <a href="http://wiki.ros.org/catkin/commands/catkin_make">catkin_make</a> to find the files. The name of the include directory is specified in the CMakeList file. </p>
+<h2><a class="anchor" id="launch_dir"></a>
+launch</h2>
+<p>The launch directory contains all <a href="http://wiki.ros.org/roslaunch">ROS launch files</a> of the package. It contains the following files</p>
+<table class="doxtable">
+<tr>
+<th>launch file name </th><th>purpose  </th></tr>
+<tr>
+<td>hall_sensor_test </td><td>Testing the Hall Sensors </td></tr>
+<tr>
+<td>motor </td><td>Testing the <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> </td></tr>
+<tr>
+<td>joint_level_control </td><td>Start the Joint controllers </td></tr>
+</table>
+<p>Each launchfile also loads the parameters of the config directory. </p>
+<h2><a class="anchor" id="src_dir"></a>
+src</h2>
+<p>This directory contains the source code of the package. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

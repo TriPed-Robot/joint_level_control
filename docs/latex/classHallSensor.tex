@@ -1,17 +1,58 @@
 \hypertarget{classHallSensor}{}\section{Hall\+Sensor Class Reference}
 \label{classHallSensor}\index{Hall\+Sensor@{Hall\+Sensor}}
+
+
+This class abstracts the communication with Sensors of the Swingjoints (currently A\+S504D Hall Sensors).  
+
+
+
+
+{\ttfamily \#include $<$hall\+\_\+sensor.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classHallSensor_aa56bea857cdc3858137a6ebf60040ba4}\label{classHallSensor_aa56bea857cdc3858137a6ebf60040ba4}} 
-{\bfseries Hall\+Sensor} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay)
+\hyperlink{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}{Hall\+Sensor} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay, double zero\+\_\+point)
 \item 
-\mbox{\Hypertarget{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}\label{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}} 
-double {\bfseries get\+Value} ()
+double \hyperlink{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}{get\+Value} ()
+\item 
+void \hyperlink{classHallSensor_ac97079734e670ba56401e6a8b37144e8}{set\+Zero\+Point} ()
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This class abstracts the communication with Sensors of the Swingjoints (currently A\+S504D Hall Sensors). 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}\label{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}} 
+\index{Hall\+Sensor@{Hall\+Sensor}!Hall\+Sensor@{Hall\+Sensor}}
+\index{Hall\+Sensor@{Hall\+Sensor}!Hall\+Sensor@{Hall\+Sensor}}
+\subsubsection{\texorpdfstring{Hall\+Sensor()}{HallSensor()}}
+{\footnotesize\ttfamily Hall\+Sensor\+::\+Hall\+Sensor (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{spi\+\_\+device,  }\item[{uint8\+\_\+t}]{spi\+\_\+cs\+\_\+id,  }\item[{uint8\+\_\+t}]{spi\+\_\+mode,  }\item[{uint8\+\_\+t}]{spi\+\_\+bits,  }\item[{uint32\+\_\+t}]{spi\+\_\+speed,  }\item[{uint16\+\_\+t}]{spi\+\_\+delay,  }\item[{double}]{zero\+\_\+point }\end{DoxyParamCaption})}
+
+Constructor of the \hyperlink{classHallSensor}{Hall\+Sensor} class 
+\begin{DoxyParams}{Parameters}
+{\em S\+PI} & device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}\label{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}} 
+\index{Hall\+Sensor@{Hall\+Sensor}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!Hall\+Sensor@{Hall\+Sensor}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+{\footnotesize\ttfamily double Hall\+Sensor\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads the Angle of the \hyperlink{classHallSensor}{Hall\+Sensor} \mbox{\Hypertarget{classHallSensor_ac97079734e670ba56401e6a8b37144e8}\label{classHallSensor_ac97079734e670ba56401e6a8b37144e8}} 
+\index{Hall\+Sensor@{Hall\+Sensor}!set\+Zero\+Point@{set\+Zero\+Point}}
+\index{set\+Zero\+Point@{set\+Zero\+Point}!Hall\+Sensor@{Hall\+Sensor}}
+\subsubsection{\texorpdfstring{set\+Zero\+Point()}{setZeroPoint()}}
+{\footnotesize\ttfamily void Hall\+Sensor\+::set\+Zero\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets the next Angle sent from the Sensor as new zeropoint for the angles. 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/include/joint\+\_\+level\+\_\+control/hall\+\_\+sensor/hall\+\_\+sensor.\+h\item 
-/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/src/hall\+\_\+sensor/hall\+\_\+sensor.\+cpp\end{DoxyCompactItemize}
+hall\+\_\+sensor.\+h\item 
+hall\+\_\+sensor.\+cpp\end{DoxyCompactItemize}

@@ -15,7 +15,7 @@ This class abstracts the communication with the sensors measuring the state of t
 \hyperlink{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}{Hall\+Sensor} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay, double zero\+\_\+point)
 \begin{DoxyCompactList}\small\item\em Constructor of the \hyperlink{classHallSensor}{Hall\+Sensor} class. \end{DoxyCompactList}\item 
 double \hyperlink{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}{get\+Value} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Reads the Angle of the \hyperlink{classHallSensor}{Hall\+Sensor}. \end{DoxyCompactList}\item 
 void \hyperlink{classHallSensor_ac97079734e670ba56401e6a8b37144e8}{set\+Zero\+Point} ()
 \end{DoxyCompactItemize}
 
@@ -54,13 +54,17 @@ Constructor of the \hyperlink{classHallSensor}{Hall\+Sensor} class.
 \subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
 {\footnotesize\ttfamily double Hall\+Sensor\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Reads the Angle of the \hyperlink{classHallSensor}{Hall\+Sensor} \mbox{\Hypertarget{classHallSensor_ac97079734e670ba56401e6a8b37144e8}\label{classHallSensor_ac97079734e670ba56401e6a8b37144e8}} 
+
+
+Reads the Angle of the \hyperlink{classHallSensor}{Hall\+Sensor}. 
+
+This function returns a double containing the current Angle of the joint according to the angle specifications above. \mbox{\Hypertarget{classHallSensor_ac97079734e670ba56401e6a8b37144e8}\label{classHallSensor_ac97079734e670ba56401e6a8b37144e8}} 
 \index{Hall\+Sensor@{Hall\+Sensor}!set\+Zero\+Point@{set\+Zero\+Point}}
 \index{set\+Zero\+Point@{set\+Zero\+Point}!Hall\+Sensor@{Hall\+Sensor}}
 \subsubsection{\texorpdfstring{set\+Zero\+Point()}{setZeroPoint()}}
 {\footnotesize\ttfamily void Hall\+Sensor\+::set\+Zero\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Sets the next Angle sent from the Sensor as new zeropoint for the angles. 
+Sets the next Angle sent from the Sensor as the new zero\+\_\+point\+\_\+ for the angles. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

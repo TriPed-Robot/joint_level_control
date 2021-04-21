@@ -11,7 +11,12 @@
 #include "joint_level_control/motor/motor.h"
 #include "joint_level_control/rotary_encoder/rotary_encoder.h"
 
-
+/**
+ * \brief This Packages the RotaryEncoder class and Motor class together into a Hardware Interface
+ *
+ * The class offers two types of interfaces, a joint state interface which reads the joint position from the RotaryEncoder class and a effort interface with which feedback controllers can controll the torque of the robot. 
+ * More information on hardware interfaces can be found [here](http://wiki.ros.org/ros_control#Hardware_Interfaces).
+ * */
 class ExtendJoint : public hardware_interface::RobotHW
 {
 public:

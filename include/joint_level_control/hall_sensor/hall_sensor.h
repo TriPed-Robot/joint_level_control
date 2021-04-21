@@ -31,11 +31,13 @@ public:
     HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point);
     ~HallSensor();
    /**
-     * Reads the Angle of the HallSensor
+     * \brief Reads the Angle of the HallSensor
+     * 
+     * This function returns a double containing the current Angle of the joint according to the angle specifications above. 
      **/
     double getValue();
    /**
-     * Sets the next Angle sent from the Sensor as new zeropoint for the angles.
+     * Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.
      **/
     void setZeroPoint();
 

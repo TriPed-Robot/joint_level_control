@@ -66,6 +66,11 @@ $(function() {
 <div class="title">SwingJoint Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This Packages the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> class together into a Hardware Interface.  
+ <a href="classSwingJoint.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="swing__joint_8h_source.html">swing_joint.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SwingJoint:</div>
 <div class="dyncontent">
@@ -92,7 +97,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> ()</td></tr
 void&#160;</td><td class="memItemRight" valign="bottom"><b>calibrate</b> ()</td></tr>
 <tr class="separator:acbdd7fae2441b423d146240322c1f848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This Packages the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> class together into a Hardware Interface. </p>
+<p>The class offers two types of interfaces, a joint state interface which reads the joint position from the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a> class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found <a href="http://wiki.ros.org/ros_control#Hardware_Interfaces">here</a>. It also offers a calibration function which calls the setZero method of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a>. This is done to allow calibration via ROS services. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="swing__joint_8h_source.html">swing_joint.h</a></li>
 <li>swing_joint.cpp</li>
 </ul>

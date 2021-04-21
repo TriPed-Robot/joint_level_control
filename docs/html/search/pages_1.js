@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joint_20level_20control',['Joint Level Control',['../index.html',1,'']]]
+  ['getting_20started',['Getting Started',['../getting_started.html',1,'']]]
 ];

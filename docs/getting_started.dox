@@ -1,0 +1,25 @@
+/*! \page getting_started Getting Started
+ *
+ * This page details the steps neccesairy to install the joint_level_control package and use it to controll the joints of the TriPed.
+ * 
+ *  \subsection install Installing the Package
+ *  Since the project is a ros package, it has to be placed inside the src directory of a [catkin_ws](http://wiki.ros.org/catkin), and installed with `catkin_make`:
+ * 
+ * ```
+ *   $ cd catkin_ws/src
+ *   $ git clone https://github.com/TriPed-Robot/joint_level_control
+ *   $ cd ..
+ *   $ catkin_make
+ *   $ source devel/setup.sh
+ * ```
+ *
+ * To verify that the package was installed one can call
+ *
+ * ```
+ * $ rospack
+ * ```
+ *
+ * Which should provide informations about the package
+ *  \subsection usage Using the Package
+ * 
+ */

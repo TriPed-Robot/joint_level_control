@@ -1,0 +1,23 @@
+This page details the steps neccesairy to install the joint\+\_\+level\+\_\+control package and use it to controll the joints of the Tri\+Ped.
+
+Since the project is a ros package, it has to be placed inside the src directory of a \href{http://wiki.ros.org/catkin}{\tt catkin\+\_\+ws}, and installed with {\ttfamily catkin\+\_\+make}\+:
+
+
+\begin{DoxyCode}
+$ cd catkin\_ws/src
+$ git clone https:\textcolor{comment}{//github.com/TriPed-Robot/joint\_level\_control}
+$ cd ..
+$ catkin\_make
+$ source devel/setup.sh
+\end{DoxyCode}
+
+
+To verify that the package was installed one can call
+
+
+\begin{DoxyCode}
+$ rospack
+\end{DoxyCode}
+
+
+Which should provide informations about the package 

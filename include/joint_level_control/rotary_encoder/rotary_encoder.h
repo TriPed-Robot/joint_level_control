@@ -5,7 +5,20 @@
 /**
  * \brief This class abstracts the communication with Sensors of the Extendjoints (currently a E6A2-C rotary encoder).
  * */
-
+/**
+ * \brief This class abstracts the communication with the sensors measuring the state of the extendjoint.
+ *
+ * The extendsensor measures the position of the extendjoint.This is is implemented using a omron E6A2-C rotary encoder which is connected to the drive shaft driven by the extendmotor and a photosensor (seen below)
+ * \image  html https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/extend_sensor.png height=500
+ * The photosensor is needet since a rotary encoder does not measure absolute position.
+ * A splint affixed to the leg is able to trigger the photosensor thereby providing a absolute position feedback.
+ * The position of the splint can be seen below
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/splint.png width=1000
+ * The readout of rotary encoder and photosensor is abstracted by an arduino which sends the calibrated angle values over spi
+ *
+ * It is important to note that the send angle is not the position of the driveshaft, but instead the state of the virtual extend joint.
+ * More information about this virtual joint can be found [here](https://github.com/TriPed-Robot/TriPed-Reference-Document). 
+ * */
 class RotaryEncoder
 {
 public:
@@ -16,7 +29,7 @@ public:
     RotaryEncoder(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point);
     ~RotaryEncoder();
    /**
-     * Reads the Angle of the RotaryEncoder
+     * Reads the Angle of the RotaryEncoder from the Arduino
      **/
     double getValue();
 

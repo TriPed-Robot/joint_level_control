@@ -21,6 +21,12 @@ double \hyperlink{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}{get\+Val
 \subsection{Detailed Description}
 This class abstracts the communication with Sensors of the Extendjoints (currently a E6\+A2-\/C rotary encoder). 
 
+This class abstracts the communication with the sensors measuring the state of the extendjoint.
+
+The extendsensor measures the position of the extendjoint.\+This is is implemented using a omron E6\+A2-\/C rotary encoder which is connected to the drive shaft driven by the extendmotor and a photosensor (seen below)  The photosensor is needet since a rotary encoder does not measure absolute position. A splint affixed to the leg is able to trigger the photosensor thereby providing a absolute position feedback. The position of the splint can be seen below  The readout of rotary encoder and photosensor is abstracted by an arduino which sends the calibrated angle values over spi
+
+It is important to note that the send angle is not the position of the driveshaft, but instead the state of the virtual extend joint. More information about this virtual joint can be found \href{https://github.com/TriPed-Robot/TriPed-Reference-Document}{\tt here}. 
+
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}\label{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}} 
 \index{Rotary\+Encoder@{Rotary\+Encoder}!Rotary\+Encoder@{Rotary\+Encoder}}
@@ -42,7 +48,7 @@ Constructor of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class
 \subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
 {\footnotesize\ttfamily double Rotary\+Encoder\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Reads the Angle of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} 
+Reads the Angle of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} from the Arduino 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -12,6 +12,11 @@ SwingJoint::SwingJoint(const std::string& joint_name, const std::string& spi_dev
     hardware_interface::JointHandle effort_handle(joint_state_interface_.getHandle(joint_name), &command_position_);
     effort_joint_interface_.registerHandle(effort_handle);
     registerInterface(&effort_joint_interface_);
+
+    joint_limits_interface::getJointLimits(joint_name,nh_, limits);
+    joint_limits_interface::EffortJointSaturationHandle jointLimitsHandle(effort_handle, limits);
+    effortJointSaturationInterface.registerHandle(jointLimitsHandle);
+	    
 }
 
 

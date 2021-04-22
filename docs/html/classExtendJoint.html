@@ -13,6 +13,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +24,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Joint Level Control
    </div>
-   <div id="projectbrief">Implements the feedback controll of the TriPeds Legs</div>
   </td>
  </tr>
  </tbody>
@@ -66,6 +66,11 @@ $(function() {
 <div class="title">ExtendJoint Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This Packages the <a class="el" href="classRotaryEncoder.html" title="This class abstracts the communication with Sensors of the Extendjoints (currently a E6A2-C rotary en...">RotaryEncoder</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> class together into a Hardware Interface.  
+ <a href="classExtendJoint.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="extend__joint_8h_source.html">extend_joint.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ExtendJoint:</div>
 <div class="dyncontent">
@@ -89,9 +94,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> ()</td></tr>
 <tr class="separator:aaaddc50f230254a001ce8b3f56064371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/sd/triped_app/catkin_workspace/src/joint_level_control/include/joint_level_control/joint/<a class="el" href="extend__joint_8h_source.html">extend_joint.h</a></li>
-<li>/sd/triped_app/catkin_workspace/src/joint_level_control/src/joint/extend_joint.cpp</li>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This Packages the <a class="el" href="classRotaryEncoder.html" title="This class abstracts the communication with Sensors of the Extendjoints (currently a E6A2-C rotary en...">RotaryEncoder</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> class together into a Hardware Interface. </p>
+<p>The class offers two types of interfaces, a joint state interface which reads the joint position from the <a class="el" href="classRotaryEncoder.html" title="This class abstracts the communication with Sensors of the Extendjoints (currently a E6A2-C rotary en...">RotaryEncoder</a> class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found <a href="http://wiki.ros.org/ros_control#Hardware_Interfaces">here</a>. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li><a class="el" href="extend__joint_8h_source.html">extend_joint.h</a></li>
+<li>extend_joint.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,17 +1,56 @@
 \hypertarget{classRotaryEncoder}{}\section{Rotary\+Encoder Class Reference}
 \label{classRotaryEncoder}\index{Rotary\+Encoder@{Rotary\+Encoder}}
+
+
+This class abstracts the communication with Sensors of the Extendjoints (currently a E6\+A2-\/C rotary encoder).  
+
+
+
+
+{\ttfamily \#include $<$rotary\+\_\+encoder.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classRotaryEncoder_ac57e2531f91e03b48bcc2b7e3f0edf62}\label{classRotaryEncoder_ac57e2531f91e03b48bcc2b7e3f0edf62}} 
-{\bfseries Rotary\+Encoder} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay)
+\hyperlink{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}{Rotary\+Encoder} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay, double zero\+\_\+point)
 \item 
-\mbox{\Hypertarget{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}\label{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}} 
-double {\bfseries get\+Value} ()
+double \hyperlink{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}{get\+Value} ()
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This class abstracts the communication with Sensors of the Extendjoints (currently a E6\+A2-\/C rotary encoder). 
+
+This class abstracts the communication with the sensors measuring the state of the extendjoint.
+
+The extendsensor measures the position of the extendjoint.\+This is is implemented using a omron E6\+A2-\/C rotary encoder which is connected to the drive shaft driven by the extendmotor and a photosensor (seen below)  The photosensor is needet since a rotary encoder does not measure absolute position. A splint affixed to the leg is able to trigger the photosensor thereby providing a absolute position feedback. There are multiple possible position of the splint, the current one can be seen below  The readout of rotary encoder and photosensor is abstracted by an arduino which sends the calibrated angle values over spi
+
+It is important to note that the send angle is not the position of the driveshaft, but instead the state of the virtual extend joint. More information about this virtual joint can be found \href{https://github.com/TriPed-Robot/TriPed-Reference-Document}{\tt here}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}\label{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}} 
+\index{Rotary\+Encoder@{Rotary\+Encoder}!Rotary\+Encoder@{Rotary\+Encoder}}
+\index{Rotary\+Encoder@{Rotary\+Encoder}!Rotary\+Encoder@{Rotary\+Encoder}}
+\subsubsection{\texorpdfstring{Rotary\+Encoder()}{RotaryEncoder()}}
+{\footnotesize\ttfamily Rotary\+Encoder\+::\+Rotary\+Encoder (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{spi\+\_\+device,  }\item[{uint8\+\_\+t}]{spi\+\_\+cs\+\_\+id,  }\item[{uint8\+\_\+t}]{spi\+\_\+mode,  }\item[{uint8\+\_\+t}]{spi\+\_\+bits,  }\item[{uint32\+\_\+t}]{spi\+\_\+speed,  }\item[{uint16\+\_\+t}]{spi\+\_\+delay,  }\item[{double}]{zero\+\_\+point }\end{DoxyParamCaption})}
+
+Constructor of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class 
+\begin{DoxyParams}{Parameters}
+{\em S\+PI} & device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}\label{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}} 
+\index{Rotary\+Encoder@{Rotary\+Encoder}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!Rotary\+Encoder@{Rotary\+Encoder}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+{\footnotesize\ttfamily double Rotary\+Encoder\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads the Angle of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} from the Arduino 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/include/joint\+\_\+level\+\_\+control/rotary\+\_\+encoder/rotary\+\_\+encoder.\+h\item 
-/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/src/rotary\+\_\+encoder/rotary\+\_\+encoder.\+cpp\end{DoxyCompactItemize}
+rotary\+\_\+encoder.\+h\item 
+rotary\+\_\+encoder.\+cpp\end{DoxyCompactItemize}

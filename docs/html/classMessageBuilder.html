@@ -13,6 +13,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +24,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Joint Level Control
    </div>
-   <div id="projectbrief">Implements the feedback controll of the TriPeds Legs</div>
   </td>
  </tr>
  </tbody>
@@ -88,7 +88,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4323114db973ba35f2834b42d6b58aa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageBuilder.html#a4323114db973ba35f2834b42d6b58aa7">MessageBuilder</a> (uint8_t address)</td></tr>
 <tr class="memdesc:a4323114db973ba35f2834b42d6b58aa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="classMessageBuilder.html" title="This class and its subclasses handle the creation of the CAN-Frames needed to control the Hacker Herk...">MessageBuilder</a> Class.  <a href="#a4323114db973ba35f2834b42d6b58aa7">More...</a><br /></td></tr>
 <tr class="separator:a4323114db973ba35f2834b42d6b58aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a588441e4327872e90c3442e1cecd50c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcan__frame.html">can_frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageBuilder.html#a588441e4327872e90c3442e1cecd50c3">getMessage</a> ()</td></tr>
+<tr class="memitem:a588441e4327872e90c3442e1cecd50c3"><td class="memItemLeft" align="right" valign="top">can_frame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageBuilder.html#a588441e4327872e90c3442e1cecd50c3">getMessage</a> ()</td></tr>
 <tr class="memdesc:a588441e4327872e90c3442e1cecd50c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the generated SocketCAN-Frame for utilisation by the callee.  <a href="#a588441e4327872e90c3442e1cecd50c3">More...</a><br /></td></tr>
 <tr class="separator:a588441e4327872e90c3442e1cecd50c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -138,7 +138,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>can_address</b></t
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcan__frame.html">can_frame</a> * MessageBuilder::getMessage </td>
+          <td class="memname">can_frame * MessageBuilder::getMessage </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -147,13 +147,13 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>can_address</b></t
 </div><div class="memdoc">
 
 <p>gets the generated SocketCAN-Frame for utilisation by the callee. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structcan__frame.html" title="Stub to simplify development on non Linux Systems. ">can_frame</a> pointer for easy plug into write() </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>can_frame pointer for easy plug into write() </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/sd/triped_app/catkin_workspace/src/joint_level_control/include/joint_level_control/motor/<a class="el" href="message__builder_8h_source.html">message_builder.h</a></li>
-<li>/sd/triped_app/catkin_workspace/src/joint_level_control/src/motor/message_builder.cpp</li>
+<li><a class="el" href="message__builder_8h_source.html">message_builder.h</a></li>
+<li>message_builder.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

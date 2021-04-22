@@ -13,6 +13,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +24,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Joint Level Control
    </div>
-   <div id="projectbrief">Implements the feedback controll of the TriPeds Legs</div>
   </td>
  </tr>
  </tbody>
@@ -66,63 +66,58 @@ $(function() {
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#can__frame"/>
-<map name="can__frame" id="can__frame">
-<area shape="rect" id="node1" href="structcan__frame.html" title="Stub to simplify development on non Linux Systems. " alt="" coords="5,5,96,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#ControlResponse"/>
+<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#ControlResponse"/>
 <map name="ControlResponse" id="ControlResponse">
-<area shape="rect" id="node1" href="structControlResponse.html" title="ControlResponse" alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node1" href="structControlResponse.html" title="ControlResponse" alt="" coords="5,5,128,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#ExtendJoint"/>
+<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#ExtendJoint"/>
 <map name="ExtendJoint" id="ExtendJoint">
-<area shape="rect" id="node2" href="classExtendJoint.html" title="ExtendJoint" alt="" coords="136,5,232,32"/>
-<area shape="rect" id="node3" href="classSwingJoint.html" title="SwingJoint" alt="" coords="139,56,229,83"/>
+<area shape="rect" id="node2" href="classExtendJoint.html" title="This Packages the RotaryEncoder class and Motor class together into a Hardware Interface. " alt="" coords="133,5,224,32"/>
+<area shape="rect" id="node3" href="classSwingJoint.html" title="This Packages the HallSensor class and Motor class together into a Hardware Interface. " alt="" coords="135,56,222,83"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#HallSensor"/>
+<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#HallSensor"/>
 <map name="HallSensor" id="HallSensor">
-<area shape="rect" id="node1" href="classHallSensor.html" title="HallSensor" alt="" coords="5,5,97,32"/>
+<area shape="rect" id="node1" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints..." alt="" coords="5,5,92,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#Message"/>
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#Message"/>
 <map name="Message" id="Message">
-<area shape="rect" id="node1" href="structMessage.html" title="Message" alt="" coords="5,5,84,32"/>
+<area shape="rect" id="node1" href="structMessage.html" title="Message" alt="" coords="5,5,80,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#MessageBuilder"/>
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#MessageBuilder"/>
 <map name="MessageBuilder" id="MessageBuilder">
-<area shape="rect" id="node1" href="classMessageBuilder.html" title="This class and its subclasses handle the creation of the CAN&#45;Frames needed to control the Hacker Herk..." alt="" coords="5,56,131,83"/>
-<area shape="rect" id="node2" href="classCurrentControl.html" title="This subclass generates Current&#45;Control Messages which allow to control the motor via a current limit..." alt="" coords="179,5,296,32"/>
-<area shape="rect" id="node3" href="classPingMessage.html" title="This subclass generates a Ping&#45;Message so that one can verify if a controller with an known address i..." alt="" coords="184,56,291,83"/>
-<area shape="rect" id="node4" href="classScanMessage.html" title="This subclass generates a Scan&#45;Message so that new Controllers on the CAN&#45;Bus can be found..." alt="" coords="182,107,293,133"/>
+<area shape="rect" id="node1" href="classMessageBuilder.html" title="This class and its subclasses handle the creation of the CAN&#45;Frames needed to control the Hacker Herk..." alt="" coords="5,56,120,83"/>
+<area shape="rect" id="node2" href="classCurrentControl.html" title="This subclass generates Current&#45;Control Messages which allow to control the motor via a current limit..." alt="" coords="168,5,275,32"/>
+<area shape="rect" id="node3" href="classPingMessage.html" title="This subclass generates a Ping&#45;Message so that one can verify if a controller with an known address i..." alt="" coords="171,56,272,83"/>
+<area shape="rect" id="node4" href="classScanMessage.html" title="This subclass generates a Scan&#45;Message so that new Controllers on the CAN&#45;Bus can be found..." alt="" coords="169,107,274,133"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#MessageParser"/>
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#MessageParser"/>
 <map name="MessageParser" id="MessageParser">
-<area shape="rect" id="node1" href="classMessageParser.html" title="MessageParser" alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node1" href="classMessageParser.html" title="MessageParser" alt="" coords="5,5,119,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#Motor"/>
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#Motor"/>
 <map name="Motor" id="Motor">
-<area shape="rect" id="node1" href="classMotor.html" title="Motor" alt="" coords="5,5,64,32"/>
+<area shape="rect" id="node1" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)..." alt="" coords="5,5,60,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#MultipleControllerParser"/>
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#MultipleControllerParser"/>
 <map name="MultipleControllerParser" id="MultipleControllerParser">
-<area shape="rect" id="node1" href="classMultipleControllerParser.html" title="MultipleControllerParser" alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node1" href="classMultipleControllerParser.html" title="MultipleControllerParser" alt="" coords="5,5,167,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#RotaryEncoder"/>
+<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#RotaryEncoder"/>
 <map name="RotaryEncoder" id="RotaryEncoder">
-<area shape="rect" id="node1" href="classRotaryEncoder.html" title="RotaryEncoder" alt="" coords="5,5,121,32"/>
+<area shape="rect" id="node1" href="classRotaryEncoder.html" title="This class abstracts the communication with Sensors of the Extendjoints (currently a E6A2&#45;C rotary en..." alt="" coords="5,5,115,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#ScanResponse"/>
+<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#ScanResponse"/>
 <map name="ScanResponse" id="ScanResponse">
-<area shape="rect" id="node1" href="structScanResponse.html" title="ScanResponse" alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node1" href="structScanResponse.html" title="ScanResponse" alt="" coords="5,5,116,32"/>
 </map>
 </td></tr>
 </table>

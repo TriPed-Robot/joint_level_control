@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messagebuilder',['MessageBuilder',['../classMessageBuilder.html#a4323114db973ba35f2834b42d6b58aa7',1,'MessageBuilder']]]
+  ['hallsensor',['HallSensor',['../classHallSensor.html#ac901b856eff0dffb4dfa5fdeaf888c4c',1,'HallSensor']]]
 ];

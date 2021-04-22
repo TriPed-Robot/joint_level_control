@@ -13,6 +13,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -23,7 +24,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Joint Level Control
    </div>
-   <div id="projectbrief">Implements the feedback controll of the TriPeds Legs</div>
   </td>
  </tr>
  </tbody>
@@ -66,6 +66,11 @@ $(function() {
 <div class="title">SwingJoint Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This Packages the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> class together into a Hardware Interface.  
+ <a href="classSwingJoint.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="swing__joint_8h_source.html">swing_joint.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SwingJoint:</div>
 <div class="dyncontent">
@@ -79,19 +84,25 @@ Collaboration diagram for SwingJoint:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a283b5b0bbd8994f055995e643291b561"><td class="memItemLeft" align="right" valign="top"><a id="a283b5b0bbd8994f055995e643291b561"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SwingJoint</b> (const std::string &amp;joint_name, const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string &amp;can_name, uint8_t can_id)</td></tr>
-<tr class="separator:a283b5b0bbd8994f055995e643291b561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ddb518c4aff708a5b96290001af7a11"><td class="memItemLeft" align="right" valign="top"><a id="a9ddb518c4aff708a5b96290001af7a11"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SwingJoint</b> (const std::string &amp;joint_name, const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string &amp;can_name, uint8_t can_id, double zero_point)</td></tr>
+<tr class="separator:a9ddb518c4aff708a5b96290001af7a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f966fc71b37d8e5c34e2ddc5ec79e03"><td class="memItemLeft" align="right" valign="top"><a id="a3f966fc71b37d8e5c34e2ddc5ec79e03"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
 <tr class="separator:a3f966fc71b37d8e5c34e2ddc5ec79e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2d54c4712616e04e36af2db528384ab"><td class="memItemLeft" align="right" valign="top"><a id="aa2d54c4712616e04e36af2db528384ab"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> ()</td></tr>
 <tr class="separator:aa2d54c4712616e04e36af2db528384ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbdd7fae2441b423d146240322c1f848"><td class="memItemLeft" align="right" valign="top"><a id="acbdd7fae2441b423d146240322c1f848"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>calibrate</b> ()</td></tr>
+<tr class="separator:acbdd7fae2441b423d146240322c1f848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/sd/triped_app/catkin_workspace/src/joint_level_control/include/joint_level_control/joint/<a class="el" href="swing__joint_8h_source.html">swing_joint.h</a></li>
-<li>/sd/triped_app/catkin_workspace/src/joint_level_control/src/joint/swing_joint.cpp</li>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This Packages the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC)...">Motor</a> class together into a Hardware Interface. </p>
+<p>The class offers two types of interfaces, a joint state interface which reads the joint position from the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a> class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found <a href="http://wiki.ros.org/ros_control#Hardware_Interfaces">here</a>. It also offers a calibration function which calls the setZero method of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints...">HallSensor</a>. This is done to allow calibration via ROS services. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li><a class="el" href="swing__joint_8h_source.html">swing_joint.h</a></li>
+<li>swing_joint.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

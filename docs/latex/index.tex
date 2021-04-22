@@ -1,3 +1,33 @@
-\hypertarget{index_Introduction}{}\section{Introduction}\label{index_Introduction}
-This is the documentation for the Tri\+Ped Projects joint level controller. It implements the Hardware Interfaces required by \href{http://wiki.ros.org/ros_control}{\tt ros\+\_\+control} to interface the joint position and trajectory controllers with the sensors and actuators. The Motors and Sensors for each joint are specified in the \href{https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot}{\tt wiki} along with their naming conventions.\hypertarget{index_Setting}{}\section{Up the Beaglebone}\label{index_Setting}
-In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the \href{https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup}{\tt beaglebone setup guide} Afterwards the sensors and actuators have to be connected according to the \href{https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram}{\tt wiring diagram}. 
+\hypertarget{index_intro}{}\section{Introduction}\label{index_intro}
+This is the documentation for the Tri\+Ped Projects joint level controller. It implements the Hardware Interfaces required by \href{http://wiki.ros.org/ros_control}{\tt ros\+\_\+control} to interface the joint position and joint space trajectory controllers with the sensors and actuators. The Naming conventions for each joint, motor and sensor are specified in the \href{https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot}{\tt wiki}. \hypertarget{index_content}{}\section{Structure of the Project}\label{index_content}
+The Project is designed as \href{http://wiki.ros.org/Packages}{\tt R\+OS package} and is distributed into the following directories\+:
+
+
+\begin{DoxyItemize}
+\item config
+\item docs
+\item include
+\item launch
+\item src 
+\end{DoxyItemize}\hypertarget{index_config_dir}{}\subsection{config}\label{index_config_dir}
+The project is designed to be flexible in regards to different configurations, for this reason, hardware adresses and other device specific parameters are always read in from config files. This folder contains all necessairy config files for the joint controllers. On startup of the joint controllers, these config files are first set as \href{http://wiki.ros.org/Parameter%20Server}{\tt R\+OS parameters} and then subsequently read out by the approprate \href{http://wiki.ros.org/Nodes}{\tt R\+OS nodes}. \hypertarget{index_docs_dir}{}\subsection{docs}\label{index_docs_dir}
+The docs folder houses the doxygen documentation from which this page is generated. It is not neccessairy for the proper functioning of this package. \hypertarget{index_include_dir}{}\subsection{include}\label{index_include_dir}
+The include directory contains the c++ header files of the package. This special directory is necessairy for the \href{http://wiki.ros.org/catkin/commands/catkin_make}{\tt catkin\+\_\+make} to find the files. The name of the include directory is specified in the C\+Make\+List file. \hypertarget{index_launch_dir}{}\subsection{launch}\label{index_launch_dir}
+The launch directory contains all \href{http://wiki.ros.org/roslaunch}{\tt R\+OS launch files} of the package. It contains the following files
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ launch file name }&\textbf{ purpose  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ launch file name }&\textbf{ purpose  }\\\cline{1-2}
+\endhead
+hall\+\_\+sensor\+\_\+test &Testing the Hall Sensors \\\cline{1-2}
+motor &Testing the \hyperlink{classMotor}{Motor} \\\cline{1-2}
+joint\+\_\+level\+\_\+control &Start the Joint controllers \\\cline{1-2}
+\end{longtabu}
+Each launchfile also loads the parameters of the config directory. \hypertarget{index_src_dir}{}\subsection{src}\label{index_src_dir}
+This directory contains the source code of the package. 

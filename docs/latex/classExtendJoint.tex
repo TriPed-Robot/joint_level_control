@@ -2,6 +2,15 @@
 \label{classExtendJoint}\index{Extend\+Joint@{Extend\+Joint}}
 
 
+This Packages the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class and \hyperlink{classMotor}{Motor} class together into a Hardware Interface.  
+
+
+
+
+{\ttfamily \#include $<$extend\+\_\+joint.\+h$>$}
+
+
+
 Inheritance diagram for Extend\+Joint\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -32,7 +41,12 @@ void {\bfseries write} ()
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This Packages the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class and \hyperlink{classMotor}{Motor} class together into a Hardware Interface. 
+
+The class offers two types of interfaces, a joint state interface which reads the joint position from the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found \href{http://wiki.ros.org/ros_control#Hardware_Interfaces}{\tt here}. 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/include/joint\+\_\+level\+\_\+control/joint/extend\+\_\+joint.\+h\item 
-/sd/triped\+\_\+app/catkin\+\_\+workspace/src/joint\+\_\+level\+\_\+control/src/joint/extend\+\_\+joint.\+cpp\end{DoxyCompactItemize}
+extend\+\_\+joint.\+h\item 
+extend\+\_\+joint.\+cpp\end{DoxyCompactItemize}

@@ -41,6 +41,33 @@
 	 * \subsection src_dir src
 	 * This directory contains the source code of the package. 
 	 * 
-	 *
+	 * \psection bbb_setup Beaglebone Black Setup
+         *
+         * In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup"> beaglebone setup guide</a>
+         * Afterwards the sensors and actuators have to be connected according to the  <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
+         *  \section getting_started Getting Started
+         *
+         * This section details the steps neccesairy to install the joint_level_control package and use it to controll the joints of the TriPed.
+         * 
+         *  \subsection install Installing the Package
+         *  Since the project is a ros package, it has to be placed inside the src directory of a [catkin_ws](http://wiki.ros.org/catkin), and installed with `catkin_make`:
+         * 
+         * ```
+         *   $ cd catkin_ws/src
+         *   $ git clone https://github.com/TriPed-Robot/joint_level_control
+         *   $ cd ..
+         *   $ catkin_make
+         *   $ source devel/setup.sh
+         * ```
+         *
+         * To verify that the package was installed one can call
+         *
+         * ```
+         * $ rospack joint_level_control
+         * ```
+         *
+         * Which should provide informations about the package
+         *  \subsection usage Using the Package
+         * 
 	 * 
 	 */

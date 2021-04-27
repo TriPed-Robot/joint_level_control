@@ -2,8 +2,8 @@ joint_limits:
 
     swing/left/joint:
       has_position_limits: true
-      min_position: -3.1416/2
-      max_position: 3.1416/2
+      min_position: -1.414
+      max_position: 1.414
       has_velocity_limits: true
       max_velocity: 6500
       has_acceleration_limits: false

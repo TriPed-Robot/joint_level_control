@@ -9,15 +9,15 @@ swing/left/joint:
         spi_bits: 16 # 16 bits per word
         spi_speed: 500000 # 500kHz frequency
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
-        zero_point: 0.388
+        zero_point: 0.547
 
     motor:
         can_name: can1
-        can_id: 0xdf
+        can_id: 0xd1
         
     joint_state_controller:
         type: joint_state_controller/JointStateController
-        publish_rate: 10
+        publish_rate: 100
            
     position_controller:
         type: effort_controllers/JointPositionController

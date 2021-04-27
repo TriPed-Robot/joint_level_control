@@ -8,6 +8,10 @@
  * ![joint_level_ctr_arch_overview](https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/joint_level_ctr_arch_overview.png)
  * The Naming conventions for each joint, motor and sensor  are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> and can be seen down below:
  * ![naming_conv](https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/triped_leg_ros.png)
+ * \section arch Hardware Interface Architecture
+ * Each Leg of the TriPed robot, is made up of two types of joints, extendjoints and swingjoints each requiring their own hardware interface.
+ * Since both types of joints share the same motorcontroller each hardware interface is designed as a class containing a motor class object and a sensor class object.
+ * The rotary_encoder class is the sensorclass used by the extend_joint interface, while the hall_sensor class is used by the swing_joint_interface.
  * \section content Structure of the Project
  * The Project is designed as <a href="http://wiki.ros.org/Packages">ROS package</a> and is distributed into the following directories:
  *

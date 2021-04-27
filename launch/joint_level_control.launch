@@ -3,6 +3,7 @@
   <!-- Load joint definitions. -->  
   <rosparam file="$(find joint_level_control)/config/joints.yaml" command="load" />
   <include file="$(find triped_description)/launch/triped_description.launch"/>
+  <rosparam file="$(find joint_level_control)/config/joint_limits.yaml" command="load" />
  
   <!-- Start hardware interfaces and assigned controller. -->
   <!-- Address joint via namespace. -->
@@ -12,7 +13,8 @@
 
   <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing/left/joint" />
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing/left/joint"
-          args="joint_state_controller position_controller" />         
+	       args="joint_state_controller effort_controller" />  
+	  <!-- args="joint_state_controller position_controller" /> -->
 			   <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing/left/joint" />-->
  
 	    <!-- Start swing joint right. -->

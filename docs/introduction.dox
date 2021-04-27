@@ -4,7 +4,10 @@
  *
  * This is the documentation for the TriPed Projects joint level controller.
  * It implements the Hardware Interfaces required by  <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and joint space trajectory controllers with the sensors and actuators.
- * The Naming conventions for each joint, motor and sensor  are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a>.
+ * A Diagram of how this package interfaces with ros_Control can be seen here:
+ * ![joint_level_ctr_arch_overview](https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/joint_level_ctr_arch_overview.png)
+ * The Naming conventions for each joint, motor and sensor  are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> and can be seen down below:
+ * ![naming_conv](https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/triped_leg_ros.png)
  * \section content Structure of the Project
  * The Project is designed as <a href="http://wiki.ros.org/Packages">ROS package</a> and is distributed into the following directories:
  *

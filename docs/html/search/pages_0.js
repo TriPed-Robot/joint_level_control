@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['beaglebone_20black_20setup',['Beaglebone Black Setup',['../bbb_setup.html',1,'']]]
+  ['joint_20level_20control',['Joint Level Control',['../index.html',1,'']]]
 ];

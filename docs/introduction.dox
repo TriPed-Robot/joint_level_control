@@ -1,73 +1,71 @@
 /*! \mainpage Joint Level Control
-	 *
-	 * \section intro Introduction
-	 *
-	 * This is the documentation for the TriPed Projects joint level controller.
-	 * It implements the Hardware Interfaces required by <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and joint space trajectory controllers with the sensors and actuators.
-	 * A Diagram of how this package interfaces with ros_Control can be seen here:
-	 * ![joint_level_ctr_arch_overview](https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/joint_level_ctr_arch_overview.png)
-	 * The Naming conventions for each joint, motor, and sensor are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> and can be seen down below:
-	 * ![naming_conv](https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/triped_leg_ros.png)
-	 * \section arch Hardware Interface Architecture
-	 * Each Leg of the TriPed robot, is made up of two types of joints, extend joints and swing joints each requiring its own hardware interface.
-	 * Since both types of joints share the same motor controller each hardware interface is designed as a class containing a motor class object and a sensor class object.
-	 * The rotary_encoder class is the sensor class used by the extend_joint interface, while the hall_sensor class is used by the swing_joint_interface.
-	 * \section content Structure of the Project
-	 * The Project is designed as <a href="http://wiki.ros.org/Packages">ROS package</a> and is distributed into the following directories:
-	 *
-	 *	- config
-	 * - docs
-	 * - include
-	 * - launch
-	 * - src
-	 * \subsection config_dir config
-	 * The project is designed to be flexible in regards to different configurations, for this reason, hardware addresses, and other device-specific parameters are always read in from config files.
-	 * This folder contains all necessary config files for the joint controllers.
-	 * On startup of the joint controllers, these config files are first set as <a href="http://wiki.ros.org/Parameter%20Server"> ROS parameters</a> and then subsequently read out by the approprate <a href="http://wiki.ros.org/Nodes"> ROS nodes</a>.
-	 * \subsection docs_dir docs
-	 * The docs folder houses the Doxygen documentation from which this page is generated. It is not necessary for the proper functioning of this package.
-	 * \subsection include_dir include
-	 * The include directory contains the c++ header files of the package. This special directory is necessary for the <a href="http://wiki.ros.org/catkin/commands/catkin_make"> catkin_make</a> to find the files. The name of the include directory is specified in the CMakeList file.
-	 * \subsection launch_dir launch
-	 * The launch directory contains all <a href="http://wiki.ros.org/roslaunch"> ROS launch files</a> of the package. It contains the following files
-	 *
-	 * launch file name | purpose
-	 * --------------------|----------------------------
-	 * hall_sensor_test | Testing the Hall Sensors
-	 * motor | Testing the Motor
-	 * joint_level_control | Start the Joint controllers
-	 *
-	 * Each launchfile also loads the parameters of the config directory.
-	 * \subsection src_dir src
-	 * This directory contains the source code of the package. 
-	 * 
-	 * \psection bbb_setup Beaglebone Black Setup
-         *
-         * In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup"> beaglebone setup guide</a>
-         * Afterwards the sensors and actuators have to be connected according to the  <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
-         *  \section getting_started Getting Started
-         *
-         * This section details the steps neccesairy to install the joint_level_control package and use it to controll the joints of the TriPed.
-         * 
-         *  \subsection install Installing the Package
-         *  Since the project is a ros package, it has to be placed inside the src directory of a [catkin_ws](http://wiki.ros.org/catkin), and installed with `catkin_make`:
-         * 
-         * ```
-         *   $ cd catkin_ws/src
-         *   $ git clone https://github.com/TriPed-Robot/joint_level_control
-         *   $ cd ..
-         *   $ catkin_make
-         *   $ source devel/setup.sh
-         * ```
-         *
-         * To verify that the package was installed one can call
-         *
-         * ```
-         * $ rospack joint_level_control
-         * ```
-         *
-         * Which should provide informations about the package
-         *  \subsection usage Using the Package
-         * 
-	 * 
-	 */
+ *
+ * \section intro Introduction
+ *
+ * This is the documentation for the TriPed Projects joint level controller.
+ * It implements the Hardware Interfaces required by <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and joint space trajectory controllers with the sensors and actuators.
+ * A Diagram of how this package interfaces with ros_Control can be seen here:
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/joint_level_ctr_arch_overview.png width=1000
+ * The Naming conventions for each joint, motor, and sensor are specified in the <a href="https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot">wiki</a> and can be seen down below:
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/triped_leg_ros.png width=1000
+ * \section arch Hardware Interface Architecture
+ * Each Leg of the TriPed robot, is made up of two types of joints, extend joints and swing joints each requiring its own hardware interface.
+ * Since both types of joints share the same motor controller each hardware interface is designed as a class containing a motor class object and a sensor class object.
+ * The rotary_encoder class is the sensor class used by the extend_joint interface, while the hall_sensor class is used by the swing_joint_interface.
+ * \section content Structure of the Project
+ * The Project is designed as <a href="http://wiki.ros.org/Packages">ROS package</a> and is distributed into the following directories:
+ *
+ *	- config
+ * - docs
+ * - include
+ * - launch
+ * - src
+ * \subsection config_dir config
+ * The project is designed to be flexible in regards to different configurations, for this reason, hardware addresses, and other device-specific parameters are always read in from config files.
+ * This folder contains all necessary config files for the joint controllers.
+ * On startup of the joint controllers, these config files are first set as <a href="http://wiki.ros.org/Parameter%20Server"> ROS parameters</a> and then subsequently read out by the approprate <a href="http://wiki.ros.org/Nodes"> ROS nodes</a>.
+ * \subsection docs_dir docs
+ * The docs folder houses the Doxygen documentation from which this page is generated. It is not necessary for the proper functioning of this package.
+ * \subsection include_dir include
+ * The include directory contains the c++ header files of the package. This special directory is necessary for the <a href="http://wiki.ros.org/catkin/commands/catkin_make"> catkin_make</a> to find the files. The name of the include directory is specified in the CMakeList file.
+ * \subsection launch_dir launch
+ * The launch directory contains all <a href="http://wiki.ros.org/roslaunch"> ROS launch files</a> of the package. It contains the following files
+ *
+ * launch file name | purpose
+ * --------------------|----------------------------
+ * hall_sensor_test | Testing the Hall Sensors
+ * motor | Testing the Motor
+ * joint_level_control | Start the Joint controllers
+ *
+ * Each launchfile also loads the parameters of the config directory.
+ * \subsection src_dir src
+ * This directory contains the source code of the package. 
+ * 
+ * \section bbb_setup Beaglebone Black Setup
+ * In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup"> beaglebone setup guide</a>
+ * Afterwards the sensors and actuators have to be connected according to the  <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
+ * \section getting_started Getting Started
+ * This section details the steps neccesairy to install the joint_level_control package and use it to controll the joints of the TriPed.
+ * 
+ * \subsection install Installing the Package
+ * Since the project is a ros package, it has to be placed inside the src directory of a [catkin_ws](http://wiki.ros.org/catkin), and installed with `catkin_make`: 
+ * 
+ * 
+ *     $ cd catkin_ws/src
+ *     $ git clone https://github.com/TriPed-Robot/joint_level_control
+ *     $ cd ..
+ *     $ catkin_make
+ *     $ source devel/setup.sh
+ * 
+ *
+ * To verify that the package was installed one can call
+ *
+ * ```
+ * $ rospack joint_level_control
+ * ```
+ *
+ * Which should provide informations about the package
+ *  \subsection usage Using the Package
+ * 
+ * 
+ */

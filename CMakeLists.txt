@@ -9,6 +9,7 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  joint_limits_interface
   controller_manager
   roscpp
   roslib
@@ -107,7 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES hall_sensor joint motor rotary_encoder
-  CATKIN_DEPENDS controller_manager roscpp roslib std_msgs
+  CATKIN_DEPENDS controller_manager roscpp roslib std_msgs joint_limits_interface
 #  DEPENDS system_lib
 )
 

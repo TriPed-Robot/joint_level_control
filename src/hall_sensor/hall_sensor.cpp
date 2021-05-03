@@ -11,7 +11,7 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
 
     // setup multiplexer pins
     mux_selector_pin_1_ = 117; // p9_25, TODO: get this from yaml.
-    mux_selector_pin_2_ = 115; //p9_25
+    mux_selector_pin_2_ = 115; //p9_27
 
     gpio_export(mux_selector_pin_1_);    // Tell OS to use this pin
     gpio_export(mux_selector_pin_2_);

@@ -126,6 +126,7 @@ include_directories(
 add_library(hall_sensor
   src/hall_sensor/hall_sensor.cpp
   src/hall_sensor/swing_sensor_rosinterface.cpp
+  src/hall_sensor/SimpleGPIO.cpp
 )
 add_library(joint
   src/joint/extend_joint.cpp

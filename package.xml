@@ -20,7 +20,7 @@
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
   <!-- <url type="website">http://wiki.ros.org/control_template</url> -->
-  <url type="website"https://triped-robot.github.io/joint_level_control/html/index.html</url>
+  <url> type="website"https://triped-robot.github.io/joint_level_control/html/index.html</url>
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->

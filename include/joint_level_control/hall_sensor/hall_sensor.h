@@ -11,13 +11,15 @@ public:
     double getValue();
 
 private:
-    std::string spi_device_;
-    uint8_t spi_cs_id_;
+    std::string spi_device_; // file which controls spi device
+    uint8_t spi_cs_id_; // address of sensor in spi. This is used in the multiplexer pins
     uint8_t spi_mode_; 
     uint8_t spi_bits_; 
     uint32_t spi_speed_; 
     uint16_t spi_delay_;
 
+    uint16_t mux_selector_pin_1_; // 1st multiplexer selector pin for the chip select line
+    uint16_t mux_selector_pin_2_; // 2nd multiplexer selector pin for the chip select line
 };
 
 

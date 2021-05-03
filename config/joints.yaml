@@ -73,3 +73,5 @@ extend_joint:
         joint: extend_joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
 
+
+        #maybe add variables for the multiplexer selector pins as well ?

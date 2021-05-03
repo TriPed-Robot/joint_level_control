@@ -95,7 +95,6 @@ int gpio_set_dir(unsigned int gpio, PIN_DIRECTION out_flag)
 	char buf[MAX_BUF];
 
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR  "/gpio%d/direction", gpio);
-    std::cout << "DIR: write here: " << buf << std::endl;
 	fd = open(buf, O_WRONLY);
 	if (fd < 0) {
 		perror("gpio/direction");
@@ -120,7 +119,6 @@ int gpio_set_value(unsigned int gpio, PIN_VALUE value)
 	char buf[MAX_BUF];
 
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "/gpio%d/value", gpio);
-    std::cout << "VALUE: write here: " << buf << std::endl;
 	
 	fd = open(buf, O_WRONLY);
 	if (fd < 0) {

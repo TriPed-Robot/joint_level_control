@@ -59,7 +59,8 @@ Motor::~Motor()
 
 void Motor::setCurrent(double current)
 { 
-    current_control_.setCurrent(current*10); // 10 is equal to 1A! 0.1 A resolution!
+    int32_t can_current = round(current*10.0);// 10 is equal to 1A! 0.1 A resolution!
+    current_control_.setCurrent(can_current); 
     can_frame* p_message = current_control_.getMessage();
     writeCAN(p_message);
 }

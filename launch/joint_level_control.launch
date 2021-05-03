@@ -3,7 +3,7 @@
   <!-- Load joint definitions. -->  
   <rosparam file="$(find joint_level_control)/config/joints.yaml" command="load" />
   <include file="$(find triped_description)/launch/triped_description.launch"/>
-  <rosparam file="$(find joint_level_control)/config/joint_limits.yaml" command="load" />
+	  <!--<rosparam file="$(find joint_level_control)/config/joint_limits.yaml" command="load" ns="swing/left/joint" />-->
  
   <!-- Start hardware interfaces and assigned controller. -->
   <!-- Address joint via namespace. -->

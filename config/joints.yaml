@@ -29,6 +29,24 @@ swing/left/joint:
         type: effort_controllers/JointEffortController
         joint: swing/left/joint
 
+
+    joint_limits:
+        swing/left/joint:
+              has_position_limits: true
+              min_position: -1.414
+              max_position: 1.414
+              has_velocity_limits: true
+              max_velocity: 6500
+              has_acceleration_limits: false
+              max_acceleration: 0.0
+              has_jerk_limits: false
+              max_jerk: 0
+              has_effort_limits: true
+              max_effort: 10
+
+
+
+
 swing/right/joint:
     joint_name: swing/right/joint
 
@@ -54,6 +72,20 @@ swing/right/joint:
         type: effort_controllers/JointPositionController
         joint: swing/right/joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+    joint_limits:
+            swing/right/joint:
+              has_position_limits: true
+              min_position: -3.1416/2
+              max_position: 3.1416/2
+              has_velocity_limits: true
+              max_velocity: 6500
+              has_acceleration_limits: false
+              max_acceleration: 0.0
+              has_jerk_limits: false
+              max_jerk: 0
+              has_effort_limits: true
+              max_effort: 1
         
 extend/joint:
     joint_name: extend/joint
@@ -79,4 +111,18 @@ extend/joint:
         type: effort_controllers/JointPositionController
         joint: extend/joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+    joint_limits:
+            extend/joint:
+              has_position_limits: true
+              min_position: -3.1416/2
+              max_position: 3.1416/2
+              has_velocity_limits: true
+              max_velocity: 0.5
+              has_acceleration_limits: false
+              max_acceleration: 0.0
+              has_jerk_limits: false
+              max_jerk: 0
+              has_effort_limits: true
+              max_effort: 1
 

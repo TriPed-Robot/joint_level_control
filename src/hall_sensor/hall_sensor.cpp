@@ -14,6 +14,7 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
     mux_selector_pin_2_ = 115; //p9_27
 
     gpio_export(mux_selector_pin_1_);    // Tell OS to use this pin
+    usleep(200*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     gpio_export(mux_selector_pin_2_);
     usleep(200*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     gpio_set_dir(mux_selector_pin_1_, OUTPUT_PIN);   // Set pin as output direction

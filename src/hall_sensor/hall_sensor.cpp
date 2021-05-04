@@ -44,9 +44,12 @@ double HallSensor::getValue()
 {
     PIN_VALUE value_pin1 = (spi_cs_id_ & 0x1) ? HIGH : LOW;
     PIN_VALUE value_pin2 = (spi_cs_id_ & 0x2) ? HIGH : LOW;
-    gpio_set_value(mux_selector_pin_1_,value_pin1);
-    gpio_set_value(mux_selector_pin_2_,value_pin2);
+    //gpio_set_value(mux_selector_pin_1_,value_pin1);
+    //gpio_set_value(mux_selector_pin_2_,value_pin2);
 
+    gpio_set_value(mux_selector_pin_1_,HIGH);
+    gpio_set_value(mux_selector_pin_2_,LOW);
+    //usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
 
     double range = 2*3.1415926535;

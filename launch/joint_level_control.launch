@@ -18,10 +18,9 @@
 			   <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing/left/joint" />-->
  
 	    <!-- Start swing joint right. -->
-    <!--
-	    <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing/right/joint" />
+			   <!--<node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing/right/joint" />
 	    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing/right/joint"
-          args="joint_state_controller position_controller" />         
+	    args="joint_state_controller position_controller" />         
 	    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing/right/joint" />
     -->
     

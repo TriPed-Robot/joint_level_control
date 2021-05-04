@@ -25,12 +25,9 @@ int main(int argc, char *argv[]){
 
 	// Flash the LED 5 times
 	
-    for(int i =0; i<10;i++){
+    while(true){
         gpio_set_value(MUX_SEL_PIN1, HIGH);
-        usleep(1*1000*1000);
-
-        gpio_set_value(MUX_SEL_PIN1, LOW);
-        usleep(1*1000*1000);
+        gpio_set_value(MUX_SEL_PIN1, HIGH);
     }
     
 

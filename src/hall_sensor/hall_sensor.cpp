@@ -2,7 +2,7 @@
 #include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h"
 #include "joint_level_control/hall_sensor/SimpleGPIO.h" // control GPIO pins
 #include <unistd.h> // usleep
-
+using namespace std;
 
 HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay) 
 : spi_device_(spi_device), spi_cs_id_(spi_cs_id), spi_mode_(spi_mode), spi_bits_(spi_bits), spi_speed_(spi_speed), spi_delay_(spi_delay)
@@ -14,9 +14,9 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
     mux_selector_pin_2_ = 115; //p9_27
 
     gpio_export(mux_selector_pin_1_);    // Tell OS to use this pin
-    usleep(200*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
+    usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     gpio_export(mux_selector_pin_2_);
-    usleep(200*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
+    usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     gpio_set_dir(mux_selector_pin_1_, OUTPUT_PIN);   // Set pin as output direction
 	gpio_set_dir(mux_selector_pin_2_, OUTPUT_PIN); 
 }

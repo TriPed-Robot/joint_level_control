@@ -8,18 +8,18 @@
 #include <unistd.h>
 #include <poll.h>
 #include "SimpleGPIO.h"
-using namespace std;
+//using namespace std;
 
-unsigned int MUX_SEL_PIN1 = 117;    //  Pin P9_25
-unsigned int MUX_SEL_PIN2 = 115;    //  Pin P9_27
+uint16_t MUX_SEL_PIN1 = 117;    //  Pin P9_25
+uint16_t MUX_SEL_PIN2 = 115;    //  Pin P9_27
 
 int main(int argc, char *argv[]){
 
-	cout << "Testing the GPIO Pins" << endl;
+	//cout << "Testing the GPIO Pins" << endl;
 
     gpio_export(MUX_SEL_PIN1);    // Tell OS to use this pin
     gpio_export(MUX_SEL_PIN2);
-    usleep(100*1000); // wait 1 s !!IMPORTANT!! the OS needs this time!
+    usleep(1000*1000); // wait 1 s !!IMPORTANT!! the OS needs this time!
     gpio_set_dir(MUX_SEL_PIN1, OUTPUT_PIN);   // Set pin as output direction
 	gpio_set_dir(MUX_SEL_PIN2, OUTPUT_PIN); 
 

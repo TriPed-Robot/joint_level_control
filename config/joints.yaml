@@ -1,5 +1,5 @@
-swing_joint_left:
-    joint_name: swing_joint_left
+swing/left/joint:
+    joint_name: swing/left/joint
 
     hall_sensor:
         # spi parameters for hall sensor
@@ -9,22 +9,46 @@ swing_joint_left:
         spi_bits: 16 # 16 bits per word
         spi_speed: 500000 # 500kHz frequency
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
+        zero_point: 2.543 #0.547
 
     motor:
-        can_name: can2
-        can_id: 0x2
+        can_name: can1
+        can_id: 0xd1
         
     joint_state_controller:
         type: joint_state_controller/JointStateController
-        publish_rate: 10
+        publish_rate: 100
            
     position_controller:
         type: effort_controllers/JointPositionController
-        joint: swing_joint_left
-        pid: {p: 1.0, i: 0.0, d: 0.0, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+        joint: swing/left/joint
+        pid: {p: 2.0, i: 0.2, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0, antiwindup: true}
 
-swing_joint_right:
-    joint_name: swing_joint_right
+
+    effort_controller:
+        type: effort_controllers/JointEffortController
+        joint: swing/left/joint
+
+
+    joint_limits:
+        swing/left/joint:
+              has_position_limits: true
+              min_position: -1.414
+              max_position: 1.414
+              has_velocity_limits: true
+              max_velocity: 6500
+              has_acceleration_limits: false
+              max_acceleration: 0.0
+              has_jerk_limits: false
+              max_jerk: 0
+              has_effort_limits: true
+              max_effort: 10
+
+
+
+
+swing/right/joint:
+    joint_name: swing/right/joint
 
     hall_sensor:
         # spi parameters for hall sensor
@@ -34,10 +58,11 @@ swing_joint_right:
         spi_bits: 16 # 16 bits per word
         spi_speed: 500000 # 500kHz frequency
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
+        zero_point: 0
 
     motor:
         can_name: can1
-        can_id: 0x1
+        can_id: 0xd3
         
     joint_state_controller:
         type: joint_state_controller/JointStateController
@@ -45,11 +70,25 @@ swing_joint_right:
            
     position_controller:
         type: effort_controllers/JointPositionController
-        joint: swing_joint_right
+        joint: swing/right/joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
+
+    joint_limits:
+            swing/right/joint:
+              has_position_limits: true
+              min_position: -3.1416/2
+              max_position: 3.1416/2
+              has_velocity_limits: true
+              max_velocity: 6500
+              has_acceleration_limits: false
+              max_acceleration: 0.0
+              has_jerk_limits: false
+              max_jerk: 0
+              has_effort_limits: true
+              max_effort: 1
         
-extend_joint:
-    joint_name: extend_joint
+extend/joint:
+    joint_name: extend/joint
 
     rotary_encoder:
         #spi parameters for the arduino rotary encoder
@@ -61,8 +100,8 @@ extend_joint:
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
 
     motor:
-        can_name: can3
-        can_id: 0x3
+        can_name: can1
+        can_id: 0xd2
         
     joint_state_controller:
         type: joint_state_controller/JointStateController
@@ -70,8 +109,21 @@ extend_joint:
            
     position_controller:
         type: effort_controllers/JointPositionController
-        joint: extend_joint
+        joint: extend/joint
         pid: {p: 3.0, i: 2.5, d: 0.6, i_clamp_min: -10.0, i_clamp_max: 10.0, antiwindup: true}
 
 
-        #maybe add variables for the multiplexer selector pins as well ?
+    joint_limits:
+            extend/joint:
+              has_position_limits: true
+              min_position: -3.1416/2
+              max_position: 3.1416/2
+              has_velocity_limits: true
+              max_velocity: 0.5
+              has_acceleration_limits: false
+              max_acceleration: 0.0
+              has_jerk_limits: false
+              max_jerk: 0
+              has_effort_limits: true
+              max_effort: 1
+

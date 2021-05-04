@@ -6,6 +6,6 @@
  
   
   
-  <node name="hall_sensor" pkg="joint_level_control" type="hall_sensor_node" output="screen" ns="swing_joint_left" />
+  <node name="hall_sensor" pkg="joint_level_control" type="hall_sensor_node" output="screen" ns="swing/left/joint" />
    
 </launch>

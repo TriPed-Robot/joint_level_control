@@ -5,6 +5,7 @@
 
 #include <linux/can.h>
 #include <linux/can/raw.h>
+#include <math.h>
 #include <net/if.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
@@ -42,6 +43,12 @@ Motor::Motor(const std::string& can_name, uint8_t can_id)
     }
     
     startAcknowldegeTask();
+
+   auto scan_msg = ScanMessage();
+   auto frame = scan_msg.getMessage();
+   write(can_socket_, frame, sizeof(struct can_frame));
+   auto ping_msg = PingMessage(can_id); 
+   write(can_socket_, ping_msg.getMessage(), sizeof(struct can_frame));
 }
 
 
@@ -51,11 +58,20 @@ Motor::~Motor()
 }
 
 
-void Motor::setCurrent(int32_t current)
+void Motor::setCurrent(double current)
 { 
-    current_control_.setCurrent(current); // 10 is equal to 1A! 0.1 A resolution!
+    int32_t can_current = round(current*10.0);// 10 is equal to 1A! 0.1 A resolution!
+    current_control_.setCurrent(can_current); 
     can_frame* p_message = current_control_.getMessage();
-    write(can_socket_, p_message, sizeof(struct can_frame));
+    writeCAN(p_message);
+}
+
+int Motor::writeCAN(can_frame* frame) 
+{
+    if(write(can_socket_, frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
+        return 1;
+    }
+    return 0;
 }
 
 

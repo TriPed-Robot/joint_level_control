@@ -22,6 +22,10 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
     gpio_set_dir(mux_selector_pin_1_, OUTPUT_PIN);   // Set pin as output direction
 	gpio_set_dir(mux_selector_pin_2_, OUTPUT_PIN); 
     
+
+    if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Debug) ) {
+        ros::console::notifyLoggerLevelsChanged();
+    }
 }
 
 
@@ -53,15 +57,18 @@ double HallSensor::getValue()
     //gpio_set_value(mux_selector_pin_1_,HIGH);
     //pio_set_value(mux_selector_pin_2_,LOW);
     ROS_DEBUG("Chip Select Id %s", spi_cs_id_);
+    ROS_DEBUG("muxPin1: %s, muxPin2: %s", mux_selector_pin_1_, mux_selector_pin_2_);
     if (spi_cs_id_ == 1)
     {
+        ROS_DEBUG("Left!");
         gpio_set_value(117,HIGH); 
-        gpio_set_value(115,LOW);
+        gpio_set_value(115,HIGH);
     }
     else
     {
+        ROS_DEBUG("Not Left!");
         gpio_set_value(117,HIGH); 
-        gpio_set_value(115,LOW);
+        gpio_set_value(115,HIGH);
     }
     usleep(2000); 
     

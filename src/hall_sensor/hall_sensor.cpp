@@ -15,6 +15,12 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
     mux_selector_pin_1_ = 117; // p9_25, TODO: get this from yaml.
     mux_selector_pin_2_ = 115; //p9_27
 
+    /*if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Debug) ) {
+        ros::console::notifyLoggerLevelsChanged();
+    }*/
+
+    //ROS_DEBUG("HallSensor! ID: %u, %u",spi_cs_id_, spi_cs_id);
+
     gpio_export(mux_selector_pin_1_);    // Tell OS to use this pin
     usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     gpio_export(mux_selector_pin_2_);
@@ -58,12 +64,12 @@ double HallSensor::getValue()
     {
         //ROS_DEBUG("Left!");
         gpio_set_value(117,HIGH); 
-        gpio_set_value(115,HIGH);
+        gpio_set_value(115,LOW);
     }
     else
     {
         //ROS_DEBUG("Not Left!");
-        gpio_set_value(117,HIGH); 
+        gpio_set_value(117,LOW); 
         gpio_set_value(115,HIGH);
     }
     usleep(2000); 

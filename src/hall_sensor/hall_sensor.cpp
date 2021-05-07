@@ -4,6 +4,9 @@
 #include <unistd.h> // usleep
 #include <iostream>
 
+#include <boost/interprocess/managed_shared_memory.hpp> 
+#include <boost/interprocess/sync/named_mutex.hpp> // Mutex!
+
 
 
 using namespace std; // TODO: remove this, if possible. currently needed for gpio library...

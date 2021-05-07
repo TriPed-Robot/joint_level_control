@@ -3,6 +3,9 @@
 
 #include <string>
 
+//#include <boost/interprocess/managed_shared_memory.hpp> 
+#include <boost/interprocess/sync/named_mutex.hpp> // Mutex!
+
 /**
  * \brief This class abstracts the communication with the sensors measuring the state of the swingjoints.
  *
@@ -52,6 +55,8 @@ private:
 
     uint16_t mux_selector_pin_1_; // 1st multiplexer selector pin for the chip select line
     uint16_t mux_selector_pin_2_; // 2nd multiplexer selector pin for the chip select line
+
+    boost::interprocess::named_mutex named_mtx_; // Mutex used for acquiring the multiplexer pins
 };
 
 

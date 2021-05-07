@@ -2,6 +2,7 @@
 #include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h"
 #include "joint_level_control/hall_sensor/SimpleGPIO.h" // control GPIO pins
 #include <unistd.h> // usleep
+#include <ros/console.h>
 using namespace std;
 
 HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point) 
@@ -10,7 +11,7 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
     // maybe move the open(spi_device) part here
 
     // setup multiplexer pins
-    /*
+    
     mux_selector_pin_1_ = 117; // p9_25, TODO: get this from yaml.
     mux_selector_pin_2_ = 115; //p9_27
 
@@ -20,7 +21,7 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
     usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
     gpio_set_dir(mux_selector_pin_1_, OUTPUT_PIN);   // Set pin as output direction
 	gpio_set_dir(mux_selector_pin_2_, OUTPUT_PIN); 
-    */
+    
 }
 
 
@@ -50,17 +51,23 @@ double HallSensor::getValue()
     //gpio_set_value(mux_selector_pin_2_,value_pin2);
 
     //gpio_set_value(mux_selector_pin_1_,HIGH);
-    //gpio_set_value(mux_selector_pin_2_,LOW);
-    //usleep(10*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
-    /*
-    if (spi_cs_id_ != 1)
+    //pio_set_value(mux_selector_pin_2_,LOW);
+    ROS_DEBUG("Chip Select Id %s", spi_cs_id_);
+    if (spi_cs_id_ == 1)
     {
-        gpio_set_value(mux_selector_pin_1_,LOW);
-        gpio_set_value(mux_selector_pin_2_,HIGH);
+        gpio_set_value(117,HIGH); 
+        gpio_set_value(115,LOW);
     }
-    */
+    else
+    {
+        gpio_set_value(117,HIGH); 
+        gpio_set_value(115,LOW);
+    }
+    usleep(2000); 
+    
 
     uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
+
 
     double range = 2*3.1415926535;
     double angle    = (((double)counts)/16384*range); 

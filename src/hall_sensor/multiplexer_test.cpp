@@ -27,7 +27,13 @@ int main(int argc, char *argv[]){
 	
     while(true){
         gpio_set_value(MUX_SEL_PIN1, HIGH);
-        gpio_set_value(MUX_SEL_PIN1, HIGH);
+        gpio_set_value(MUX_SEL_PIN2, HIGH);
+	usleep(600);
+	int i = 2;
+        gpio_set_value(MUX_SEL_PIN1, LOW);
+        gpio_set_value(MUX_SEL_PIN2, LOW);
+	usleep(600);
+	i = 5;
     }
     
 

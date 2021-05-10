@@ -25,12 +25,12 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
 
     //ROS_DEBUG("HallSensor! ID: %u, %u",spi_cs_id_, spi_cs_id);
     std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< std::endl;
-    gpio_export(mux_selector_pin_1_);    // Tell OS to use this pin
-    usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
-    gpio_export(mux_selector_pin_2_);
-    usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
-    gpio_set_dir(mux_selector_pin_1_, OUTPUT_PIN);   // Set pin as output direction
-	gpio_set_dir(mux_selector_pin_2_, OUTPUT_PIN); 
+    //gpio_export(mux_selector_pin_1_);    // Tell OS to use this pin
+    //usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
+    //gpio_export(mux_selector_pin_2_);
+    //usleep(1000*1000); // wait >100 ms !!IMPORTANT!! the OS needs this time!
+    //gpio_set_dir(mux_selector_pin_1_, OUTPUT_PIN);   // Set pin as output direction
+    //gpio_set_dir(mux_selector_pin_2_, OUTPUT_PIN); 
     
     // setup mutex
     //boost::interprocess::managed_shared_memory managed_shm{boost::interprocess::open_or_create, "shm", 1024};
@@ -45,8 +45,8 @@ HallSensor::~HallSensor()
     // maybe move the spi close part here.
 
     // free multiplexer pins
-    gpio_unexport(mux_selector_pin_1_);
-    gpio_unexport(mux_selector_pin_2_);
+    //gpio_unexport(mux_selector_pin_1_);
+    //gpio_unexport(mux_selector_pin_2_);
 }
 
 

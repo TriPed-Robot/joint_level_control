@@ -1,6 +1,6 @@
 #ifndef HALL_SENSOR_H
 #define HALL_SENSOR_H 
-
+#include <boost/interprocess/sync/named_mutex.hpp>
 #include <string>
 
 /**
@@ -50,6 +50,7 @@ private:
     uint16_t spi_delay_;
     double zero_point_ ;
 
+    boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
     uint16_t mux_selector_pin_1_; // 1st multiplexer selector pin for the chip select line
     uint16_t mux_selector_pin_2_; // 2nd multiplexer selector pin for the chip select line
 };

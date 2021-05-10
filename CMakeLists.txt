@@ -16,6 +16,13 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+#find_package(Boost COMPONENTS system date_time REQUIRED) #add boost for Mutex
+find_package(Boost REQUIRED COMPONENTS 
+    system
+    filesystem 
+    date_time 
+    thread
+)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -127,6 +134,7 @@ include_directories(
  include
  ${catkin_INCLUDE_DIRS}
 )
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 ## Declare a C++ library
 add_library(hall_sensor
@@ -182,11 +190,17 @@ add_dependencies(swing_joint_node joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${ca
 add_dependencies(hall_sensor_node hall_sensor ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}) ## testing of hall sensor only
 
 ## Specify libraries to link a library or executable target against
+
+add_compile_options(-lpthread -lrt)
+
 target_link_libraries(joint
   hall_sensor
   motor
   rotary_encoder
   ${catkin_LIBRARIES}
+  ${Boost_FILESYSTEM_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
+  ${BOOST_LIBRARIES} -lpthread -lrt
 )
 
 target_link_libraries(extend_joint_node
@@ -205,6 +219,10 @@ target_link_libraries(swing_joint_node
 target_link_libraries(hall_sensor_node
   hall_sensor
   ${catkin_LIBRARIES}
+  ${Boost_FILESYSTEM_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
+  ${BOOST_LIBRARIES} -lpthread -lrt
+  Boost::date_time
 ) ## testing of hall sensor only
 
 #############

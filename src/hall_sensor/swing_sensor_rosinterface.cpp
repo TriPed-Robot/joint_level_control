@@ -32,9 +32,7 @@
 // returns the angle the swing sensor with sensorID is measuring. Angle is in RADIANS!
 double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay)
 {
-	//TODO: do sth with the ID --> set fitting chip select pins
 
-	ROS_DEBUG("debug: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device.c_str(), spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
 	
     int fd; // file descriptor
 	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init

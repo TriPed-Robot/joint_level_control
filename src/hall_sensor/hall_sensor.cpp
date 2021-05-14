@@ -45,14 +45,20 @@ void HallSensor::setZeroPoint()
 double HallSensor::getValue()
 {
     named_mtx_.lock();
+
     if (spi_cs_id_ == 1)
     {
         gpio_set_value(117,HIGH); 
         gpio_set_value(115,LOW);
     }
-    else
+    else if (spi_cs_id_ == 2)
     {
         gpio_set_value(117,LOW); 
+        gpio_set_value(115,HIGH);
+    }
+    else
+    {
+        gpio_set_value(117,HIGH); 
         gpio_set_value(115,HIGH);
     }
     usleep(2000); 

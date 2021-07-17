@@ -11,7 +11,7 @@
  *
  * The left and right swingsensor, measure the position the swingjoints.
 They are implemented using As5047D Hall Sensors as well as magnets attached to the output lever of the motor assembly (pictured below).
- * ![hall_sensor_placement](https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/swing_sensor.png)
+ * ![hall_sensor_placement](https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/swing_sensor.png)
  * The magnets are affixed using 3d printed caps, which offer no way to predetermine the magnetic field at a given angle.
  * This means that the sensor output which is initially in counts has to be calibrated.
  * This is done either during initialization using the zero_point value or during runtime using the setZeroPoint method.
@@ -21,7 +21,7 @@ They are implemented using As5047D Hall Sensors as well as magnets attached to t
  * Because these mounting brackets constrict the movement output lever the actually achievable range of motion is [-pi/2,pi/2].
  *
  * The embedded communication with the Sensor is done via SPI according to their datasheet.
- * The connection of the sensor to the beaglebone can be seen in the s<a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
+ * The connection of the sensor to the beaglebone can be seen in the <a href="https://triped-robot.github.io/docs/embedded/"> wiring diagram</a>.
  * */
 
 class HallSensor

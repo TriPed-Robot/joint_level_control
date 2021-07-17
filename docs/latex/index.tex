@@ -1,5 +1,5 @@
 \hypertarget{index_intro}{}\section{Introduction}\label{index_intro}
-This is the documentation for the Tri\+Ped Projects joint level controller. It implements the Hardware Interfaces required by \href{http://wiki.ros.org/ros_control}{\tt ros\+\_\+control} to interface the joint position and joint space trajectory controllers with the sensors and actuators. A Diagram of how this package interfaces with ros\+\_\+\+Control can be seen here\+:  The Naming conventions for each joint, motor, and sensor are specified in the \href{https://github.com/TriPed-Robot/Wiki/wiki/One-Legged-Sub-Robot}{\tt wiki} and can be seen down below\+:  \hypertarget{index_arch}{}\section{Hardware Interface Architecture}\label{index_arch}
+This is the documentation for the Tri\+Ped Projects joint level controller. It implements the Hardware Interfaces required by \href{http://wiki.ros.org/ros_control}{\tt ros\+\_\+control} to interface the joint position and joint space trajectory controllers with the sensors and actuators. A Diagram of how this package interfaces with ros\+\_\+\+Control can be seen here\+:  The Naming conventions for each joint, motor, and sensor are specified on the Tri\+Peds main \href{https://triped-robot.github.io/docs/legs/}{\tt webside} and can be seen down below\+:  \hypertarget{index_arch}{}\section{Hardware Interface Architecture}\label{index_arch}
 Each Leg of the Tri\+Ped robot, is made up of two types of joints, extend joints and swing joints each requiring its own hardware interface. Since both types of joints share the same motor controller each hardware interface is designed as a class containing a motor class object and a sensor class object. The rotary\+\_\+encoder class is the sensor class used by the extend\+\_\+joint interface, while the hall\+\_\+sensor class is used by the swing\+\_\+joint\+\_\+interface. \hypertarget{index_content}{}\section{Structure of the Project}\label{index_content}
 The Project is designed as \href{http://wiki.ros.org/Packages}{\tt R\+OS package} and is distributed into the following directories\+:
 
@@ -20,14 +20,14 @@ The include directory contains the c++ header files of the package. This special
 The launch directory contains all \href{http://wiki.ros.org/roslaunch}{\tt R\+OS launch files} of the package. It contains the following files
 
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ launch file name }&\textbf{ purpose  }\\\cline{1-2}
+\rowcolor{\tableheadbgcolor}{\bf launch file name }&{\bf purpose  }\\\cline{1-2}
 \endfirsthead
 \hline
 \endfoot
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ launch file name }&\textbf{ purpose  }\\\cline{1-2}
+\rowcolor{\tableheadbgcolor}{\bf launch file name }&{\bf purpose  }\\\cline{1-2}
 \endhead
 hall\+\_\+sensor\+\_\+test &Testing the Hall Sensors \\\cline{1-2}
 motor &Testing the \hyperlink{classMotor}{Motor} \\\cline{1-2}

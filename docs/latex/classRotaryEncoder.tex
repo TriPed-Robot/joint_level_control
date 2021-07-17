@@ -12,7 +12,7 @@ This class abstracts the communication with Sensors of the Extendjoints (current
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}{Rotary\+Encoder} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay, double zero\+\_\+point)
+\hyperlink{classRotaryEncoder_ac57e2531f91e03b48bcc2b7e3f0edf62}{Rotary\+Encoder} (const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay)
 \item 
 double \hyperlink{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}{get\+Value} ()
 \end{DoxyCompactItemize}
@@ -28,12 +28,18 @@ The extendsensor measures the position of the extendjoint.\+This is is implement
 It is important to note that the send angle is not the position of the driveshaft, but instead the state of the virtual extend joint. More information about this virtual joint can be found \href{https://github.com/TriPed-Robot/TriPed-Reference-Document}{\tt here}. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}\label{classRotaryEncoder_a4a133815faa29f99d2a2e53b8568a411}} 
 \index{Rotary\+Encoder@{Rotary\+Encoder}!Rotary\+Encoder@{Rotary\+Encoder}}
 \index{Rotary\+Encoder@{Rotary\+Encoder}!Rotary\+Encoder@{Rotary\+Encoder}}
-\subsubsection{\texorpdfstring{Rotary\+Encoder()}{RotaryEncoder()}}
-{\footnotesize\ttfamily Rotary\+Encoder\+::\+Rotary\+Encoder (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{spi\+\_\+device,  }\item[{uint8\+\_\+t}]{spi\+\_\+cs\+\_\+id,  }\item[{uint8\+\_\+t}]{spi\+\_\+mode,  }\item[{uint8\+\_\+t}]{spi\+\_\+bits,  }\item[{uint32\+\_\+t}]{spi\+\_\+speed,  }\item[{uint16\+\_\+t}]{spi\+\_\+delay,  }\item[{double}]{zero\+\_\+point }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{Rotary\+Encoder(const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay)}{RotaryEncoder(const std::string &spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay)}}]{\setlength{\rightskip}{0pt plus 5cm}Rotary\+Encoder\+::\+Rotary\+Encoder (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{spi\+\_\+device, }
+\item[{uint8\+\_\+t}]{spi\+\_\+cs\+\_\+id, }
+\item[{uint8\+\_\+t}]{spi\+\_\+mode, }
+\item[{uint8\+\_\+t}]{spi\+\_\+bits, }
+\item[{uint32\+\_\+t}]{spi\+\_\+speed, }
+\item[{uint16\+\_\+t}]{spi\+\_\+delay}
+\end{DoxyParamCaption}
+)}\hypertarget{classRotaryEncoder_ac57e2531f91e03b48bcc2b7e3f0edf62}{}\label{classRotaryEncoder_ac57e2531f91e03b48bcc2b7e3f0edf62}
 Constructor of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class 
 \begin{DoxyParams}{Parameters}
 {\em S\+PI} & device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics. \\
@@ -42,12 +48,13 @@ Constructor of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}\label{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}} 
 \index{Rotary\+Encoder@{Rotary\+Encoder}!get\+Value@{get\+Value}}
 \index{get\+Value@{get\+Value}!Rotary\+Encoder@{Rotary\+Encoder}}
-\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
-{\footnotesize\ttfamily double Rotary\+Encoder\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
+\subsubsection[{\texorpdfstring{get\+Value()}{getValue()}}]{\setlength{\rightskip}{0pt plus 5cm}double Rotary\+Encoder\+::get\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}{}\label{classRotaryEncoder_adf89df36f38d0ee87b454f22c25a85f0}
 Reads the Angle of the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} from the Arduino 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

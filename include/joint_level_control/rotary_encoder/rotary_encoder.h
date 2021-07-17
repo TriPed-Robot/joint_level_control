@@ -9,11 +9,11 @@
  * \brief This class abstracts the communication with the sensors measuring the state of the extendjoint.
  *
  * The extendsensor measures the position of the extendjoint.This is is implemented using a omron E6A2-C rotary encoder which is connected to the drive shaft driven by the extendmotor and a photosensor (seen below)
- * \image  html https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/extend_sensor.png height=500
+ * \image  html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/extend_sensor.png height=500
  * The photosensor is needet since a rotary encoder does not measure absolute position.
  * A splint affixed to the leg is able to trigger the photosensor thereby providing a absolute position feedback.
  * There are multiple possible position of the splint, the current one can be seen below
- * \image html https://raw.githubusercontent.com/TriPed-Robot/Wiki/master/pictures/hardware/splint.png width=1000
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/splint.png width=1000
  * The readout of rotary encoder and photosensor is abstracted by an arduino which sends the calibrated angle values over spi
  *
  * It is important to note that the send angle is not the position of the driveshaft, but instead the state of the virtual extend joint.

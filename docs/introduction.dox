@@ -5,9 +5,9 @@
  * This is the documentation for the TriPed Projects joint level controller.
  * It implements the Hardware Interfaces required by <a href="http://wiki.ros.org/ros_control">ros_control</a> to interface the joint position and joint space trajectory controllers with the sensors and actuators.
  * A Diagram of how this package interfaces with ros_Control can be seen here:
- * \image html https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/joint_level_ctr_arch_overview.png width=1000
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/joint_level_ctr_arch_overview.png width=800
  * The Naming conventions for each joint, motor, and sensor are specified on the TriPeds main <a href="https://triped-robot.github.io/docs/legs/">webside</a> and can be seen down below:
- * \image html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/triped_leg_ros.png width=1000
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/triped_leg_ros.png width=800
  * \section arch Hardware Interface Architecture
  * Each Leg of the TriPed robot, is made up of two types of joints, extend joints and swing joints each requiring its own hardware interface.
  * Since both types of joints share the same motor controller each hardware interface is designed as a class containing a motor class object and a sensor class object.

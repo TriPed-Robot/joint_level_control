@@ -11,7 +11,7 @@
  *
  * The left and right swingsensor, measure the position the swingjoints.
 They are implemented using As5047D Hall Sensors as well as magnets attached to the output lever of the motor assembly (pictured below).
- * ![hall_sensor_placement](https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/swing_sensor.png)
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/swing_sensor.png width=800
  * The magnets are affixed using 3d printed caps, which offer no way to predetermine the magnetic field at a given angle.
  * This means that the sensor output which is initially in counts has to be calibrated.
  * This is done either during initialization using the zero_point value or during runtime using the setZeroPoint method.

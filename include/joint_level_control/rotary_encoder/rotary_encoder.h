@@ -13,7 +13,7 @@
  * The photosensor is needet since a rotary encoder does not measure absolute position.
  * A splint affixed to the leg is able to trigger the photosensor thereby providing a absolute position feedback.
  * There are multiple possible position of the splint, the current one can be seen below
- * \image html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/splint.png width=1000
+ * \image html https://raw.githubusercontent.com/TriPed-Robot/TriPed-Robot.github.io/master/images/splint.png width=800
  * The readout of rotary encoder and photosensor is abstracted by an arduino which sends the calibrated angle values over spi
  *
  * It is important to note that the send angle is not the position of the driveshaft, but instead the state of the virtual extend joint.

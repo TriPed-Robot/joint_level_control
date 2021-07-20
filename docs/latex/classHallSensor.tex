@@ -30,19 +30,12 @@ After initialization the sensors produce values in the range of \mbox{[}-\/pi,pi
 The embedded communication with the Sensor is done via S\+PI according to their datasheet. The connection of the sensor to the beaglebone can be seen in the \href{https://triped-robot.github.io/docs/embedded/}{\tt wiring diagram}. 
 
 \subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}\label{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}} 
 \index{Hall\+Sensor@{Hall\+Sensor}!Hall\+Sensor@{Hall\+Sensor}}
 \index{Hall\+Sensor@{Hall\+Sensor}!Hall\+Sensor@{Hall\+Sensor}}
-\subsubsection[{\texorpdfstring{Hall\+Sensor(const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay, double zero\+\_\+point)}{HallSensor(const std::string &spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point)}}]{\setlength{\rightskip}{0pt plus 5cm}Hall\+Sensor\+::\+Hall\+Sensor (
-\begin{DoxyParamCaption}
-\item[{const std\+::string \&}]{spi\+\_\+device, }
-\item[{uint8\+\_\+t}]{spi\+\_\+cs\+\_\+id, }
-\item[{uint8\+\_\+t}]{spi\+\_\+mode, }
-\item[{uint8\+\_\+t}]{spi\+\_\+bits, }
-\item[{uint32\+\_\+t}]{spi\+\_\+speed, }
-\item[{uint16\+\_\+t}]{spi\+\_\+delay, }
-\item[{double}]{zero\+\_\+point}
-\end{DoxyParamCaption}
-)}\hypertarget{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}{}\label{classHallSensor_ac901b856eff0dffb4dfa5fdeaf888c4c}
+\subsubsection{\texorpdfstring{Hall\+Sensor()}{HallSensor()}}
+{\footnotesize\ttfamily Hall\+Sensor\+::\+Hall\+Sensor (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{spi\+\_\+device,  }\item[{uint8\+\_\+t}]{spi\+\_\+cs\+\_\+id,  }\item[{uint8\+\_\+t}]{spi\+\_\+mode,  }\item[{uint8\+\_\+t}]{spi\+\_\+bits,  }\item[{uint32\+\_\+t}]{spi\+\_\+speed,  }\item[{uint16\+\_\+t}]{spi\+\_\+delay,  }\item[{double}]{zero\+\_\+point }\end{DoxyParamCaption})}
+
 
 
 Constructor of the \hyperlink{classHallSensor}{Hall\+Sensor} class. 
@@ -55,24 +48,22 @@ Constructor of the \hyperlink{classHallSensor}{Hall\+Sensor} class.
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}\label{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}} 
 \index{Hall\+Sensor@{Hall\+Sensor}!get\+Value@{get\+Value}}
 \index{get\+Value@{get\+Value}!Hall\+Sensor@{Hall\+Sensor}}
-\subsubsection[{\texorpdfstring{get\+Value()}{getValue()}}]{\setlength{\rightskip}{0pt plus 5cm}double Hall\+Sensor\+::get\+Value (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}{}\label{classHallSensor_a5eea1969e798bc786c5fa165aeb47c77}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+{\footnotesize\ttfamily double Hall\+Sensor\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 
 
 Reads the Angle of the \hyperlink{classHallSensor}{Hall\+Sensor}. 
 
-This function returns a double containing the current Angle of the joint according to the angle specifications above. \index{Hall\+Sensor@{Hall\+Sensor}!set\+Zero\+Point@{set\+Zero\+Point}}
+This function returns a double containing the current Angle of the joint according to the angle specifications above. \mbox{\Hypertarget{classHallSensor_ac97079734e670ba56401e6a8b37144e8}\label{classHallSensor_ac97079734e670ba56401e6a8b37144e8}} 
+\index{Hall\+Sensor@{Hall\+Sensor}!set\+Zero\+Point@{set\+Zero\+Point}}
 \index{set\+Zero\+Point@{set\+Zero\+Point}!Hall\+Sensor@{Hall\+Sensor}}
-\subsubsection[{\texorpdfstring{set\+Zero\+Point()}{setZeroPoint()}}]{\setlength{\rightskip}{0pt plus 5cm}void Hall\+Sensor\+::set\+Zero\+Point (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classHallSensor_ac97079734e670ba56401e6a8b37144e8}{}\label{classHallSensor_ac97079734e670ba56401e6a8b37144e8}
+\subsubsection{\texorpdfstring{set\+Zero\+Point()}{setZeroPoint()}}
+{\footnotesize\ttfamily void Hall\+Sensor\+::set\+Zero\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 Sets the next Angle sent from the Sensor as the new zero\+\_\+point\+\_\+ for the angles. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMessageBuilder.html" title="This class and its subclasses handle the creation of the CAN&#45;Frames needed to control the Hacker Herk..." alt="" coords="5,56,120,83"/>
-<area shape="rect" id="node2" href="$classCurrentControl.html" title="This subclass generates Current&#45;Control Messages which allow to control the motor via a current limit..." alt="" coords="168,5,275,32"/>
-<area shape="rect" id="node3" href="$classPingMessage.html" title="This subclass generates a Ping&#45;Message so that one can verify if a controller with an known address i..." alt="" coords="171,56,272,83"/>
-<area shape="rect" id="node4" href="$classScanMessage.html" title="This subclass generates a Scan&#45;Message so that new Controllers on the CAN&#45;Bus can be found..." alt="" coords="169,107,274,133"/>
-</map>

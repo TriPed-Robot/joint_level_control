@@ -1,0 +1,52 @@
+\hypertarget{classExtendJoint}{}\section{Extend\+Joint Class Reference}
+\label{classExtendJoint}\index{Extend\+Joint@{Extend\+Joint}}
+
+
+This Packages the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class and \hyperlink{classMotor}{Motor} class together into a Hardware Interface.  
+
+
+
+
+{\ttfamily \#include $<$extend\+\_\+joint.\+h$>$}
+
+
+
+Inheritance diagram for Extend\+Joint\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classExtendJoint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Extend\+Joint\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classExtendJoint__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classExtendJoint_a115a7b5763d4496e9c365614241b2351}\label{classExtendJoint_a115a7b5763d4496e9c365614241b2351}} 
+{\bfseries Extend\+Joint} (const std\+::string \&joint\+\_\+name, const std\+::string \&spi\+\_\+device, uint8\+\_\+t spi\+\_\+cs\+\_\+id, uint8\+\_\+t spi\+\_\+mode, uint8\+\_\+t spi\+\_\+bits, uint32\+\_\+t spi\+\_\+speed, uint16\+\_\+t spi\+\_\+delay, const std\+::string \&can\+\_\+name, uint8\+\_\+t can\+\_\+id)
+\item 
+\mbox{\Hypertarget{classExtendJoint_a703426ab8a4047bb7a6087ffff734b5d}\label{classExtendJoint_a703426ab8a4047bb7a6087ffff734b5d}} 
+void {\bfseries read} ()
+\item 
+\mbox{\Hypertarget{classExtendJoint_aaaddc50f230254a001ce8b3f56064371}\label{classExtendJoint_aaaddc50f230254a001ce8b3f56064371}} 
+void {\bfseries write} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This Packages the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class and \hyperlink{classMotor}{Motor} class together into a Hardware Interface. 
+
+The class offers two types of interfaces, a joint state interface which reads the joint position from the \hyperlink{classRotaryEncoder}{Rotary\+Encoder} class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found \href{http://wiki.ros.org/ros_control#Hardware_Interfaces}{\tt here}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+extend\+\_\+joint.\+h\item 
+extend\+\_\+joint.\+cpp\end{DoxyCompactItemize}

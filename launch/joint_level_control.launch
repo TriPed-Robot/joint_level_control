@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+<arg name="left_start_delay" default="2.0" />
+<arg name="extend_start_delay" default="6.0" />
+<arg name="right_start_delay" default="4.0" />
+  <!-- Load joint definitions. -->  
+  <rosparam file="$(find joint_level_control)/config/joints.yaml" command="load" />
+  <include file="$(find triped_description)/launch/triped_description.launch"/>
+	  <!--<rosparam file="$(find joint_level_control)/config/joint_limits.yaml" command="load" ns="swing/left/joint" />-->
+ 
+  <!-- Start hardware interfaces and assigned controller. -->
+  <!-- Address joint via namespace. -->
+  <!-- Namespace have to match the joints defined in joints.yaml. -->
+
+
+		  <!-- Start swing joint left. -->
+	    <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing/left/joint" launch-prefix="bash -c 'sleep $(arg left_start_delay); $0 $@' "/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing/left/joint"
+	  args="joint_state_controller position_controller" launch-prefix="bash -c 'sleep $(arg left_start_delay); $0 $@' "/>   
+	  <!--    args="joint_state_controller effort_controller" />  -->
+			   <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing/left/joint" />-->
+ 
+				   <!-- Start swing joint right. -->
+			   		    <node name="swing_joint" pkg="joint_level_control" type="swing_joint" output="screen" ns="swing/right/joint" launch-prefix="bash -c 'sleep $(arg right_start_delay); $0 $@' "/>
+			     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="swing/right/joint"
+			   args="joint_state_controller position_controller" launch-prefix="bash -c 'sleep $(arg right_start_delay); $0 $@' " />          
+		    <!--
+	    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="swing/right/joint" />
+    -->
+    
+		    <!-- Start extend joint. -->
+	    <!-- 
+		    <node name="extend_joint" pkg="joint_level_control" type="extend_joint" output="screen" ns="extend/joint" launch-prefix="bash -c 'sleep $(arg extend_start_delay); $0 $@' "/>
+		    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="extend/joint"
+	    args="joint_state_controller position_controller" launch-prefix="bash -c 'sleep $(arg extend_start_delay); $0 $@' "/>         -->
+			    <!--
+		    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" ns="extend/joint" />
+	    -->
+   
+</launch>

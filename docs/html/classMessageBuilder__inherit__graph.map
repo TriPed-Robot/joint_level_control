@@ -1,0 +1,5 @@
+<map id="MessageBuilder" name="MessageBuilder">
+<area shape="rect" id="node2" href="$classCurrentControl.html" title="This subclass generates Current&#45;Control Messages which allow to control the motor via a current limit..." alt="" coords="5,80,112,107"/>
+<area shape="rect" id="node3" href="$classPingMessage.html" title="This subclass generates a Ping&#45;Message so that one can verify if a controller with an known address i..." alt="" coords="136,80,237,107"/>
+<area shape="rect" id="node4" href="$classScanMessage.html" title="This subclass generates a Scan&#45;Message so that new Controllers on the CAN&#45;Bus can be found..." alt="" coords="262,80,367,107"/>
+</map>

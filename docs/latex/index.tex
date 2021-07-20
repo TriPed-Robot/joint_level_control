@@ -1,0 +1,58 @@
+\hypertarget{index_intro}{}\section{Introduction}\label{index_intro}
+This is the documentation for the Tri\+Ped Projects joint level controller. It implements the Hardware Interfaces required by \href{http://wiki.ros.org/ros_control}{\tt ros\+\_\+control} to interface the joint position and joint space trajectory controllers with the sensors and actuators. A Diagram of how this package interfaces with ros\+\_\+\+Control can be seen here\+:  The Naming conventions for each joint, motor, and sensor are specified on the Tri\+Peds main \href{https://triped-robot.github.io/docs/legs/}{\tt webside} and can be seen down below\+:  \hypertarget{index_arch}{}\section{Hardware Interface Architecture}\label{index_arch}
+Each Leg of the Tri\+Ped robot, is made up of two types of joints, extend joints and swing joints each requiring its own hardware interface. Since both types of joints share the same motor controller each hardware interface is designed as a class containing a motor class object and a sensor class object. The rotary\+\_\+encoder class is the sensor class used by the extend\+\_\+joint interface, while the hall\+\_\+sensor class is used by the swing\+\_\+joint\+\_\+interface. \hypertarget{index_content}{}\section{Structure of the Project}\label{index_content}
+The Project is designed as \href{http://wiki.ros.org/Packages}{\tt R\+OS package} and is distributed into the following directories\+:
+
+
+\begin{DoxyItemize}
+\item config
+\end{DoxyItemize}
+
+docs
+\begin{DoxyItemize}
+\item include
+\item launch
+\item src 
+\end{DoxyItemize}\hypertarget{index_config_dir}{}\subsection{config}\label{index_config_dir}
+The project is designed to be flexible in regards to different configurations, for this reason, hardware addresses, and other device-\/specific parameters are always read in from config files. This folder contains all necessary config files for the joint controllers. On startup of the joint controllers, these config files are first set as \href{http://wiki.ros.org/Parameter%20Server}{\tt R\+OS parameters} and then subsequently read out by the approprate \href{http://wiki.ros.org/Nodes}{\tt R\+OS nodes}. \hypertarget{index_docs_dir}{}\subsection{docs}\label{index_docs_dir}
+The docs folder houses the Doxygen documentation from which this page is generated. It is not necessary for the proper functioning of this package. \hypertarget{index_include_dir}{}\subsection{include}\label{index_include_dir}
+The include directory contains the c++ header files of the package. This special directory is necessary for the \href{http://wiki.ros.org/catkin/commands/catkin_make}{\tt catkin\+\_\+make} to find the files. The name of the include directory is specified in the C\+Make\+List file. \hypertarget{index_launch_dir}{}\subsection{launch}\label{index_launch_dir}
+The launch directory contains all \href{http://wiki.ros.org/roslaunch}{\tt R\+OS launch files} of the package. It contains the following files
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ launch file name }&\textbf{ purpose  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ launch file name }&\textbf{ purpose  }\\\cline{1-2}
+\endhead
+hall\+\_\+sensor\+\_\+test &Testing the Hall Sensors \\\cline{1-2}
+motor &Testing the \hyperlink{classMotor}{Motor} \\\cline{1-2}
+joint\+\_\+level\+\_\+control &Start the Joint controllers \\\cline{1-2}
+\end{longtabu}
+Each launchfile also loads the parameters of the config directory. \hypertarget{index_src_dir}{}\subsection{src}\label{index_src_dir}
+This directory contains the source code of the package.\hypertarget{index_bbb_setup}{}\section{Beaglebone Black Setup}\label{index_bbb_setup}
+In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the \href{https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup}{\tt beaglebone setup guide} Afterwards the sensors and actuators have to be connected according to the \href{https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram}{\tt wiring diagram}. \hypertarget{index_getting_started}{}\section{Getting Started}\label{index_getting_started}
+This section details the steps neccesairy to install the joint\+\_\+level\+\_\+control package and use it to controll the joints of the Tri\+Ped.\hypertarget{index_install}{}\subsection{Installing the Package}\label{index_install}
+Since the project is a ros package, it has to be placed inside the src directory of a \href{http://wiki.ros.org/catkin}{\tt catkin\+\_\+ws}, and installed with {\ttfamily catkin\+\_\+make}\+:
+
+\begin{DoxyVerb}$ cd catkin_ws/src
+$ git clone https://github.com/TriPed-Robot/joint_level_control
+$ cd ..
+$ catkin_make
+$ source devel/setup.sh
+\end{DoxyVerb}
+
+
+To verify that the package was installed one can call
+
+
+\begin{DoxyCode}
+$ rospack joint\_level\_control
+\end{DoxyCode}
+
+
+Which should provide informations about the package \hypertarget{index_usage}{}\subsection{Using the Package}\label{index_usage}

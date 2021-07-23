@@ -37,7 +37,7 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
     int fd; // file descriptor
 	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init
  
-	uint8_t tx[] = {0xFF,0xFF}; // send buffer [not used for Swing Sensor, since MOSI pin is connected to VDD anyways]
+	uint8_t tx[] = {0x7F,0xFE}; // send buffer //TODO: change back to 0xFF, 0xFF!!! 
 	uint8_t rx[ARRAY_SIZE(tx)] = {0, }; // recieve buffer
 	struct spi_ioc_transfer tr = {
 		.tx_buf = (unsigned long)tx,

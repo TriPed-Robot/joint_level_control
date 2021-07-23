@@ -30,3 +30,13 @@ jobs:
         allow_empty_commit: false
         force_orphan: true
         publish_branch: gh-pages
+        
+        
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # Default Doxyfile build documentation to html directory. 
+        # Change the directory if changes in Doxyfile
+        publish_branch: gh-pages
+        publish_dir: ./html

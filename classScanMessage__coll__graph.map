@@ -1,0 +1,4 @@
+<map id="ScanMessage" name="ScanMessage">
+<area shape="rect" id="node1" title="This subclass generates a Scan&#45;Message so that new Controllers on the CAN&#45;Bus can be found." alt="" coords="10,80,115,107"/>
+<area shape="rect" id="node2" href="$classMessageBuilder.html" title="This class and its subclasses handle the creation of the CAN&#45;Frames needed to control the Hacker Herk..." alt="" coords="5,5,120,32"/>
+</map>

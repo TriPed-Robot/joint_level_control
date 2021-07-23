@@ -42,18 +42,59 @@
  * This directory contains the source code of the package. 
  * 
  * \section bbb_setup Beaglebone Black Setup
- * In order to use the joint controller the I/O of the Beaglebone black has to be set up according to the <a href="https://github.com/TriPed-Robot/Wiki/wiki/Beaglebone-Setup"> beaglebone setup guide</a>
+ * In order to use the joint controller the I/O of the Beaglebone black has to be set up.
  * Afterwards the sensors and actuators have to be connected according to the  <a href="https://github.com/TriPed-Robot/Wiki/wiki/Wiring-diagram"> wiring diagram</a>.
+ *
+ * This tutorial assumes that one has access to the TriPed image containing a setup catkin_workspace.
+ *
+ * \subsection debian_install Installing Debian
+ * The first step in setting up the Beaglebone is installing a  Debian Buster flash image such as the one found [here](https://debian.beagleboard.org/images/bone-eMMC-flasher-debian-10.3-iot-armhf-2020-04-06-4gb.img.xz).
+ * A tutorial on how to install a flasher image can be found [here](http://derekmolloy.ie/write-a-new-image-to-the-beaglebone-black/)
+
+ * \subsection spi_setup SPI Setup  
+ * The beaglebone has multiple SPI busses. Currently SPI(1,0) is used. For this bus to work, it is necessary to configure the beaglebone properly.  
+ * The SPI Bus 1 shares pins with the hdmi port of the beaglebone. Therefore it is necessary to disable the hdmi port.
+ * 1. edit '/boot/uEnv.txt'
+ * 2. uncomment the line `disable_uboot_overlay_video=1`
+ * 3. save &reboot 
+ *
+ * This disables the hdmi port until the line commented out again.  
+ *
+ * The Pins of the SPI busses need to be **configured**, this is done by executing the `BBB-SPI_Pin_Setup.sh`` file located in the base directory of the sd card.
+ * 
+ * There should be an output like: `Current mode for P9_17 is: spi_cs` ...
+ *
+ * A more complete tutorial can be found [here!](https://arcanesciencelab.wordpress.com/2020/01/14/the-correct-way-to-enable-spi-ports-on-the-beaglebone-black/) 
+ *
+ * \subsction can_setup CAN Setup
+ * The Beaglebone uses a CAN-cape to communicate over CAN.
+ * To use this interface the CAN_H und CAN_L wires first have to be connected to the cape.
+ * The necessairy commands are collected in the `can_setup.sh` script located in the base directory of the sd card.
+ *
  * \section getting_started Getting Started
  * This section details the steps neccesairy to install the joint_level_control package and use it to controll the joints of the TriPed.
  * 
+ * \subsection ros_setup Setting up the ROS Environment
+ * To directly use the ROS packages on the SD card its `catkin_ws`  has to automatically be called. This can be done by adding the following line to the `.bashrc`
+ * 
+ *
+ *     $ source /sd/triped_app/catkin_ws/devel/setup.bash
+ *
+ * 
+ * To monitor the Robot from other sysems in the networ additional lines have to be added to configure the network environment:
+ * 
+ * 
+ *     $ export ROS_IP= IP_OF_SYSTEM
+ *     $ export ROS_MASTER_URI= IP_OF_SYSTEM
+ *
+ *
  * \subsection install Installing the Package
- * Since the project is a ros package, it has to be placed inside the src directory of a [catkin_ws](http://wiki.ros.org/catkin), and installed with `catkin_make`: 
+ * Since the project is already inside the SD card image, all all that is lef to do is pull its latest version and make the workspace:
  * 
  * 
- *     $ cd catkin_ws/src
- *     $ git clone https://github.com/TriPed-Robot/joint_level_control
- *     $ cd ..
+ *     $ roscd joint_level_control
+ *     $ git pull
+ *     $ roscd
  *     $ catkin_make
  *     $ source devel/setup.sh
  * 

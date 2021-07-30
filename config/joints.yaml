@@ -4,7 +4,7 @@ swing/left/joint:
     hall_sensor:
         # spi parameters for hall sensor
         spi_cs_id: 1 # chip select address (over multiplexer)
-        spi_device: /dev/spidev1.0
+        spi_device: /dev/spidev0.0
         spi_mode: 0x01 # SPI_CPHA
         spi_bits: 16 # 16 bits per word
         spi_speed: 500000 # 500kHz frequency
@@ -53,7 +53,7 @@ swing/right/joint:
     hall_sensor:
         # spi parameters for hall sensor
         spi_cs_id: 2 # chip select address (over multiplexer)
-        spi_device: /dev/spidev1.0
+        spi_device: /dev/spidev0.0
         spi_mode: 0x01 # SPI_CPHA
         spi_bits: 16 # 16 bits per word
         spi_speed: 500000 # 500kHz frequency

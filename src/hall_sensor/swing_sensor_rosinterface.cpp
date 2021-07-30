@@ -49,7 +49,7 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 	};
 
 	// setting spi to mode 1: CPOL=0, CPHA = 1 // TODO: for writing to extend sensor (other file), set mode there to 0!
-	ret = ioctl(fd, SPI_IOC_WR_MODE32, &spi_mode);
+	int ret = ioctl(fd, SPI_IOC_WR_MODE32, &spi_mode);
 	if (ret == -1)
 		std::cout << "readSwingAngle: can't set spi mode" << std::endl;
 

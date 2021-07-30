@@ -62,6 +62,6 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
     close(fd); //
 	uint16_t angle = ((uint16_t) (rx[1]& 0x3F)) << 8 | rx[0];
 	double resultAngle = angle; //(((double)angle)/16384.*2*3.1415926535); // converts counts to radians
-	std::cout << "readSwingAngle: device: " << spi_device << " id: " << spi_cs_id << " result: " << resultAngle << std:endl;
+	std::cout << "readSwingAngle: device: " << spi_device << " id: " << spi_cs_id << " result: " << resultAngle << std::endl;
     return resultAngle;
 }

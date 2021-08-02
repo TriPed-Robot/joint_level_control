@@ -47,6 +47,9 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 	
     int fd; // file descriptor
 	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init
+	if(fd < 0){
+		std::cout << "\x1b[31;4mERROR!\033[0m" << " Can't open SPI device!" << std::endl;
+	}
  
 	uint8_t tx[] = {0xFF,0xFF}; // send buffer // sends larger indice first LIFO! 
 	uint8_t rx[ARRAY_SIZE(tx)] = {0, }; // recieve buffer

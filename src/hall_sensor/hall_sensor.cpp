@@ -22,7 +22,7 @@ HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t
 
     std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< " , mode: " << unsigned(spi_mode) <<  std::endl;
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
-
+    std::cout << "HS: Mutex created / opened!" << std::endl;
 
 }
 
@@ -44,6 +44,7 @@ void HallSensor::setZeroPoint()
 
 double HallSensor::getValue()
 {
+    std::cout << "HS:getValue called!" << std::endl;
     named_mtx_.lock();
 
     if (spi_cs_id_ == 1)

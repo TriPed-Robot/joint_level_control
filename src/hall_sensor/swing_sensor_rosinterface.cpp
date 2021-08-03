@@ -64,19 +64,23 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 
 	// setting spi to mode 1: CPOL=0, CPHA = 1 // TODO: for writing to extend sensor (other file), set mode there to 0!
 	int ret = ioctl(fd, SPI_IOC_WR_MODE32, &spi_mode);
-	if (ret == -1)
-		std::cout << "readSwingAngle: can't set spi mode" << std::endl;
-
+	if (ret == -1){
+		//std::cout << "readSwingAngle: can't set spi mode" << std::endl;
+		ROS_DEBUG_THROTTLE(10,"readSwingAngle: can't set spi mode (throttled message, <1 per 10s)");
+	}
+		
 	ret = ioctl(fd, SPI_IOC_RD_MODE32, &spi_mode);
-	if (ret == -1)
-		std::cout << "readSwingAngle: can't get spi mode" << std::endl;
-	
+	if (ret == -1){
+		ROS_DEBUG_THROTTLE(10,"readSwingAngle: can't get spi mode (throttled message, <1 per 10s)");
+	}
+		
 
     ioctl(fd, SPI_IOC_MESSAGE(1), &tr); // transmit data over SPI to 
-    close(fd); //
+    close(fd); // closes spi device
+
 	uint16_t angle = ((uint16_t) (rx[1]& 0x3F)) << 8 | rx[0];
 	double resultAngle = angle; //(((double)angle)/16384.*2*3.1415926535); // converts counts to radians
-	std::cout << "readSwingAngle: device: " << spi_device << " id: " << static_cast<unsigned int>(spi_cs_id) << " result: " << resultAngle << std::endl;
+	std::cout << "readSwingAngle: device: " << spi_device << " id: " << (unsigned int) spi_cs_id  << " result: " << resultAngle << std::endl;
     
 	// checking for (parity) errors
 	uint16_t error = rx[1] & 0x40;

@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     node.getParam("motor/can_id", can_id_integer);
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     std::cout << "spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< std::endl;
-    ROS_DEBUG("Node: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
+    ROS_DEBUG("Node: device: %s, id: %u, mode: % u, bits: % u, speed: % u, delay: % u \n", spi_device.c_str(), spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay);
 
     SwingJoint swing_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id,zero_point);
     

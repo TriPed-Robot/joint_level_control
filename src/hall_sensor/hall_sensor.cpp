@@ -44,7 +44,7 @@ void HallSensor::setZeroPoint()
 
 double HallSensor::getValue()
 {
-    std::cout << "HS:getValue called!" << std::endl;
+    //std::cout << "HS:getValue called!" << std::endl;
     named_mtx_.lock();
 
     if (spi_cs_id_ == 1)

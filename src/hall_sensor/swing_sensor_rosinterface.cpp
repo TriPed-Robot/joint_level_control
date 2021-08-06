@@ -24,7 +24,6 @@
 
 #include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h"
 
-#include <ros/console.h> // debug console
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
@@ -40,8 +39,8 @@ uint8_t checkparity(uint8_t rx1, uint8_t rx0){
 	
 }
 
-// returns the angle the swing sensor with sensorID is measuring. Angle is in RADIANS!
-double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay)
+// returns the angle counts of the selected swing sensor, sets error parameter bits if necessary
+uint16_t readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, uint8_t* error = NULL)
 {
 
 	
@@ -49,6 +48,7 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 	fd = open(spi_device.c_str(), O_RDWR); //opens SPI device, maybe put this in a once called init
 	if(fd < 0){
 		std::cout << "\x1b[31;4mERROR!\033[0m" << " Can't open SPI device!" << std::endl;
+		error |= SPI_DEVICE_ERROR;
 	}
  
 	uint8_t tx[] = {0xFF,0xFF}; // send buffer // sends larger indice first LIFO! 
@@ -66,11 +66,13 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 	int ret = ioctl(fd, SPI_IOC_WR_MODE32, &spi_mode);
 	if (ret == -1){
 		std::cout << "readSwingAngle: can't set spi mode" << std::endl;
+		error |= SPI_MODE_ERROR;
 	}
 		
 	ret = ioctl(fd, SPI_IOC_RD_MODE32, &spi_mode);
 	if (ret == -1){
 		std::cout << "readSwingAngle: can't get spi mode" << std::endl;
+		error |= SPI_MODE_ERROR;
 	}
 		
 
@@ -81,14 +83,16 @@ double readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_t 
 	double resultAngle = angle; //(((double)angle)/16384.*2*3.1415926535); // converts counts to radians
 	std::cout << "readSwingAngle: device: " << spi_device << " id: " << (unsigned int) spi_cs_id  << " result: " << resultAngle << std::endl;
     
-	// checking for (parity) errors
-	uint16_t error = rx[1] & 0x40;
-	if (error) // error in last CMD frame (Read/Write command to sensor)
+	// checking for (parity) errors: 14th bit of msg is 1
+	uint16_t errorbit = rx[1] & 0x40;
+	if (errorbit) // error in last CMD frame (Read/Write command to sensor)
 	{
+		error |= SPI_CMD_ERROR;
 		std::cout << "\x1b[31;4mERROR!\033[0m" << " Error bit is set!" << std::endl; 
 	}
 	if(!checkparity(rx[1],rx[0])){
-		std::cout << "\x1b[31;4mERROR!\033[0m" << " Parity Error in recieved data!" << std::endl; 
+		std::cout << "\x1b[31;4mERROR!\033[0m" << " Parity Error in recieved data!" << std::endl;
+		error |=  SPI_PARITY_ERROR;
 	}
 
 	return resultAngle;

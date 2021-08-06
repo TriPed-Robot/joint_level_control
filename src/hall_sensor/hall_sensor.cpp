@@ -36,7 +36,7 @@ HallSensor::~HallSensor()
 
 void HallSensor::setZeroPoint()
 {
-    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
+    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_);
     double range    = 2*3.1415926535;
     zero_point_     = (((double)counts)/16384*range); 
 
@@ -45,6 +45,7 @@ void HallSensor::setZeroPoint()
 double HallSensor::getValue()
 {
     //std::cout << "HS:getValue called!" << std::endl;
+    uint16_t counts; // contains angle counts from hall sensor
     named_mtx_.lock();
 
     if (spi_cs_id_ == 1)
@@ -64,8 +65,14 @@ double HallSensor::getValue()
     }
     usleep(2000); 
     
-    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_); // currently the ID is unnecessary, however in the future a distinction is necessary
+    
+    counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_, &error);
     named_mtx_.unlock();
+
+    if(counts == 16384) // sensor not connected!
+    {
+        error_ |= ANGLE_OUT_OF_BOUNDS_ERROR;
+    }
 
     double range = 2*3.1415926535;
     double angle    = (((double)counts)/16384*range); 
@@ -80,3 +87,8 @@ double HallSensor::getValue()
     return angle-zero_point_;
 }
 
+uint8_t HallSensor::getErrors(){
+    uint8_t res = error_;
+    error_ = 0;
+    return res;
+}

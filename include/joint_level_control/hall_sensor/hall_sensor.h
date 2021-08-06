@@ -43,6 +43,10 @@ public:
      * Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.
      **/
     void setZeroPoint();
+    /**
+     * This function reads and clears the error variable, containing the flags for different error types of the sensor.
+    **/
+   uint8_t getErrors();
 
 private:
     std::string spi_device_; // file which controls spi device
@@ -52,6 +56,7 @@ private:
     uint32_t spi_speed_; 
     uint16_t spi_delay_;
     double zero_point_ ;
+    uint8_t error_; // contains the error flags for different errors of the sensor
 
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
     uint16_t mux_selector_pin_1_; // 1st multiplexer selector pin for the chip select line

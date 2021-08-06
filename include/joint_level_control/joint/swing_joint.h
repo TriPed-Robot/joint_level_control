@@ -27,12 +27,13 @@
 class SwingJoint : public hardware_interface::RobotHW
 {
 public:
-    SwingJoint(const std::string& joint_name, const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string& can_name, uint8_t can_id,double zero_point);
+    SwingJoint(const std::string& joint_name, const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string& can_name, uint8_t can_id, double zero_point, double error_command_position);
     ~SwingJoint();
 
     void read();
     void write();
     void calibrate();
+    //TODO: write getter&clear function for error state
     
 private:
     hardware_interface::JointStateInterface joint_state_interface_;
@@ -46,6 +47,8 @@ private:
     double velocity_;
     double effort_;
     double command_position_;
+    double error_command_position_; // default value for cmd_pos if errors occur
+    uint error_state_; // current error state of the joint. 0: OK, otherwise #error_state errors occured in a row
     
     Motor motor_;
     HallSensor hall_sensor_;

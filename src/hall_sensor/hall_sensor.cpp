@@ -25,8 +25,8 @@ HallSensor::HallSensor(
     spi_speed_(spi_speed), 
     spi_delay_(spi_delay), 
     zero_point_(zero_point), 
-    mux_sel_pin_1_(mux_sel_pin_1), 
-    mux_sel_pin_2_(mux_sel_pin_2)
+    mux_selector_pin_1_(mux_sel_pin_1), 
+    mux_selector_pin_2_(mux_sel_pin_2)
 {
 
     // setup multiplexer pins, TODO: remove if getting this from joints.yaml works
@@ -35,7 +35,7 @@ HallSensor::HallSensor(
     //mux_selector_pin_2_ = 115; //p9_27
 
 
-    std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< " , mode: " << unsigned(spi_mode) << "sel. pins: " << mux_sel_pin_1_ << ", " << mux_sel_pin_2_ <<  std::endl;
+    std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< " , mode: " << unsigned(spi_mode) << "sel. pins: " << mux_selector_pin_1_ << ", " << mux_selector_pin_2_ <<  std::endl;
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
     std::cout << "HS: Mutex created / opened!" << std::endl;
 
@@ -64,18 +64,18 @@ double HallSensor::getValue()
 
     if (spi_cs_id_ == 1)
     {
-        gpio_set_value(117,HIGH); 
-        gpio_set_value(115,LOW);
+        gpio_set_value(mux_selector_pin_1_,HIGH); 
+        gpio_set_value(mux_selector_pin_2_,LOW);
     }
     else if (spi_cs_id_ == 2)
     {
-        gpio_set_value(117,LOW); 
-        gpio_set_value(115,HIGH);
+        gpio_set_value(mux_selector_pin_1_,LOW); 
+        gpio_set_value(mux_selector_pin_2_,HIGH);
     }
     else
     {
-        gpio_set_value(117,HIGH); 
-        gpio_set_value(115,HIGH);
+        gpio_set_value(mux_selector_pin_1_,HIGH); 
+        gpio_set_value(mux_selector_pin_2_,HIGH);
     }
     usleep(2000); 
     

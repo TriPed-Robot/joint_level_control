@@ -10,6 +10,9 @@ swing/left/joint:
         spi_speed: 500000 # 500kHz frequency
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
         zero_point: 2.857
+        spi_multiplexor_select_pin_1: 117 # p9_25, pins for mux'd device selection
+        spi_multiplexor_select_pin_2: 115 #p9_27
+        spi_error_motor_default_value: 0. # gets output to the motors if enough errors occur
 
     motor:
         can_name: can1
@@ -59,6 +62,9 @@ swing/right/joint:
         spi_speed: 500000 # 500kHz frequency
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
         zero_point: 0.0
+        spi_multiplexor_select_pin_1: 117 # p9_25, pins for mux'd device selection
+        spi_multiplexor_select_pin_2: 115 #p9_27
+        spi_error_motor_default_value: 0. # gets output to the motors if enough errors occur
 
     motor:
         can_name: can1
@@ -98,7 +104,10 @@ extend/joint:
         spi_bits: 8 # 8 bits per word
         spi_speed: 200000 # 200kHz frequency
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
-
+        spi_multiplexor_select_pin_1: 117 # p9_25, pins for mux'd device selection
+        spi_multiplexor_select_pin_2: 115 #p9_27
+        spi_error_motor_default_value: 0. # gets output to the motors if enough errors occur
+        
     motor:
         can_name: can1
         can_id: 0xd2

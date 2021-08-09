@@ -23,17 +23,32 @@
  * The class offers two types of interfaces, a joint state interface which reads the joint position from the HallSensor class and a effort interface with which feedback controllers can controll the torque of the robot. 
  * More information on hardware interfaces can be found [here](http://wiki.ros.org/ros_control#Hardware_Interfaces).
  * It also offers a calibration function which calls the setZero method of the HallSensor. This is done to allow calibration via ROS services.
+ * Lastly it contains a function for reading out how many errors in a row the last read accesses had.
  * */
 class SwingJoint : public hardware_interface::RobotHW
 {
 public:
-    SwingJoint(const std::string& joint_name, const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string& can_name, uint8_t can_id, double zero_point, double error_command_position);
+    SwingJoint(
+        const std::string& joint_name, 
+        const std::string& spi_device, 
+        uint8_t spi_cs_id, 
+        uint8_t spi_mode, 
+        uint8_t spi_bits, 
+        uint32_t spi_speed, 
+        uint16_t spi_delay, 
+        const std::string& can_name, 
+        uint8_t can_id, 
+        double zero_point, 
+        double error_command_position, 
+        uint16_t mux_sel_pin_1,
+        uint16_t mux_sel_pin_2));
+
     ~SwingJoint();
 
     void read();
     void write();
     void calibrate();
-    //TODO: write getter&clear function for error state
+    uint getErrorState(); // returns current #errors (of hallsensor read) in a row
     
 private:
     hardware_interface::JointStateInterface joint_state_interface_;

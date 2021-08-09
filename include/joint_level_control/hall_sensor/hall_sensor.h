@@ -29,9 +29,9 @@ class HallSensor
 public:    
     /**
      * \brief Constructor of the HallSensor class
-     * @param SPI device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics.
+     * @param SPI device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics, also the selector pins for the multiplexer.
      **/
-    HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point);
+    HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point, uint16_t mux_sel_pin_1, uint16_t mux_sel_pin_2);
     ~HallSensor();
    /**
      * \brief Reads the Angle of the HallSensor
@@ -45,6 +45,7 @@ public:
     void setZeroPoint();
     /**
      * This function reads and clears the error variable, containing the flags for different error types of the sensor.
+     * It be called after a getValue() call.
     **/
    uint8_t getErrors();
 

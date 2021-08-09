@@ -9,9 +9,24 @@
 
 using namespace std; // TODO: remove this, if possible. currently needed for gpio library...
 
-HallSensor::HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point) 
-: spi_device_(spi_device), spi_cs_id_(spi_cs_id), spi_mode_(spi_mode), spi_bits_(spi_bits), spi_speed_(spi_speed), spi_delay_(spi_delay), 
-    zero_point_(zero_point), mux_sel_pin_1_(mux_sel_pin_1), mux_sel_pin_2_(mux_sel_pin_2)
+HallSensor::HallSensor(
+    const std::string& spi_device, 
+    uint8_t spi_cs_id, 
+    uint8_t spi_mode, uint8_t spi_bits, 
+    uint32_t spi_speed, 
+    uint16_t spi_delay, 
+    double zero_point,
+    uint16_t mux_sel_pin_1,
+    uint16_t mux_sel_pin_2) 
+    : spi_device_(spi_device), 
+    spi_cs_id_(spi_cs_id), 
+    spi_mode_(spi_mode), 
+    spi_bits_(spi_bits), 
+    spi_speed_(spi_speed), 
+    spi_delay_(spi_delay), 
+    zero_point_(zero_point), 
+    mux_sel_pin_1_(mux_sel_pin_1), 
+    mux_sel_pin_2_(mux_sel_pin_2)
 {
 
     // setup multiplexer pins, TODO: remove if getting this from joints.yaml works
@@ -35,7 +50,7 @@ HallSensor::~HallSensor()
 
 void HallSensor::setZeroPoint()
 {
-    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_);
+    uint16_t counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_, NULL);
     double range    = 2*3.1415926535;
     zero_point_     = (((double)counts)/16384*range); 
 
@@ -65,7 +80,7 @@ double HallSensor::getValue()
     usleep(2000); 
     
     
-    counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_, &error);
+    counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_, &error_);
     named_mtx_.unlock();
 
     if(counts == 16384) // sensor not connected!

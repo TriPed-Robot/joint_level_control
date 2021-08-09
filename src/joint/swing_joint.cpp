@@ -54,9 +54,9 @@ void SwingJoint::read()
     uint8_t error = hall_sensor_.getErrors(); // get last errors
     if (error){
         // errors in last read!
-        error_state++; // increment error state counter
+        error_state_++; // increment error state counter
     }else{
-        error_state = 0; // No error -> reset error state
+        error_state_ = 0; // No error -> reset error state
     }
 }
 

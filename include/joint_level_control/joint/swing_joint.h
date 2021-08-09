@@ -41,7 +41,7 @@ public:
         double zero_point, 
         double error_command_position, 
         uint16_t mux_sel_pin_1,
-        uint16_t mux_sel_pin_2));
+        uint16_t mux_sel_pin_2);
 
     ~SwingJoint();
 

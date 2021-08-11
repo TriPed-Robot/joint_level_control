@@ -5,8 +5,11 @@
 #include <string>
 #include <ros/console.h> // debug
 
-#include "controller_manager/controller_manager.h"
+#include <diagnostic_msgs/DiagnosticArray.h>
+#include <diagnostic_msgs/DiagnosticStatus.h>
+#include <diagnostic_msgs/KeyValue.h>
 
+#include "controller_manager/controller_manager.h"
 #include "joint_level_control/joint/swing_joint.h"
 
 
@@ -25,6 +28,14 @@ int main(int argc, char** argv)
     }
     // ------
 
+    // publisher for diagnostics
+    ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics",1);
+    diagnostic_msgs::DiagnosticArray dia_array;
+    diagnostic_msgs::DiagnosticStatus joint_status;
+    diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
+    joint_status_error_value.key = "errors";
+    joint_status_error_value.value = to_string(0); // needs string as value
+
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
 
@@ -41,8 +52,8 @@ int main(int argc, char** argv)
     node.getParam("hall_sensor/spi_speed", spi_speed_int);
     node.getParam("hall_sensor/spi_delay", spi_delay_int);
     node.getParam("hall_sensor/zero_point", zero_point);
-    node.getParam("hall_sensor/spi_multiplexor_select_pin_1",spi_mux_sel_pin_1_int);
-    node.getParam("hall_sensor/spi_multiplexor_select_pin_2",spi_mux_sel_pin_2_int);
+    node.getParam("hall_sensor/spi_multiplexer_select_pin_1",spi_mux_sel_pin_1_int);
+    node.getParam("hall_sensor/spi_multiplexer_select_pin_2",spi_mux_sel_pin_2_int);
     node.getParam("hall_sensor/spi_error_motor_default_value",spi_error_motor_default_value);
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);
@@ -70,6 +81,11 @@ int main(int argc, char** argv)
     ros::Time previous_time = ros::Time::now();
     
     ros::Rate rate(100); // [Hz]
+
+    // more setup for diagnostics
+    joint_status.name = joint_name.append("/status");
+    uint errors = 0;
+
     while(ros::ok())
     {
         ros::Time time = ros::Time::now();
@@ -80,7 +96,21 @@ int main(int argc, char** argv)
         controller_manager.update(time, period);
         swing_joint.write();
         
-        //TODO: read error state from swing joint and publish a diagnostic msg
+        errors = swing_joint.getErrorState();
+        if (errors) // alternatively errors < max # errors
+        {
+            joint_status.level = diagnostic_msgs::DiagnosticStatus::WARN;
+            joint_status.message = "SPI reading throws errors";
+        }else{
+            joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
+            joint_status.message = "SPI reading OK";
+        }
+        joint_status_error_value.value = to_string(errors); // send #errors in a row regardless
+        joint_status.values.push_back(joint_status_error_value);
+        dia_array.status.push_back(joint_status);
+        diagnostic_pub.publish(dia_array);
+
+
 
         rate.sleep();
     }

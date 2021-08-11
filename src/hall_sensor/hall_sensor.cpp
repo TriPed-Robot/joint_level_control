@@ -83,7 +83,7 @@ double HallSensor::getValue()
     counts = readSwingAngle(spi_device_, spi_cs_id_, spi_mode_, spi_bits_, spi_speed_, spi_delay_, &error_);
     named_mtx_.unlock();
 
-    if(counts == 16384) // sensor not connected!
+    if(counts == 16383 || counts == 16384) // sensor not connected!
     {
         error_ |= ANGLE_OUT_OF_BOUNDS_ERROR;
     }

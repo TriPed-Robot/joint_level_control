@@ -34,7 +34,8 @@ int main(int argc, char** argv)
     diagnostic_msgs::DiagnosticStatus joint_status;
     diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
     joint_status_error_value.key = "errors";
-    joint_status_error_value.value = to_string(0); // needs string as value
+    char *int_str = itoa(0);  
+    joint_status_error_value.value = string(int_str); // needs string as value
 
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
@@ -105,7 +106,8 @@ int main(int argc, char** argv)
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
         }
-        joint_status_error_value.value = to_string(errors); // send #errors in a row regardless
+        *int_str = itoa(errors);  
+        joint_status_error_value.value = string(int_str);// send #errors in a row regardless
         joint_status.values.push_back(joint_status_error_value);
         dia_array.status.push_back(joint_status);
         diagnostic_pub.publish(dia_array);

@@ -2,6 +2,9 @@
 #include "ros/ros.h"
 #include <iostream>
 
+#include <stdio.h>
+#include <stdlib.h> // itoa
+
 #include <string>
 #include <ros/console.h> // debug
 
@@ -35,7 +38,8 @@ int main(int argc, char** argv)
     diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
     joint_status_error_value.key = "errors";
     char *int_str = itoa(0);  
-    joint_status_error_value.value = string(int_str); // needs string as value
+    joint_status_error_value.value = int_str; // needs string as value
+    std::cout << "testing string assingment: " << joint_status_error_value.value << std::endl;
 
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
@@ -107,7 +111,7 @@ int main(int argc, char** argv)
             joint_status.message = "SPI reading OK";
         }
         *int_str = itoa(errors);  
-        joint_status_error_value.value = string(int_str);// send #errors in a row regardless
+        joint_status_error_value.value = int_str;// send #errors in a row regardless
         joint_status.values.push_back(joint_status_error_value);
         dia_array.status.push_back(joint_status);
         diagnostic_pub.publish(dia_array);

@@ -37,7 +37,8 @@ int main(int argc, char** argv)
     diagnostic_msgs::DiagnosticStatus joint_status;
     diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
     joint_status_error_value.key = "errors";
-    char *int_str = itoa(0);  
+    char int_str[4];
+    snprintf(int_str,sizeof(int_str),"%d",0); // cast int to string  
     joint_status_error_value.value = int_str; // needs string as value
     std::cout << "testing string assingment: " << joint_status_error_value.value << std::endl;
 
@@ -110,7 +111,7 @@ int main(int argc, char** argv)
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
         }
-        *int_str = itoa(errors);  
+        snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
         joint_status_error_value.value = int_str;// send #errors in a row regardless
         joint_status.values.push_back(joint_status_error_value);
         dia_array.status.push_back(joint_status);

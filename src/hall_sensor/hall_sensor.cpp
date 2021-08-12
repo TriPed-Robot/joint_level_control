@@ -37,7 +37,7 @@ HallSensor::HallSensor(
 
     std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< " , mode: " << unsigned(spi_mode) << "sel. pins: " << mux_selector_pin_1_ << ", " << mux_selector_pin_2_ <<  std::endl;
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
-    std::cout << "HS: Mutex created / opened!" << std::endl;
+    //std::cout << "HS: Mutex created / opened!" << std::endl;
 
 }
 

@@ -90,6 +90,7 @@ int main(int argc, char** argv)
 
     // more setup for diagnostics
     joint_status.name = joint_name.append("/status");
+    joint_status.hardware_id = joint_name;
     uint errors = 0;
 
     while(ros::ok())

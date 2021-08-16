@@ -39,7 +39,8 @@ public:
         const std::string& can_name, 
         uint8_t can_id, 
         double zero_point, 
-        double error_command_position, 
+        double error_command_position,
+        uint spi_error_treshold, 
         uint16_t mux_sel_pin_1,
         uint16_t mux_sel_pin_2);
 
@@ -48,7 +49,7 @@ public:
     void read();
     void write();
     void calibrate();
-    uint getErrorState(); // returns current #errors (of hallsensor read) in a row
+    uint getErrorState(); // returns true if in ERROR state
     
 private:
     hardware_interface::JointStateInterface joint_state_interface_;
@@ -64,6 +65,7 @@ private:
     double command_position_;
     double error_command_position_; // default value for cmd_pos if errors occur
     uint error_state_; // current error state of the joint. 0: OK, otherwise #error_state errors occured in a row
+    uint error_limit_; // max #errors in a row until ERROR state is reached
     
     Motor motor_;
     HallSensor hall_sensor_;

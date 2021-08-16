@@ -29,12 +29,6 @@ HallSensor::HallSensor(
     mux_selector_pin_2_(mux_sel_pin_2)
 {
 
-    // setup multiplexer pins, TODO: remove if getting this from joints.yaml works
-    
-    //mux_selector_pin_1_ = 117; // p9_25
-    //mux_selector_pin_2_ = 115; //p9_27
-
-
     std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< " , mode: " << unsigned(spi_mode) << "sel. pins: " << mux_selector_pin_1_ << ", " << mux_selector_pin_2_ <<  std::endl;
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
     //std::cout << "HS: Mutex created / opened!" << std::endl;
@@ -58,7 +52,7 @@ void HallSensor::setZeroPoint()
 
 double HallSensor::getValue()
 {
-    //std::cout << "HS:getValue called!" << std::endl;
+    error_ = 0; // reset errors for current read
     uint16_t counts; // contains angle counts from hall sensor
     named_mtx_.lock();
 

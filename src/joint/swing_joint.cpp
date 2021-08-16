@@ -13,6 +13,7 @@ SwingJoint::SwingJoint(
     uint8_t can_id, 
     double zero_point, 
     double error_command_position, 
+    uint spi_error_treshold,
     uint16_t mux_sel_pin_1, 
     uint16_t mux_sel_pin_2)
     : position_(0.0), 
@@ -20,7 +21,8 @@ SwingJoint::SwingJoint(
     effort_(0.0), 
     command_position_(0.0), 
     error_command_position_(error_command_position), 
-    error_state_(0), 
+    error_state_(0),
+    error_limit_(spi_error_treshold),
     motor_(can_name, can_id), 
     hall_sensor_(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay,zero_point, mux_sel_pin_1, mux_sel_pin_2)
 {
@@ -54,16 +56,49 @@ void SwingJoint::read()
     uint8_t error = hall_sensor_.getErrors(); // get last errors
     if (error){
         // errors in last read!
-        error_state_++; // increment error state counter
-    }else{
-        error_state_ = 0; // No error -> reset error state
+        // use weights to differentiate error criticalness
+        if (error & SPI_CMD_ERROR)
+        {
+            /* last command frame was invalid */
+            error_state_+= 5; // increment error state counter
+        }
+        if (error & SPI_PARITY_ERROR)
+        {
+            /* last parity was wrong */
+            error_state_+= 5; // increment error state counter
+        }
+        if (error & SPI_DEVICE_ERROR)
+        {
+            /* spi device couldn't e opened */
+            error_state_+= 50; // increment error state counter
+        }
+        if (error & SPI_MODE_ERROR)
+        {
+            /* spi mode couldn't be set / read */
+            error_state_+= 1; // increment error state counter
+        }
+        if (error & ANGLE_OUT_OF_BOUNDS_ERROR)
+        {
+            /* last returned value was unfeasible / sensor NOT connected */
+            error_state_+= error_limit_; // increment error state counter
+        }
+    }else if(error_state_ < error_limit_){  
+        // No error -> have error state decay over time
+        // Also ERROR state is not yet reached
+        uint decay_rate = 40;
+        if (error_state_ - decay_rate >= 0)
+        {
+            error_state_ -= decay_rate;
+        }else{
+            error_state_ = 0;
+        }
     }
 }
 
 
 void SwingJoint::write()
 {
-    if(error_state_){ // error occurred, alternatively use error_state < max #Errors
+    if(error_state_ >= error_limit_){ // ERROR STATE
         motor_.setCurrent(error_command_position_); // send default value to motor
     }else{
         motor_.setCurrent(command_position_);
@@ -77,5 +112,5 @@ void SwingJoint::calibrate()
 }
 
 uint SwingJoint::getErrorState(){
-    return error_state_;
+    return error_state_ >= error_limit_; // true if in ERROR state
 }

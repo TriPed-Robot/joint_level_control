@@ -48,7 +48,7 @@ int main(int argc, char** argv)
     //spi params
     std::string spi_device; 
     int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int, 
-        spi_mux_sel_pin_1_int, spi_mux_sel_pin_2_int;
+        spi_mux_sel_pin_1_int, spi_mux_sel_pin_2_int, spi_error_treshold_int;
     double zero_point, spi_error_motor_default_value;
     
     node.getParam("hall_sensor/spi_device", spi_device);
@@ -61,6 +61,7 @@ int main(int argc, char** argv)
     node.getParam("hall_sensor/spi_multiplexer_select_pin_1",spi_mux_sel_pin_1_int);
     node.getParam("hall_sensor/spi_multiplexer_select_pin_2",spi_mux_sel_pin_2_int);
     node.getParam("hall_sensor/spi_error_motor_default_value",spi_error_motor_default_value);
+    node.getParam("hall_sensor/spi_error_treshold",spi_error_treshold_int);
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);
     uint8_t spi_mode = static_cast<uint8_t>(spi_mode_int);
@@ -69,6 +70,7 @@ int main(int argc, char** argv)
     uint16_t spi_delay = static_cast<uint16_t>(spi_delay_int);
     uint16_t spi_mux_sel_pin_1 = static_cast<uint16_t>(spi_mux_sel_pin_1_int);
     uint16_t spi_mux_sel_pin_2 = static_cast<uint16_t>(spi_mux_sel_pin_2_int);
+    uint spi_error_treshold = static_cast<uint>(spi_error_treshold_int);
 
     std::string can_name;
     node.getParam("motor/can_name", can_name);
@@ -77,7 +79,7 @@ int main(int argc, char** argv)
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
     ROS_DEBUG("Node: device: %s, id: %u, mode: %u, bits: %u, speed: %u, delay: %u, sel. pins: %u, %u \n", spi_device.c_str(), spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, spi_mux_sel_pin_1, spi_mux_sel_pin_2);
 
-    SwingJoint swing_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id, zero_point, spi_error_motor_default_value, spi_mux_sel_pin_1, spi_mux_sel_pin_2);
+    SwingJoint swing_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id, zero_point, spi_error_motor_default_value, spi_error_treshold, spi_mux_sel_pin_1, spi_mux_sel_pin_2);
     
     controller_manager::ControllerManager controller_manager(&swing_joint);  
     
@@ -106,15 +108,16 @@ int main(int argc, char** argv)
         errors = swing_joint.getErrorState();
         if (errors) // alternatively errors < max # errors
         {
-            joint_status.level = diagnostic_msgs::DiagnosticStatus::WARN;
+            joint_status.level = diagnostic_msgs::DiagnosticStatus::ERROR;
             joint_status.message = "SPI reading throws errors";
         }else{
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
         }
-        snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
+        //TODO: delete if this works without it
+        /*snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
         joint_status_error_value.value = int_str;// send #errors in a row regardless
-        joint_status.values.push_back(joint_status_error_value);
+        joint_status.values.push_back(joint_status_error_value);*/
         dia_array.status.push_back(joint_status);
         diagnostic_pub.publish(dia_array);
 

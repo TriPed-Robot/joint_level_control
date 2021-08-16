@@ -35,12 +35,11 @@ int main(int argc, char** argv)
     ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics",1);
     diagnostic_msgs::DiagnosticArray dia_array;
     diagnostic_msgs::DiagnosticStatus joint_status;
-    diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
-    joint_status_error_value.key = "errors";
-    char int_str[4];
-    snprintf(int_str,sizeof(int_str),"%d",0); // cast int to string  
-    joint_status_error_value.value = int_str; // needs string as value
-    std::cout << "testing string assingment: " << joint_status_error_value.value << std::endl;
+    //diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
+    //joint_status_error_value.key = "errors";
+    //char int_str[4];
+    //snprintf(int_str,sizeof(int_str),"%d",0); // cast int to string  
+    //joint_status_error_value.value = int_str; // needs string as value
 
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
@@ -91,7 +90,7 @@ int main(int argc, char** argv)
     ros::Rate rate(100); // [Hz]
 
     // more setup for diagnostics
-    joint_status.name = joint_name.append("/status");
+    joint_status.name = joint_name + "/status";
     joint_status.hardware_id = joint_name;
     uint errors = 0;
 

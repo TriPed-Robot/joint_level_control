@@ -6,6 +6,8 @@
 #include <boost/interprocess/managed_shared_memory.hpp> 
 #include <boost/interprocess/sync/named_mutex.hpp> // Mutex!
 
+#include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h" // implements the spi read, also defines error flags
+
 /**
  * \brief This class abstracts the communication with the sensors measuring the state of the swingjoints.
  *

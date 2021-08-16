@@ -118,7 +118,8 @@ int main(int argc, char** argv)
         /*snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
         joint_status_error_value.value = int_str;// send #errors in a row regardless
         joint_status.values.push_back(joint_status_error_value);*/
-        dia_array.status.push_back(joint_status);
+        dia_array.status.clear(); // remove old status
+	dia_array.status.push_back(joint_status);
         diagnostic_pub.publish(dia_array);
 
 

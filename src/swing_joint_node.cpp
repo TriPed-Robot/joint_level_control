@@ -32,6 +32,7 @@ int main(int argc, char** argv)
     // ------
 
     // publisher for diagnostics
+    sleep(2000); //wait for 2s
     ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics",1);
     diagnostic_msgs::DiagnosticArray dia_array;
     diagnostic_msgs::DiagnosticStatus joint_status;
@@ -95,8 +96,11 @@ int main(int argc, char** argv)
     joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
     joint_status.message = "initial status";
     dia_array.status.push_back(joint_status);
-    diagnostic_pub.publish(dia_array);
     uint errors = 0;
+    sleep(2000); //wait for 2s
+    diagnostic_pub.publish(dia_array);
+
+    ros::Time debug_time = ros::Time::now();
 
     std::cout << "Rosnode Init complete!" << std::endl;
 
@@ -119,9 +123,15 @@ int main(int argc, char** argv)
 	    diagnostic_pub.publish(dia_array);
             ROS_DEBUG_ONCE("ERROR STATE REACHED!");
 	}else{
-            joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
+            //TODO: put correct status update in if(>5s) (need to actually put status in dia_array before publishing 
+	    joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
 	    ROS_DEBUG_THROTTLE(5, "SPI OK");
+	    if(time.toSec() - debug_time.toSec() > 5. ){
+		diagnostic_pub.publish(dia_array);
+		debug_time = time;
+		std::cout << "5s reached!" << std::endl;
+	    }
         }
         //TODO: delete if this works without it
         /*snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 

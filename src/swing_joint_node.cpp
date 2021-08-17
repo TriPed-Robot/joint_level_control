@@ -92,7 +92,13 @@ int main(int argc, char** argv)
     // more setup for diagnostics
     joint_status.name = joint_name + "/status";
     joint_status.hardware_id = joint_name;
+    joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
+    joint_status.message = "initial status";
+    dia_array.status.push_back(joint_status);
+    diagnostic_pub.publish(dia_array);
     uint errors = 0;
+
+    std::cout << "Rosnode Init complete!" << std::endl;
 
     while(ros::ok())
     {
@@ -109,17 +115,20 @@ int main(int argc, char** argv)
         {
             joint_status.level = diagnostic_msgs::DiagnosticStatus::ERROR;
             joint_status.message = "SPI reading throws errors";
-        }else{
+	    dia_array.status[0] = joint_status;
+	    diagnostic_pub.publish(dia_array);
+            ROS_DEBUG_ONCE("ERROR STATE REACHED!");
+	}else{
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
+	    ROS_DEBUG_THROTTLE(5, "SPI OK");
         }
         //TODO: delete if this works without it
         /*snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
         joint_status_error_value.value = int_str;// send #errors in a row regardless
         joint_status.values.push_back(joint_status_error_value);*/
-        dia_array.status.clear(); // remove old status
-	dia_array.status.push_back(joint_status);
-        diagnostic_pub.publish(dia_array);
+        //dia_array.status.clear(); // remove old status
+	//dia_array.status.push_back(joint_status);
 
 
 

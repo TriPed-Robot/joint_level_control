@@ -1,5 +1,5 @@
 #include "joint_level_control/joint/swing_joint.h"
-
+#include <iostream> // std cout debug
 
 SwingJoint::SwingJoint(
     const std::string& joint_name, 
@@ -61,26 +61,32 @@ void SwingJoint::read()
         {
             /* last command frame was invalid */
             error_state_+= 5; // increment error state counter
+	    std::cout << "Error: CMD" << std::endl;
         }
         if (error & SPI_PARITY_ERROR)
         {
             /* last parity was wrong */
             error_state_+= 5; // increment error state counter
+	    std::cout << "Error: PARITY" << std::endl;
         }
         if (error & SPI_DEVICE_ERROR)
         {
             /* spi device couldn't e opened */
             error_state_+= 50; // increment error state counter
+	    std::cout << "Error: DEVICE" << std::endl;
         }
         if (error & SPI_MODE_ERROR)
         {
             /* spi mode couldn't be set / read */
-            error_state_+= 1; // increment error state counter
+            //error_state_+= 1; // increment error state counter
+	   //std::cout << "Error: MODE"<< std::endl;
         }
         if (error & ANGLE_OUT_OF_BOUNDS_ERROR)
         {
             /* last returned value was unfeasible / sensor NOT connected */
-            error_state_+= error_limit_; // increment error state counter
+           // error_state_+= error_limit_; // increment error state counter
+	   error_state_ += 10;
+	   std::cout << "Error: OOB"<< std::endl;
         }
     }else if(error_state_ < error_limit_){  
         // No error -> have error state decay over time

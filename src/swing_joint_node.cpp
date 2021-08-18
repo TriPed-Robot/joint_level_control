@@ -51,8 +51,8 @@ int main(int argc, char** argv)
     node.getParam("hall_sensor/spi_error_motor_default_value",spi_error_motor_default_value);
     node.getParam("hall_sensor/spi_error_treshold",spi_error_treshold_int);
     
-    node.getParam("joint_limits/swing/left/joint/min_position", joint_min_pos);
-    node.getParam("joint_limits/swing/left/joint/max_position", joint_max_pos);
+    node.getParam("joint_limits/"+joint_name+"/min_position", joint_min_pos);
+    node.getParam("joint_limits/"+joint_name+"/max_position", joint_max_pos);
     
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);

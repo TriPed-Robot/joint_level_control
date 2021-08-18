@@ -23,24 +23,12 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "swing/joint");
     ros::NodeHandle node;
     
-    // set debug level in ROS ------
-    // TODO: remove this later!
-  
+    // set debug level in ROS: used for ros console debug------
+    
     if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Debug) ) {
         ros::console::notifyLoggerLevelsChanged();
     }
     // ------
-
-    // publisher for diagnostics
-    ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics",1);
-    diagnostic_msgs::DiagnosticArray dia_array;
-    diagnostic_msgs::DiagnosticStatus joint_status;
-    diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
-    joint_status_error_value.key = "errors";
-    char int_str[4];
-    snprintf(int_str,sizeof(int_str),"%d",0); // cast int to string  
-    joint_status_error_value.value = int_str; // needs string as value
-    std::cout << "testing string assingment: " << joint_status_error_value.value << std::endl;
 
     std::string joint_name;    
     node.getParam("joint_name", joint_name);
@@ -91,9 +79,27 @@ int main(int argc, char** argv)
     ros::Rate rate(100); // [Hz]
 
     // more setup for diagnostics
-    joint_status.name = joint_name.append("/status");
+    // publisher for diagnostics
+    ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics" + joint_name,1);
+    diagnostic_msgs::DiagnosticArray dia_array;
+    diagnostic_msgs::DiagnosticStatus joint_status;
+    //diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
+    //joint_status_error_value.key = "errors";
+    //char int_str[4];
+    //snprintf(int_str,sizeof(int_str),"%d",0); // cast int to string  
+    //joint_status_error_value.value = int_str; // needs string as value
+    joint_status.name = joint_name + "/status";
     joint_status.hardware_id = joint_name;
+    joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
+    joint_status.message = "initial status";
+    dia_array.status.push_back(joint_status);
     uint errors = 0;
+    sleep(2000); //wait for 2s
+    diagnostic_pub.publish(dia_array);
+
+    ros::Time debug_time = ros::Time::now();
+
+    std::cout << "Rosnode Init complete!" << std::endl;
 
     while(ros::ok())
     {
@@ -110,17 +116,27 @@ int main(int argc, char** argv)
         {
             joint_status.level = diagnostic_msgs::DiagnosticStatus::ERROR;
             joint_status.message = "SPI reading throws errors";
-        }else{
+            dia_array.status[0] = joint_status;
+            diagnostic_pub.publish(dia_array);
+            ROS_DEBUG_ONCE("ERROR STATE REACHED!");
+	    }else if(time.toSec() - debug_time.toSec() > 5. ){
+            // Not in ERROR state, give periodically updates 
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
+            dia_array.status[0] = joint_status; 
+            diagnostic_pub.publish(dia_array);
+            debug_time = time;
+            //ROS_DEBUG_THROTTLE(5, "SPI OK");
+            std::cout << "5s reached!" << std::endl;
         }
+
+
         //TODO: delete if this works without it
         /*snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
         joint_status_error_value.value = int_str;// send #errors in a row regardless
         joint_status.values.push_back(joint_status_error_value);*/
-        dia_array.status.clear(); // remove old status
-	    dia_array.status.push_back(joint_status);
-        diagnostic_pub.publish(dia_array);
+        //dia_array.status.clear(); // remove old status
+	    //dia_array.status.push_back(joint_status);
 
 
 

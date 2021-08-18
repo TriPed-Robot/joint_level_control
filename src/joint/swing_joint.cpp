@@ -85,8 +85,7 @@ void SwingJoint::read()
         if (error & ANGLE_OUT_OF_BOUNDS_ERROR)
         {
             /* last returned value was unfeasible / sensor NOT connected */
-           // error_state_+= error_limit_; // increment error state counter
-	   error_state_ += 10;
+           error_state_+= error_limit_; // increment error state counter
 	   std::cout << "Error: OOB"<< std::endl;
         }
     }else if(error_state_ < error_limit_){  

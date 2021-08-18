@@ -80,7 +80,7 @@ int main(int argc, char** argv)
 
     // more setup for diagnostics
     // publisher for diagnostics
-    ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics" + joint_name,1);
+    ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics/" + joint_name,1);
     diagnostic_msgs::DiagnosticArray dia_array;
     diagnostic_msgs::DiagnosticStatus joint_status;
     //diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
@@ -118,8 +118,8 @@ int main(int argc, char** argv)
             joint_status.message = "SPI reading throws errors";
             dia_array.status[0] = joint_status;
             diagnostic_pub.publish(dia_array);
-            ROS_DEBUG_ONCE("ERROR STATE REACHED!");
-	    }else if(time.toSec() - debug_time.toSec() > 5. ){
+            ROS_DEBUG_THROTTLE(1,"ERROR STATE REACHED!");
+	} else if(time.toSec() - debug_time.toSec() > 0.5 ){
             // Not in ERROR state, give periodically updates 
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";
@@ -127,7 +127,7 @@ int main(int argc, char** argv)
             diagnostic_pub.publish(dia_array);
             debug_time = time;
             //ROS_DEBUG_THROTTLE(5, "SPI OK");
-            std::cout << "5s reached!" << std::endl;
+            std::cout << "5s reached! " << joint_name << std::endl;
         }
 
 

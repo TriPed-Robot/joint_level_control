@@ -37,7 +37,7 @@ int main(int argc, char** argv)
     std::string spi_device; 
     int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int, 
         spi_mux_sel_pin_1_int, spi_mux_sel_pin_2_int, spi_error_treshold_int;
-    double zero_point, spi_error_motor_default_value;
+    double zero_point, spi_error_motor_default_value, joint_min_pos, joint_max_pos;
     
     node.getParam("hall_sensor/spi_device", spi_device);
     node.getParam("hall_sensor/spi_cs_id", spi_cs_id_int);
@@ -50,6 +50,10 @@ int main(int argc, char** argv)
     node.getParam("hall_sensor/spi_multiplexer_select_pin_2",spi_mux_sel_pin_2_int);
     node.getParam("hall_sensor/spi_error_motor_default_value",spi_error_motor_default_value);
     node.getParam("hall_sensor/spi_error_treshold",spi_error_treshold_int);
+    
+    node.getParam("joint_limits/swing/left/joint/min_position", joint_min_pos);
+    node.getParam("joint_limits/swing/left/joint/max_position", joint_max_pos);
+    
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);
     uint8_t spi_mode = static_cast<uint8_t>(spi_mode_int);
@@ -65,9 +69,10 @@ int main(int argc, char** argv)
     int can_id_integer;
     node.getParam("motor/can_id", can_id_integer);
     uint8_t can_id = static_cast<uint8_t>(can_id_integer);
-    ROS_DEBUG("Node: device: %s, id: %u, mode: %u, bits: %u, speed: %u, delay: %u, sel. pins: %u, %u \n", spi_device.c_str(), spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, spi_mux_sel_pin_1, spi_mux_sel_pin_2);
+    ROS_DEBUG("Node: device: %s, id: %u, mode: %u, bits: %u, speed: %u, delay: %u, sel. pins: %u, %u \n Joint Limits: %f, %f", 
+        spi_device.c_str(), spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, spi_mux_sel_pin_1, spi_mux_sel_pin_2, joint_min_pos, joint_max_pos);
 
-    SwingJoint swing_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id, zero_point, spi_error_motor_default_value, spi_error_treshold, spi_mux_sel_pin_1, spi_mux_sel_pin_2);
+    SwingJoint swing_joint(joint_name, spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay, can_name, can_id, zero_point, spi_error_motor_default_value, spi_error_treshold, spi_mux_sel_pin_1, spi_mux_sel_pin_2, joint_min_pos, joint_max_pos);
     
     controller_manager::ControllerManager controller_manager(&swing_joint);  
     
@@ -119,7 +124,7 @@ int main(int argc, char** argv)
             dia_array.status[0] = joint_status;
             diagnostic_pub.publish(dia_array);
             ROS_DEBUG_THROTTLE(1,"ERROR STATE REACHED!");
-	} else if(time.toSec() - debug_time.toSec() > 0.5 ){
+	    } else if(time.toSec() - debug_time.toSec() > 0.5 ){
             // Not in ERROR state, give periodically updates 
             joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
             joint_status.message = "SPI reading OK";

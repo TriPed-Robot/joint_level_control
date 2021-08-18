@@ -15,7 +15,9 @@ SwingJoint::SwingJoint(
     double error_command_position, 
     uint spi_error_treshold,
     uint16_t mux_sel_pin_1, 
-    uint16_t mux_sel_pin_2)
+    uint16_t mux_sel_pin_2,
+    double joint_min_pos,
+    double joint_max_pos)
     : position_(0.0), 
     velocity_(0.0), 
     effort_(0.0), 
@@ -23,6 +25,8 @@ SwingJoint::SwingJoint(
     error_command_position_(error_command_position), 
     error_state_(0),
     error_limit_(spi_error_treshold),
+    joint_min_pos_(joint_min_pos),
+    joint_max_pos_(joint_max_pos),
     motor_(can_name, can_id), 
     hall_sensor_(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay,zero_point, mux_sel_pin_1, mux_sel_pin_2)
 {
@@ -50,11 +54,15 @@ SwingJoint::~SwingJoint()
   
 void SwingJoint::read()
 {
-    // TODO: maybe set position_ only if NOT in ERROR state
-    position_ = hall_sensor_.getValue();
-    
-    //TODO: check for invalid position:
+    position_ = hall_sensor_.getValue(); // read position
     uint8_t error = hall_sensor_.getErrors(); // get last errors
+
+    //checking for invalid position: angle not within joint limits:
+    if (position_ < joint_min_pos_ || position_ > joint_max_pos_){
+        // invalid position!
+        error |= JOINT_LIMIT_ERROR;
+    }
+
     if (error){
         // errors in last read!
         // use weights to differentiate error criticalness
@@ -85,8 +93,13 @@ void SwingJoint::read()
         if (error & ANGLE_OUT_OF_BOUNDS_ERROR)
         {
             /* last returned value was unfeasible / sensor NOT connected */
-           error_state_+= error_limit_; // increment error state counter
-	   std::cout << "Error: OOB"<< std::endl;
+            error_state_+= error_limit_; // increment error state counter
+	        std::cout << "Error: OOB"<< std::endl;
+        }
+        if (error & JOINT_LIMIT_ERROR){
+            /* angle is not within joint limits --> unfeasible position!*/
+            error_state_+= error_limit_; // increment error state counter
+            std::cout << "Error: JOINT LIMIT"<< std::endl;
         }
     }else if(error_state_ < error_limit_){  
         // No error -> have error state decay over time

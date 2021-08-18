@@ -42,7 +42,9 @@ public:
         double error_command_position,
         uint spi_error_treshold, 
         uint16_t mux_sel_pin_1,
-        uint16_t mux_sel_pin_2);
+        uint16_t mux_sel_pin_2,
+        double joint_min_pos,
+        double joint_max_pos);
 
     ~SwingJoint();
 
@@ -66,6 +68,8 @@ private:
     double error_command_position_; // default value for cmd_pos if errors occur
     uint error_state_; // current error state of the joint. 0: OK, otherwise #error_state errors occured in a row
     uint error_limit_; // max #errors in a row until ERROR state is reached
+    double joint_min_pos_; // joint position limits
+    double joint_max_pos_;
     
     Motor motor_;
     HallSensor hall_sensor_;

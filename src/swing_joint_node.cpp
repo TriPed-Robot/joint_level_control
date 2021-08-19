@@ -38,22 +38,19 @@ int main(int argc, char** argv)
     int spi_cs_id_int, spi_mode_int, spi_bits_int, spi_speed_int, spi_delay_int, 
         spi_mux_sel_pin_1_int, spi_mux_sel_pin_2_int, spi_error_treshold_int;
     double zero_point, spi_error_motor_default_value, joint_min_pos, joint_max_pos;
-    
-    node.getParam("hall_sensor/spi_device", spi_device);
-    node.getParam("hall_sensor/spi_cs_id", spi_cs_id_int);
-    node.getParam("hall_sensor/spi_mode", spi_mode_int);
-    node.getParam("hall_sensor/spi_bits", spi_bits_int);
-    node.getParam("hall_sensor/spi_speed", spi_speed_int);
-    node.getParam("hall_sensor/spi_delay", spi_delay_int);
-    node.getParam("hall_sensor/zero_point", zero_point);
-    node.getParam("hall_sensor/spi_multiplexer_select_pin_1",spi_mux_sel_pin_1_int);
-    node.getParam("hall_sensor/spi_multiplexer_select_pin_2",spi_mux_sel_pin_2_int);
-    node.getParam("hall_sensor/spi_error_motor_default_value",spi_error_motor_default_value);
-    node.getParam("hall_sensor/spi_error_treshold",spi_error_treshold_int);
-    
-    node.getParam("joint_limits/"+joint_name+"/min_position", joint_min_pos);
-    node.getParam("joint_limits/"+joint_name+"/max_position", joint_max_pos);
-    
+    while (!node.getParam("hall_sensor/spi_device", spi_device)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_cs_id", spi_cs_id_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_mode", spi_mode_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_bits", spi_bits_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_speed", spi_speed_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_delay", spi_delay_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/zero_point", zero_point)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_multiplexer_select_pin_1",spi_mux_sel_pin_1_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_multiplexer_select_pin_2",spi_mux_sel_pin_2_int)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_error_motor_default_value",spi_error_motor_default_value)){sleep(0.1);}
+    while (!node.getParam("hall_sensor/spi_error_treshold",spi_error_treshold_int)){sleep(0.1);}
+    while (!node.getParam("joint_limits/"+joint_name+"/min_position", joint_min_pos)){sleep(0.1);}
+    while (!node.getParam("joint_limits/"+joint_name+"/max_position", joint_max_pos)){sleep(0.1);}
 
     uint8_t spi_cs_id = static_cast<uint8_t>(spi_cs_id_int);
     uint8_t spi_mode = static_cast<uint8_t>(spi_mode_int);
@@ -104,7 +101,7 @@ int main(int argc, char** argv)
 
     ros::Time debug_time = ros::Time::now();
 
-    std::cout << "Rosnode Init complete!" << std::endl;
+    std::cout <<joint_name << ": ros node init complete!" << std::endl;
 
     while(ros::ok())
     {

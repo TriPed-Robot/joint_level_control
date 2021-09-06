@@ -42,12 +42,14 @@ public:
      **/
     double getValue();
    /**
-     * Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.
+     * \brief Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.
      **/
     void setZeroPoint();
     /**
+     * \brief Returns errors of last read
+     *  
      * This function reads and clears the error variable, containing the flags for different error types of the sensor.
-     * It be called after a getValue() call.
+     * It should be called after a getValue() call.
     **/
    uint8_t getErrors();
 

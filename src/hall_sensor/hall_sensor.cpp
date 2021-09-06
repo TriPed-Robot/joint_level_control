@@ -1,5 +1,4 @@
 #include "joint_level_control/hall_sensor/hall_sensor.h"
-//#include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h" // moved to hall_sensor.h
 #include "joint_level_control/hall_sensor/SimpleGPIO.h" // control GPIO pins
 #include <boost/interprocess/sync/named_mutex.hpp>
 #include <unistd.h> // usleep

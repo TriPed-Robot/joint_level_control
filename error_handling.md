@@ -10,7 +10,7 @@ The error handling of the controller can be seen in the following diagram:
 ![error_handling_flowchart](https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/assumption_trees/docs/triped_error_handling.png)
 
 The error handling is present in each layer of the joint level controller. It begins in the lowest layer with the spi transfer. 
-The first check is, whether the spi device can be opened. If this isn't the case, then a flag indicating so, will be set. This flag is called `SPI_DEVICE_ERROR` and is set within the `error` parameter of the readSwingAngle function, which is a class variable of the HallSensor class.
+The first check is, whether the spi device can be opened. If this isn't the case, then a flag indicating so, will be set. This flag is called `SPI_DEVICE_ERROR` and is set within the `error` parameter of the `readSwingAngle` function, which is a class variable of the `HallSensor` class.
 Furthermore the spi mode is set, read and if an error occurs the `SPI_MODE_ERROR` flag will be set. 
 Then after the spi transfer, the recieved message is checked for a set error bit, indicating a wrong last command frame to the sensor, and leading to the `SPI_CMD_ERROR` flag being set. The message is also checked for correct parity, since a wrong parity indicates incorrectly transfered sensor values. A wrong parity is indicated by the `SPI_PARITY_ERROR` flag.
 
@@ -19,11 +19,8 @@ The next layer is the HallSensor class. There the returned counts of the sensor 
 Finally, in the read function of the SwingJoint class the returned sensor angle is checked against the joint limits. Should the angle not be within the limits, specified in the joints.yaml file, the `JOINT_LIMIT_ERROR` flag is set.
 
 ### Weighing the errors
-The SwingJoint class contains the weighing functionality of the error handling system. For this
-
-## What isn't tracked
- While the system can check if the angle is still within bounds, it can not check if the changes between angles are fitting the last motor commands. This means, if the sensor is loosely mounted or too far from the magnet, the actual angle can be very different from the the measured angle, while still no error is thrown. 
-
+The SwingJoint class contains the weighing functionality of the error handling system. For this an unsigned int stores the wighted sum of the previous reads. In the current read, this sum is increased by weights, depending on what error flags are set. Each flag can have a different weight to it. The values of the weights can be chosen arbitrarily, however it is a good idea to set the values of the `ANGLE_OUT_OF_BOUNDS_ERROR` and the `JOINT_LIMIT_ERROR` to the error treshold, since they are a clear sign, that the sensor is not working as expected and an immediate switching into ERROR state is necessary. 
+The other errors can be weighted far less aggressively, depending on how much they affect the operation of the joint.
 
 ## What happens if an error occurs
 The error gets detected, logged to the console and then added to the weighted error sum. If this sum is larger than a specified treshhold [see customisation], then the system goes into ERROR state. This leads to the following things happening: 
@@ -31,6 +28,9 @@ The `SwingJoint::write()` function will no longer write the command from the con
 Currently the system can not exit the error state and needs to be restarted manually. 
 
 If the error sum is lower than the specified threshold, then the system will update the ros diagnostic topics with an OK status messagem with a specified rate. In the next iteration the sum decays by a specified amount, if no errors occur, or the errors of the next iteration get added to the sum.
+
+## What isn't tracked
+ While the system can check if the angle is still within bounds, it can not check if the changes between angles are fitting the last motor commands. This means, if the sensor is loosely mounted or too far from the magnet, the actual angle can be very different from the the measured angle, while still no error is thrown. 
 
 ## Customisation
 The most important things can be customized rather easily, by changing their values in the joints.yaml file. 
@@ -40,3 +40,14 @@ Also the treshold for when the system changes state from OK to ERROR can be modi
 Other customisation can be done by changing the values of the weights of the errors in the `SwingJoint::read()` function and by changing the rate of decay applied if no errors occur. If needed the rate of the publishing of OK status messages can be changed in the `SwingJointNode::main()` function. Currently it is set to 2 Hz, which is the lowest rate, the Triped GUI will take for updates. 
 
 The Documentation of this repository can be seen [here](https://triped-robot.github.io/joint_level_control/html/index.html).
+
+## Error List
+
+|Error name   |Cause   |Fix   |Weight   |
+|---|---|---|---|
+|SPI_DEVICE_ERROR   |Spi device can't be opened.   |Restart controller.   |50   |
+|SPI_MODE_ERROR   |Mode of spi device can't be set / read.  Device usage too high.  |Ignore / Check device usage.   |0   |
+|SPI_CMD_ERROR   |Error bit was set. Last reading may be wrong.   |check device usage.   |5   |
+|SPI_PARITY_ERROR   |Parity of spi message is wrong. Maybe wrong timings for spi transfer.   |Check if spi mode is correct.   |5   |
+|ANGLE_OUT_OF_BOUNDS_ERROR   |Incorrect sensor value!   |Check sensor connections!   |error threshold   |
+|JOINT_LIMIT_ERROR   |Unfeasible sensor value!   |Check sensor position, initialisation and joint limits.   |error threshold   |

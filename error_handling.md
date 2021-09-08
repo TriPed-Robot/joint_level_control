@@ -1,6 +1,6 @@
 # Error handling
 ## Idea
-Since wrong sensor readings can cause catastrophic failure of the Triped, it is important to find out when such incorrect readings occur and to deal with them accordingly.   
+Since wrong sensor readings can cause catastrophic failure of the TriPed, it is important to find out when such incorrect readings occur and to deal with them accordingly.   
 The general idea of error handling is to check each step of the SPI transfer from the beaglebone to the sensor for errors and to set the hardware interface into an error state, should the errors accumulate. 
 The error types can also be weighted differently, depending on how critical they are in the operation of the motors.  
 Also, since higher-level control blocks depend on the lower levels, the state of the lower levels need to be broadcasted. This is done via ROS diagnostic topics.
@@ -24,7 +24,7 @@ The other errors can be weighted far less aggressively, depending on how much th
 
 ## What happens if an error occurs
 The error gets detected, logged to the console, and then added to the weighted error sum. If this sum is larger than a specified threshold [see customization], then the system goes into an ERROR state. This leads to the following things happening: 
-The `SwingJoint::write()` function will no longer write the command from the controller to the motor, but a specified default value to prevent the motors from damaging the robot. Also, the SwingJointNode will update the ROS diagnostic topic for the joint with an error message to alert the higher control layers. This update can be seen using the Triped-GUI or using a listener for the diagnostic topics. 
+The `SwingJoint::write()` function will no longer write the command from the controller to the motor, but a specified default value to prevent the motors from damaging the robot. Also, the SwingJointNode will update the ROS diagnostic topic for the joint with an error message to alert the higher control layers. This update can be seen using the TriPed-GUI or using a listener for the diagnostic topics. 
 Currently, the system can not exit the error state and needs to be restarted manually. 
 
 If the error sum is lower than the specified threshold, then the system will update the ROS diagnostic topics with an OK status message at a specified rate. In the next iteration, the sum decays by a specified amount, if no errors occur, or the errors of the next iteration get added to the sum.
@@ -34,10 +34,10 @@ If the error sum is lower than the specified threshold, then the system will upd
 
 ## Customisation
 The most important things can be customized rather easily, by changing their values in the joints.yaml file. 
-There it is possible to change the `spi_error_motor_default_value`, which is the default value sent to the motors once the system reaches the ERROR state. Currently, it is set to 0, since the motor API uses motor current and not position, and putting current on the motor, while the system is in ERROR state can be dangerous.   
+There it is possible to change the `spi_error_motor_default_value`, which is the default value send to the motors once the system reaches the ERROR state. Currently, it is set to 0, since the motor API uses motor current and not position, and putting current on the motor, while the system is in ERROR state can be dangerous.   
 Also, the threshold for when the system changes state from OK to ERROR can be modified using the `spi_error_treshold` parameter. Increasing its value leads to a more lenient error handling and possibly a slower reaction to errors. Decreasing it too much might make the system unusable since some errors in the SPI transfer are common and do not interfere with normal operation.
 
-Other customization can be done by changing the values of the weights of the errors in the `SwingJoint::read()` function and by changing the rate of decay applied if no errors occur. If needed the rate of the publishing of OK status messages can be changed in the `SwingJointNode::main()` function. Currently, it is set to 2 Hz, which is the lowest rate, the Triped GUI will take for updates. 
+Other customization can be done by changing the values of the weights of the errors in the `SwingJoint::read()` function and by changing the rate of decay applied if no errors occur. If needed the rate of the publishing of OK status messages can be changed in the `SwingJointNode::main()` function. Currently, it is set to 2 Hz, which is the lowest rate, the TriPed GUI will take for updates. 
 
 The Documentation of this repository can be seen [here](https://triped-robot.github.io/joint_level_control/html/index.html).
 

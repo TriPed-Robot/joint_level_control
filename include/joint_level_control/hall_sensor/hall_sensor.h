@@ -6,6 +6,8 @@
 #include <boost/interprocess/managed_shared_memory.hpp> 
 #include <boost/interprocess/sync/named_mutex.hpp> // Mutex!
 
+#include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h" // implements the spi read, also defines error flags
+
 /**
  * \brief This class abstracts the communication with the sensors measuring the state of the swingjoints.
  *
@@ -29,9 +31,9 @@ class HallSensor
 public:    
     /**
      * \brief Constructor of the HallSensor class
-     * @param SPI device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics.
+     * @param SPI device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics, also the selector pins for the multiplexer.
      **/
-    HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point);
+    HallSensor(const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point, uint16_t mux_sel_pin_1, uint16_t mux_sel_pin_2);
     ~HallSensor();
    /**
      * \brief Reads the Angle of the HallSensor
@@ -40,9 +42,16 @@ public:
      **/
     double getValue();
    /**
-     * Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.
+     * \brief Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.
      **/
     void setZeroPoint();
+    /**
+     * \brief Returns errors of last read
+     *  
+     * This function reads and clears the error variable, containing the flags for different error types of the sensor.
+     * It should be called after a getValue() call.
+    **/
+   uint8_t getErrors();
 
 private:
     std::string spi_device_; // file which controls spi device
@@ -52,6 +61,7 @@ private:
     uint32_t spi_speed_; 
     uint16_t spi_delay_;
     double zero_point_ ;
+    uint8_t error_; // contains the error flags for different errors of the sensor
 
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
     uint16_t mux_selector_pin_1_; // 1st multiplexer selector pin for the chip select line

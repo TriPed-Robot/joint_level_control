@@ -1,8 +1,34 @@
 #include "joint_level_control/joint/swing_joint.h"
+#include <iostream> // std cout debug
 
-
-SwingJoint::SwingJoint(const std::string& joint_name, const std::string& spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string& can_name, uint8_t can_id, double zero_point)
-    : position_(0.0), velocity_(0.0), effort_(0.0), command_position_(0.0), motor_(can_name, can_id), hall_sensor_(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay,zero_point)
+SwingJoint::SwingJoint(
+    const std::string& joint_name, 
+    const std::string& spi_device, 
+    uint8_t spi_cs_id, 
+    uint8_t spi_mode, 
+    uint8_t spi_bits, 
+    uint32_t spi_speed, 
+    uint16_t spi_delay, 
+    const std::string& can_name, 
+    uint8_t can_id, 
+    double zero_point, 
+    double error_command_position, 
+    uint spi_error_treshold,
+    uint16_t mux_sel_pin_1, 
+    uint16_t mux_sel_pin_2,
+    double joint_min_pos,
+    double joint_max_pos)
+    : position_(0.0), 
+    velocity_(0.0), 
+    effort_(0.0), 
+    command_position_(0.0), 
+    error_command_position_(error_command_position), 
+    error_state_(0),
+    error_limit_(spi_error_treshold),
+    joint_min_pos_(joint_min_pos),
+    joint_max_pos_(joint_max_pos),
+    motor_(can_name, can_id), 
+    hall_sensor_(spi_device, spi_cs_id, spi_mode, spi_bits, spi_speed, spi_delay,zero_point, mux_sel_pin_1, mux_sel_pin_2)
 {
 
     // Setup hardware interface:
@@ -28,17 +54,83 @@ SwingJoint::~SwingJoint()
   
 void SwingJoint::read()
 {
-    position_ = hall_sensor_.getValue();
-    //position_ = command_position_; // TODO: read sensor data. Assigning the last command positions leads to 0 error in control loop.
+    position_ = hall_sensor_.getValue(); // read position
+    uint8_t error = hall_sensor_.getErrors(); // get last errors
+
+    //checking for invalid position: angle not within joint limits:
+    if (position_ < joint_min_pos_ || position_ > joint_max_pos_){
+        // invalid position!
+        error |= JOINT_LIMIT_ERROR;
+    }
+
+    if (error){
+        // errors in last read!
+        // use weights to differentiate error criticalness
+        if (error & SPI_CMD_ERROR)
+        {
+            /* last command frame was invalid */
+            error_state_+= 5; // increment error state counter
+	    std::cout << "Error: CMD" << std::endl;
+        }
+        if (error & SPI_PARITY_ERROR)
+        {
+            /* last parity was wrong */
+            error_state_+= 5; // increment error state counter
+	    std::cout << "Error: PARITY" << std::endl;
+        }
+        if (error & SPI_DEVICE_ERROR)
+        {
+            /* spi device couldn't e opened */
+            error_state_+= 50; // increment error state counter
+	    std::cout << "Error: DEVICE" << std::endl;
+        }
+        if (error & SPI_MODE_ERROR)
+        {
+            /* spi mode couldn't be set / read */
+            // commented out, because this error is not relevant and happens very often
+            //error_state_+= 1; // increment error state counter
+	        //std::cout << "Error: MODE"<< std::endl;
+        }
+        if (error & ANGLE_OUT_OF_BOUNDS_ERROR)
+        {
+            /* last returned value was unfeasible / sensor NOT connected */
+            error_state_+= error_limit_; // increment error state counter
+	        std::cout << "Error: OOB"<< std::endl;
+        }
+        if (error & JOINT_LIMIT_ERROR){
+            /* angle is not within joint limits --> unfeasible position!*/
+            error_state_+= error_limit_; // increment error state counter
+            std::cout << "Error: JOINT LIMIT"<< std::endl;
+        }
+    }else if(error_state_ < error_limit_){  
+        // No error -> have error state decay over time
+        // Also ERROR state is not yet reached
+        uint decay_rate = 40;
+        if (error_state_ - decay_rate >= 0)
+        {
+            error_state_ -= decay_rate;
+        }else{
+            error_state_ = 0;
+        }
+    }
 }
 
 
 void SwingJoint::write()
 {
-    motor_.setCurrent(command_position_);
+    if(error_state_ >= error_limit_){ // ERROR STATE
+        motor_.setCurrent(error_command_position_); // send default value to motor
+    }else{
+        motor_.setCurrent(command_position_);
+    }
+    
 }
 
 void SwingJoint::calibrate()
 {
 	hall_sensor_.setZeroPoint();
+}
+
+uint SwingJoint::getErrorState(){
+    return error_state_ >= error_limit_; // true if in ERROR state
 }

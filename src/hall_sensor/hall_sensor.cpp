@@ -6,7 +6,7 @@
 
 
 
-using namespace std; // TODO: remove this, if possible. currently needed for gpio library...
+using namespace std; // needed for SimpleGPIO library
 
 HallSensor::HallSensor(
     const std::string& spi_device, 
@@ -30,7 +30,6 @@ HallSensor::HallSensor(
 
     std::cout << "HS_params: spi device: " << spi_device << ", ID: " << unsigned(spi_cs_id)<< " , mode: " << unsigned(spi_mode) << "sel. pins: " << mux_selector_pin_1_ << ", " << mux_selector_pin_2_ <<  std::endl;
     boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, "multiplexer_mtx"};
-    //std::cout << "HS: Mutex created / opened!" << std::endl;
 
 }
 

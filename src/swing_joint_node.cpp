@@ -85,11 +85,7 @@ int main(int argc, char** argv)
     ros::Publisher diagnostic_pub = node.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics/" + joint_name,1);
     diagnostic_msgs::DiagnosticArray dia_array;
     diagnostic_msgs::DiagnosticStatus joint_status;
-    //diagnostic_msgs::KeyValue joint_status_error_value; // contains #errors of last spi readings
-    //joint_status_error_value.key = "errors";
-    //char int_str[4];
-    //snprintf(int_str,sizeof(int_str),"%d",0); // cast int to string  
-    //joint_status_error_value.value = int_str; // needs string as value
+    
     joint_status.name = joint_name + "/status";
     joint_status.hardware_id = joint_name;
     joint_status.level = diagnostic_msgs::DiagnosticStatus::OK;
@@ -114,7 +110,7 @@ int main(int argc, char** argv)
         swing_joint.write();
         
         errors = swing_joint.getErrorState();
-        if (errors) // alternatively errors < max # errors
+        if (errors)
         {
             joint_status.level = diagnostic_msgs::DiagnosticStatus::ERROR;
             joint_status.message = "SPI reading throws errors";
@@ -128,19 +124,8 @@ int main(int argc, char** argv)
             dia_array.status[0] = joint_status; 
             diagnostic_pub.publish(dia_array);
             debug_time = time;
-            //ROS_DEBUG_THROTTLE(5, "SPI OK");
             std::cout << "5s reached! " << joint_name << std::endl;
         }
-
-
-        //TODO: delete if this works without it
-        /*snprintf(int_str,sizeof(int_str),"%d",errors); // cast int to string 
-        joint_status_error_value.value = int_str;// send #errors in a row regardless
-        joint_status.values.push_back(joint_status_error_value);*/
-        //dia_array.status.clear(); // remove old status
-	    //dia_array.status.push_back(joint_status);
-
-
 
         rate.sleep();
     }

@@ -8,7 +8,7 @@ Also, since higher-level control blocks depend on the lower levels, the state of
 
 ## What is tracked
 The error handling of the controller can be seen in the following diagram:
-![error_handling_flowchart](https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/assumption_trees/docs/triped_error_handling.png)
+![error_handling_flowchart](https://raw.githubusercontent.com/TriPed-Robot/joint_level_control/main/docs/triped_error_handling.png)
 
 The error handling is present in each layer of the joint level controller. It begins in the lowest layer with the SPI transfer. 
 The first check is, whether the SPI device can be opened. If this isn't the case, then a flag indicating so will be set. This flag is called `SPI_DEVICE_ERROR` and is set within the `error` parameter of the `readSwingAngle` function, which is a class variable of the `HallSensor` class.

@@ -87,8 +87,9 @@ void SwingJoint::read()
         if (error & SPI_MODE_ERROR)
         {
             /* spi mode couldn't be set / read */
+            // commented out, because this error is not relevant and happens very often
             //error_state_+= 1; // increment error state counter
-	   //std::cout << "Error: MODE"<< std::endl;
+	        //std::cout << "Error: MODE"<< std::endl;
         }
         if (error & ANGLE_OUT_OF_BOUNDS_ERROR)
         {

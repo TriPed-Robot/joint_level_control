@@ -18,7 +18,6 @@ int main(int argc, char** argv)
     ros::NodeHandle node;
 
     // set debug level in ROS ------
-    // TODO: remove this later!
   
     if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Debug) ) {
         ros::console::notifyLoggerLevelsChanged();

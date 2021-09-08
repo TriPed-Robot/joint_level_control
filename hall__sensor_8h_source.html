@@ -78,35 +78,41 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;boost/interprocess/managed_shared_memory.hpp&gt;</span> </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;boost/interprocess/sync/named_mutex.hpp&gt;</span> <span class="comment">// Mutex!</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classHallSensor.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHallSensor.html">HallSensor</a></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:    </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classHallSensor.html#ac901b856eff0dffb4dfa5fdeaf888c4c">HallSensor</a>(<span class="keyword">const</span> std::string&amp; spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, <span class="keywordtype">double</span> zero_point);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    ~<a class="code" href="classHallSensor.html">HallSensor</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77">getValue</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHallSensor.html#ac97079734e670ba56401e6a8b37144e8">setZeroPoint</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::string spi_device_; <span class="comment">// file which controls spi device</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    uint8_t spi_cs_id_; <span class="comment">// address of sensor in spi. This is used in the multiplexer pins</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    uint8_t spi_mode_; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    uint8_t spi_bits_; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    uint32_t spi_speed_; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    uint16_t spi_delay_;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">double</span> zero_point_ ;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="swing__sensor__rosinterface_8h.html">joint_level_control/hall_sensor/swing_sensor_rosinterface.h</a>&quot;</span> <span class="comment">// implements the spi read, also defines error flags</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classHallSensor.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHallSensor.html">HallSensor</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:    </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classHallSensor.html#a6e34ae307679cc6c736afcc8cdd8bcf9">HallSensor</a>(<span class="keyword">const</span> std::string&amp; spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, <span class="keywordtype">double</span> zero_point, uint16_t mux_sel_pin_1, uint16_t mux_sel_pin_2);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    ~<a class="code" href="classHallSensor.html">HallSensor</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77">getValue</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHallSensor.html#ac97079734e670ba56401e6a8b37144e8">setZeroPoint</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;   uint8_t <a class="code" href="classHallSensor.html#ac0076f5841ec5270bc8c7eeb356b3a2a">getErrors</a>();</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, <span class="stringliteral">&quot;multiplexer_mtx&quot;</span>};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    uint16_t mux_selector_pin_1_; <span class="comment">// 1st multiplexer selector pin for the chip select line</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    uint16_t mux_selector_pin_2_; <span class="comment">// 2nd multiplexer selector pin for the chip select line</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassHallSensor_html"><div class="ttname"><a href="classHallSensor.html">HallSensor</a></div><div class="ttdoc">This class abstracts the communication with the sensors measuring the state of the swingjoints.</div><div class="ttdef"><b>Definition:</b> hall_sensor.h:28</div></div>
-<div class="ttc" id="aclassHallSensor_html_a5eea1969e798bc786c5fa165aeb47c77"><div class="ttname"><a href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77">HallSensor::getValue</a></div><div class="ttdeci">double getValue()</div><div class="ttdoc">Reads the Angle of the HallSensor.</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:45</div></div>
-<div class="ttc" id="aclassHallSensor_html_ac901b856eff0dffb4dfa5fdeaf888c4c"><div class="ttname"><a href="classHallSensor.html#ac901b856eff0dffb4dfa5fdeaf888c4c">HallSensor::HallSensor</a></div><div class="ttdeci">HallSensor(const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point)</div><div class="ttdoc">Constructor of the HallSensor class.</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:12</div></div>
-<div class="ttc" id="aclassHallSensor_html_ac97079734e670ba56401e6a8b37144e8"><div class="ttname"><a href="classHallSensor.html#ac97079734e670ba56401e6a8b37144e8">HallSensor::setZeroPoint</a></div><div class="ttdeci">void setZeroPoint()</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:37</div></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::string spi_device_; <span class="comment">// file which controls spi device</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    uint8_t spi_cs_id_; <span class="comment">// address of sensor in spi. This is used in the multiplexer pins</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    uint8_t spi_mode_; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    uint8_t spi_bits_; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    uint32_t spi_speed_; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    uint16_t spi_delay_;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">double</span> zero_point_ ;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    uint8_t error_; <span class="comment">// contains the error flags for different errors of the sensor</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    boost::interprocess::named_mutex named_mtx_{boost::interprocess::open_or_create, <span class="stringliteral">&quot;multiplexer_mtx&quot;</span>};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    uint16_t mux_selector_pin_1_; <span class="comment">// 1st multiplexer selector pin for the chip select line</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    uint16_t mux_selector_pin_2_; <span class="comment">// 2nd multiplexer selector pin for the chip select line</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassHallSensor_html"><div class="ttname"><a href="classHallSensor.html">HallSensor</a></div><div class="ttdoc">This class abstracts the communication with the sensors measuring the state of the swingjoints.</div><div class="ttdef"><b>Definition:</b> hall_sensor.h:30</div></div>
+<div class="ttc" id="aclassHallSensor_html_a5eea1969e798bc786c5fa165aeb47c77"><div class="ttname"><a href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77">HallSensor::getValue</a></div><div class="ttdeci">double getValue()</div><div class="ttdoc">Reads the Angle of the HallSensor.</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:51</div></div>
+<div class="ttc" id="aclassHallSensor_html_a6e34ae307679cc6c736afcc8cdd8bcf9"><div class="ttname"><a href="classHallSensor.html#a6e34ae307679cc6c736afcc8cdd8bcf9">HallSensor::HallSensor</a></div><div class="ttdeci">HallSensor(const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point, uint16_t mux_sel_pin_1, uint16_t mux_sel_pin_2)</div><div class="ttdoc">Constructor of the HallSensor class.</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:11</div></div>
+<div class="ttc" id="aclassHallSensor_html_ac0076f5841ec5270bc8c7eeb356b3a2a"><div class="ttname"><a href="classHallSensor.html#ac0076f5841ec5270bc8c7eeb356b3a2a">HallSensor::getErrors</a></div><div class="ttdeci">uint8_t getErrors()</div><div class="ttdoc">Returns errors of last read.</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:96</div></div>
+<div class="ttc" id="aclassHallSensor_html_ac97079734e670ba56401e6a8b37144e8"><div class="ttname"><a href="classHallSensor.html#ac97079734e670ba56401e6a8b37144e8">HallSensor::setZeroPoint</a></div><div class="ttdeci">void setZeroPoint()</div><div class="ttdoc">Sets the next Angle sent from the Sensor as the new zero_point_ for the angles.</div><div class="ttdef"><b>Definition:</b> hall_sensor.cpp:43</div></div>
+<div class="ttc" id="aswing__sensor__rosinterface_8h_html"><div class="ttname"><a href="swing__sensor__rosinterface_8h.html">swing_sensor_rosinterface.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

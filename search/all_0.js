@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['controlresponse_0',['ControlResponse',['../structControlResponse.html',1,'']]],
-  ['currentcontrol_1',['CurrentControl',['../classCurrentControl.html',1,'CurrentControl'],['../classCurrentControl.html#a3e56845d95613d4c55d7b8dde7cc8300',1,'CurrentControl::CurrentControl()']]]
+  ['angle_5fout_5fof_5fbounds_5ferror_0',['ANGLE_OUT_OF_BOUNDS_ERROR',['../swing__sensor__rosinterface_8h.html#a351cc94f7a509dea8b74368e24050065',1,'swing_sensor_rosinterface.h']]]
 ];

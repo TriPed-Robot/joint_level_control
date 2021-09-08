@@ -95,23 +95,210 @@ Collaboration diagram for SwingJoint:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ddb518c4aff708a5b96290001af7a11"><td class="memItemLeft" align="right" valign="top"><a id="a9ddb518c4aff708a5b96290001af7a11"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SwingJoint</b> (const std::string &amp;joint_name, const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string &amp;can_name, uint8_t can_id, double zero_point)</td></tr>
-<tr class="separator:a9ddb518c4aff708a5b96290001af7a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f966fc71b37d8e5c34e2ddc5ec79e03"><td class="memItemLeft" align="right" valign="top"><a id="a3f966fc71b37d8e5c34e2ddc5ec79e03"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
+<tr class="memitem:ad3890ed3fac24b1f57f059a34bb33331"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSwingJoint.html#ad3890ed3fac24b1f57f059a34bb33331">SwingJoint</a> (const std::string &amp;joint_name, const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, const std::string &amp;can_name, uint8_t can_id, double zero_point, double error_command_position, uint spi_error_treshold, uint16_t mux_sel_pin_1, uint16_t mux_sel_pin_2, double joint_min_pos, double joint_max_pos)</td></tr>
+<tr class="memdesc:ad3890ed3fac24b1f57f059a34bb33331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="classSwingJoint.html" title="This Packages the HallSensor class and Motor class together into a Hardware Interface.">SwingJoint</a> class.  <a href="classSwingJoint.html#ad3890ed3fac24b1f57f059a34bb33331">More...</a><br /></td></tr>
+<tr class="separator:ad3890ed3fac24b1f57f059a34bb33331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01531d473fc48f71c19c406c7f93f243"><td class="memItemLeft" align="right" valign="top"><a id="a01531d473fc48f71c19c406c7f93f243"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSwingJoint.html#a01531d473fc48f71c19c406c7f93f243">~SwingJoint</a> ()</td></tr>
+<tr class="memdesc:a01531d473fc48f71c19c406c7f93f243"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor of <a class="el" href="classSwingJoint.html" title="This Packages the HallSensor class and Motor class together into a Hardware Interface.">SwingJoint</a> class <br /></td></tr>
+<tr class="separator:a01531d473fc48f71c19c406c7f93f243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f966fc71b37d8e5c34e2ddc5ec79e03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSwingJoint.html#a3f966fc71b37d8e5c34e2ddc5ec79e03">read</a> ()</td></tr>
+<tr class="memdesc:a3f966fc71b37d8e5c34e2ddc5ec79e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Angle of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> and weighs errors of read.  <a href="classSwingJoint.html#a3f966fc71b37d8e5c34e2ddc5ec79e03">More...</a><br /></td></tr>
 <tr class="separator:a3f966fc71b37d8e5c34e2ddc5ec79e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2d54c4712616e04e36af2db528384ab"><td class="memItemLeft" align="right" valign="top"><a id="aa2d54c4712616e04e36af2db528384ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSwingJoint.html#aa2d54c4712616e04e36af2db528384ab">write</a> ()</td></tr>
+<tr class="memdesc:aa2d54c4712616e04e36af2db528384ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a command position to the motors. <br /></td></tr>
 <tr class="separator:aa2d54c4712616e04e36af2db528384ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbdd7fae2441b423d146240322c1f848"><td class="memItemLeft" align="right" valign="top"><a id="acbdd7fae2441b423d146240322c1f848"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>calibrate</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSwingJoint.html#acbdd7fae2441b423d146240322c1f848">calibrate</a> ()</td></tr>
+<tr class="memdesc:acbdd7fae2441b423d146240322c1f848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the zero angle of the hallsensor using an internal function <br  />
+ <br /></td></tr>
 <tr class="separator:acbdd7fae2441b423d146240322c1f848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad827e07adf8313e455f8bdcf90840be2"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSwingJoint.html#ad827e07adf8313e455f8bdcf90840be2">getErrorState</a> ()</td></tr>
+<tr class="memdesc:ad827e07adf8313e455f8bdcf90840be2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the sensor is in ERROR state, false otherwise.  <a href="classSwingJoint.html#ad827e07adf8313e455f8bdcf90840be2">More...</a><br /></td></tr>
+<tr class="separator:ad827e07adf8313e455f8bdcf90840be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This Packages the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> class and <a class="el" href="classMotor.html" title="This class abstracts the communication with the motorcontrollers (currently Hacker Herkules 5 BLDC).">Motor</a> class together into a Hardware Interface. </p>
-<p>The class offers two types of interfaces, a joint state interface which reads the joint position from the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found <a href="http://wiki.ros.org/ros_control#Hardware_Interfaces">here</a>. It also offers a calibration function which calls the setZero method of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a>. This is done to allow calibration via ROS services. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p>The class offers two types of interfaces, a joint state interface which reads the joint position from the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> class and a effort interface with which feedback controllers can controll the torque of the robot. More information on hardware interfaces can be found <a href="http://wiki.ros.org/ros_control#Hardware_Interfaces">here</a>. It also offers a calibration function which calls the setZero method of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a>. This is done to allow calibration via ROS services. Lastly it contains a function for reading out how many errors in a row the last read accesses had. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad3890ed3fac24b1f57f059a34bb33331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3890ed3fac24b1f57f059a34bb33331">&#9670;&nbsp;</a></span>SwingJoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SwingJoint::SwingJoint </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>joint_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>spi_device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>spi_cs_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>spi_mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>spi_bits</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>spi_speed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>spi_delay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>can_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>can_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>zero_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>error_command_position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>spi_error_treshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>mux_sel_pin_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>mux_sel_pin_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>joint_min_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>joint_max_pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor of the <a class="el" href="classSwingJoint.html" title="This Packages the HallSensor class and Motor class together into a Hardware Interface.">SwingJoint</a> class. </p>
+<p>double upper joint limit </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joint_name</td><td>string joint name </td></tr>
+    <tr><td class="paramname">spi_device</td><td>string file descriptor of spi device </td></tr>
+    <tr><td class="paramname">spi_cs_id</td><td>uint8_t id of sensor on multiplexer </td></tr>
+    <tr><td class="paramname">spi_mode</td><td>uint8_t mode of spi transfer: clock phase &amp; polarity </td></tr>
+    <tr><td class="paramname">spi_bits</td><td>uint8_t spi bits per word </td></tr>
+    <tr><td class="paramname">spi_speed</td><td>uint32_t spi transfer speed in Hz </td></tr>
+    <tr><td class="paramname">spi_delay</td><td>uint16_t delay in usec after last bit transfer, before device deselect. </td></tr>
+    <tr><td class="paramname">can_name</td><td>string can name </td></tr>
+    <tr><td class="paramname">can_id</td><td>uint8_t can id </td></tr>
+    <tr><td class="paramname">zero_point</td><td>double zero angle offset for sensor </td></tr>
+    <tr><td class="paramname">error_command_position</td><td>double default motor position (current) if errors occur </td></tr>
+    <tr><td class="paramname">spi_error_treshold</td><td>uint upper limit for accumulated errors, till ERROR state is reached </td></tr>
+    <tr><td class="paramname">mux_sel_pin_1</td><td>uint16_t 1st selector pin for multiplexer </td></tr>
+    <tr><td class="paramname">mux_sel_pin_2</td><td>uint16_t 2nd selector pin for multiplexer </td></tr>
+    <tr><td class="paramname">joint_min_pos</td><td>double lower joint limit </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad827e07adf8313e455f8bdcf90840be2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad827e07adf8313e455f8bdcf90840be2">&#9670;&nbsp;</a></span>getErrorState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint SwingJoint::getErrorState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the sensor is in ERROR state, false otherwise. </p>
+<p>Checks if the weighted sum of errors is greater than the error threshold. </p>
+
+</div>
+</div>
+<a id="a3f966fc71b37d8e5c34e2ddc5ec79e03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f966fc71b37d8e5c34e2ddc5ec79e03">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SwingJoint::read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the Angle of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> and weighs errors of read. </p>
+<p>This function sets internal position variable for controller. It also reads the errors of the read access, and calculates a weighted sum of them. The sum dictates, whether the joint is in ERROR state, which is reached if: sum &gt; spi_error_treshold </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="swing__joint_8h_source.html">swing_joint.h</a></li>
 <li>swing_joint.cpp</li>
 </ul>

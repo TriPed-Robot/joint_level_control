@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rotaryencoder_13',['RotaryEncoder',['../classRotaryEncoder.html',1,'RotaryEncoder'],['../classRotaryEncoder.html#ac57e2531f91e03b48bcc2b7e3f0edf62',1,'RotaryEncoder::RotaryEncoder()']]]
+  ['pingmessage_18',['PingMessage',['../classPingMessage.html',1,'PingMessage'],['../classPingMessage.html#a67d49a8189b481cf1d39460a90ab5be7',1,'PingMessage::PingMessage()']]]
 ];

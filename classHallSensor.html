@@ -77,14 +77,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac901b856eff0dffb4dfa5fdeaf888c4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHallSensor.html#ac901b856eff0dffb4dfa5fdeaf888c4c">HallSensor</a> (const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point)</td></tr>
-<tr class="memdesc:ac901b856eff0dffb4dfa5fdeaf888c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> class.  <a href="classHallSensor.html#ac901b856eff0dffb4dfa5fdeaf888c4c">More...</a><br /></td></tr>
-<tr class="separator:ac901b856eff0dffb4dfa5fdeaf888c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e34ae307679cc6c736afcc8cdd8bcf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHallSensor.html#a6e34ae307679cc6c736afcc8cdd8bcf9">HallSensor</a> (const std::string &amp;spi_device, uint8_t spi_cs_id, uint8_t spi_mode, uint8_t spi_bits, uint32_t spi_speed, uint16_t spi_delay, double zero_point, uint16_t mux_sel_pin_1, uint16_t mux_sel_pin_2)</td></tr>
+<tr class="memdesc:a6e34ae307679cc6c736afcc8cdd8bcf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> class.  <a href="classHallSensor.html#a6e34ae307679cc6c736afcc8cdd8bcf9">More...</a><br /></td></tr>
+<tr class="separator:a6e34ae307679cc6c736afcc8cdd8bcf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eea1969e798bc786c5fa165aeb47c77"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77">getValue</a> ()</td></tr>
 <tr class="memdesc:a5eea1969e798bc786c5fa165aeb47c77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Angle of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a>.  <a href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77">More...</a><br /></td></tr>
 <tr class="separator:a5eea1969e798bc786c5fa165aeb47c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac97079734e670ba56401e6a8b37144e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHallSensor.html#ac97079734e670ba56401e6a8b37144e8">setZeroPoint</a> ()</td></tr>
+<tr class="memitem:ac97079734e670ba56401e6a8b37144e8"><td class="memItemLeft" align="right" valign="top"><a id="ac97079734e670ba56401e6a8b37144e8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHallSensor.html#ac97079734e670ba56401e6a8b37144e8">setZeroPoint</a> ()</td></tr>
+<tr class="memdesc:ac97079734e670ba56401e6a8b37144e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the next Angle sent from the Sensor as the new zero_point_ for the angles. <br /></td></tr>
 <tr class="separator:ac97079734e670ba56401e6a8b37144e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0076f5841ec5270bc8c7eeb356b3a2a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHallSensor.html#ac0076f5841ec5270bc8c7eeb356b3a2a">getErrors</a> ()</td></tr>
+<tr class="memdesc:ac0076f5841ec5270bc8c7eeb356b3a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns errors of last read.  <a href="classHallSensor.html#ac0076f5841ec5270bc8c7eeb356b3a2a">More...</a><br /></td></tr>
+<tr class="separator:ac0076f5841ec5270bc8c7eeb356b3a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class abstracts the communication with the sensors measuring the state of the swingjoints. </p>
@@ -95,8 +100,8 @@ Public Member Functions</h2></td></tr>
 <p>After initialization the sensors produce values in the range of [-pi,pi]. A angle of zero is specified as the angle at which the position of the output lever is perpendicular to the two mounting brackets of the hall sensor Because these mounting brackets constrict the movement output lever the actually achievable range of motion is [-pi/2,pi/2].</p>
 <p>The embedded communication with the Sensor is done via SPI according to their datasheet. The connection of the sensor to the beaglebone can be seen in the <a href="https://triped-robot.github.io/docs/embedded/">wiring diagram</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac901b856eff0dffb4dfa5fdeaf888c4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac901b856eff0dffb4dfa5fdeaf888c4c">&#9670;&nbsp;</a></span>HallSensor()</h2>
+<a id="a6e34ae307679cc6c736afcc8cdd8bcf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e34ae307679cc6c736afcc8cdd8bcf9">&#9670;&nbsp;</a></span>HallSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -141,7 +146,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>zero_point</em>&#160;</td>
+          <td class="paramname"><em>zero_point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>mux_sel_pin_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>mux_sel_pin_2</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -154,7 +171,7 @@ Public Member Functions</h2></td></tr>
 <p>Constructor of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a> class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">SPI</td><td>device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics. </td></tr>
+    <tr><td class="paramname">SPI</td><td>device, Chip select ID, mode, number of bits, communication speed and delay as well as the angle which is considered zero by the kinematics, also the selector pins for the multiplexer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -162,6 +179,26 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac0076f5841ec5270bc8c7eeb356b3a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0076f5841ec5270bc8c7eeb356b3a2a">&#9670;&nbsp;</a></span>getErrors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t HallSensor::getErrors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns errors of last read. </p>
+<p>This function reads and clears the error variable, containing the flags for different error types of the sensor. It should be called after a <a class="el" href="classHallSensor.html#a5eea1969e798bc786c5fa165aeb47c77" title="Reads the Angle of the HallSensor.">getValue()</a> call. </p>
+
+</div>
+</div>
 <a id="a5eea1969e798bc786c5fa165aeb47c77"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5eea1969e798bc786c5fa165aeb47c77">&#9670;&nbsp;</a></span>getValue()</h2>
 
@@ -179,24 +216,6 @@ Public Member Functions</h2></td></tr>
 
 <p>Reads the Angle of the <a class="el" href="classHallSensor.html" title="This class abstracts the communication with the sensors measuring the state of the swingjoints.">HallSensor</a>. </p>
 <p>This function returns a double containing the current Angle of the joint according to the angle specifications above. </p>
-
-</div>
-</div>
-<a id="ac97079734e670ba56401e6a8b37144e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac97079734e670ba56401e6a8b37144e8">&#9670;&nbsp;</a></span>setZeroPoint()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void HallSensor::setZeroPoint </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets the next Angle sent from the Sensor as the new zero_point_ for the angles. </p>
 
 </div>
 </div>

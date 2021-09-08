@@ -1,4 +1,5 @@
 # Error handling
+# Hall sensor
 ## Idea
 Since wrong sensor readings can cause catastrophic failure of the TriPed, it is important to find out when such incorrect readings occur and to deal with them accordingly.   
 The general idea of error handling is to check each step of the SPI transfer from the beaglebone to the sensor for errors and to set the hardware interface into an error state, should the errors accumulate. 

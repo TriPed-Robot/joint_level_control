@@ -21,7 +21,7 @@
 #include <sys/ioctl.h>
 #include <linux/types.h>
 #include <linux/spi/spidev.h>
-#include <iostream>
+//#include <iostream>
 
 #include "joint_level_control/hall_sensor/swing_sensor_rosinterface.h"
 
@@ -77,8 +77,7 @@ uint16_t readSwingAngle(const std::string& spi_device, uint8_t spi_cs_id, uint8_
     ioctl(fd, SPI_IOC_MESSAGE(1), &tr); // transmit data over SPI to 
     close(fd); // closes spi device
 
-	uint16_t angle = ((uint16_t) (rx[1]& 0x3F)) << 8 | rx[0];
-	double resultAngle = angle; // cast to double
+	uint16_t resultAngle = ((uint16_t) (rx[1]& 0x3F)) << 8 | rx[0];
 	
 	// checking for (parity) errors: 14th bit of msg is 1
 	uint16_t errorbit = rx[1] & 0x40;

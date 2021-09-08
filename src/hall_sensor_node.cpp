@@ -60,7 +60,7 @@ int main(int argc, char** argv)
     
     while(ros::ok())
     {
-        double angle = hall_sensor.getValue() * 2 * 3.141592655 / 16384.;
+        double angle = hall_sensor.getValue();
         angle_msg.data = angle;
         hall_sensor_publisher.publish(angle_msg);
         ros::spinOnce();

@@ -11,7 +11,7 @@ swing/left/joint:
         spi_delay: 0 # usec, delay after last bit transfer, before device deselect
         zero_point: 2.857
         spi_multiplexer_select_pin_1: 117 # p9_25, pins for mux'd device selection
-        spi_multiplexer_select_pin_2: 115 #p9_27
+        spi_multiplexer_select_pin_2: 115 #p9_27, WARNING: They need to be exported to OS first, see bbb_setup_mux_gpio.sh
         spi_error_motor_default_value: 0. # gets output to the motors if enough errors occur
         spi_error_treshold: 100 # how fast ERROR state gets reached, larger = more lenient
 

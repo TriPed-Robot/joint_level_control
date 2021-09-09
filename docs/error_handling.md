@@ -33,6 +33,7 @@ If the error sum is lower than the specified threshold, then the system will upd
 ## What isn't tracked
  While the system can check if the angle is still within bounds, it can not check if the changes between angles are fitting the last motor commands. This means, if the sensor is loosely mounted or too far from the magnet, the actual angle can be very different from the measured angle, while still no error is thrown. 
 
+
 ## Customisation
 The most important things can be customized rather easily, by changing their values in the joints.yaml file. 
 There it is possible to change the `spi_error_motor_default_value`, which is the default value send to the motors once the system reaches the ERROR state. Currently, it is set to 0, since the motor API uses motor current and not position, and putting current on the motor, while the system is in ERROR state can be dangerous.   
@@ -52,3 +53,11 @@ The Documentation of this repository can be seen [here](https://triped-robot.git
 |SPI_PARITY_ERROR   |Parity of spi message is wrong. Maybe wrong timings for spi transfer.   |Check if spi mode is correct.   |5   |
 |ANGLE_OUT_OF_BOUNDS_ERROR   |Incorrect sensor value!   |Check sensor connections!   |error threshold   |
 |JOINT_LIMIT_ERROR   |Unfeasible sensor value!   |Check sensor position, initialisation and joint limits.   |error threshold   |
+
+
+## Other errors  
+`gpio/set-value`: A problem with writing to the multiplexer pins occurred. Usually occurs if a node (probably swing/left/joint) doesn't start correctly, e.g. problems with loading the rosparams.
+In this case relaunch the application.  
+
+The program will initialize correctly, but stops after that. the joint states topics and diagnostics topics won't get updated. It is not certain what causes this error. The only known fix is to change something minor in the code and recompile the catkin package.
+This error most likely has to do with the boost mutex, which is used to counter race conditions between the spi write accesses of the different joints / sensors.

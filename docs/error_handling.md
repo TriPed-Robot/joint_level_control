@@ -56,8 +56,8 @@ The Documentation of this repository can be seen [here](https://triped-robot.git
 
 
 ## Other errors  
-`gpio/set-value`: A problem with writing to the multiplexer pins occurred. Usually occurs if a node (probably swing/left/joint) doesn't start correctly, e.g. problems with loading the rosparams.
+`gpio/set-value`: A problem with writing to the multiplexer pins occurred. Usually occurs if a node doesn't start correctly, e.g. problems with loading the rosparams.   
 In this case relaunch the application.  
 
-The program will initialize correctly, but stops after that. the joint states topics and diagnostics topics won't get updated. It is not certain what causes this error. The only known fix is to change something minor in the code and recompile the catkin package.
-This error most likely has to do with the boost mutex, which is used to counter race conditions between the spi write accesses of the different joints / sensors.
+The program will initialize correctly, but stops after that. The joint state diagnostic topics do not get updated. It is not certain what causes this error. The only known fix is to change something minor in the code and recompile the catkin package.
+This error most likely has to do with the boost mutex, which is used to counter race conditions between the SPI write accesses of the different joints.
